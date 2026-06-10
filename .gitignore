@@ -1,0 +1,30 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temp files
+*.tmp
+*.bak
+*.swp
+*~
+
+# IDE
+.vscode/
+.idea/
+
+# Node (for update scripts)
+node_modules/
+
+# OneDrive sync artifacts
+~$*
+*.msi
+
+# Don't ignore the actual skill files
+!**/SKILL.md
+
+# Awesome-skills content (installed via npm, not committed)
+.agents/skills/boss/awesome-skills/
+
+# Node modules
+node_modules/
