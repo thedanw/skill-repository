@@ -1,5 +1,550 @@
-{
-  "version": 1,
-  "generatedAt": "",
-  "skills": []
+﻿{
+    "version":  2,
+    "generatedAt":  "2026-06-29T20:37:15Z",
+    "registryType":  "boss-local",
+    "skills":  [
+                   {
+                       "id":  "00_meta-plan-pipeline",
+                       "name":  "00_meta-plan-pipeline",
+                       "description":  "Orchestrate the full development workflow: brainstorm → plan → review-execute → review. Coordinates 01_brainstorming, 02_concise-planning, and 03_executing-plans into one consistent pipeline with deci",
+                       "category":  "code-plan",
+                       "tags":  [
+                                    "pipeline",
+                                    "orchestration",
+                                    "brainstorm",
+                                    "plan",
+                                    "execute",
+                                    "review",
+                                    "workflow",
+                                    "git",
+                                    "testing",
+                                    "quality"
+                                ],
+                       "triggers":  [
+                                        "plan",
+                                        "review",
+                                        "track"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "code-plan/00_meta-plan-pipeline",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "01_brainstorming",
+                       "name":  "01_brainstorming",
+                       "description":  "Use before any creative or constructive work (features, architecture, behavior). Transforms vague ideas into validated designs through disciplined dialogue. Outputs decision tree to decision.md for pi",
+                       "category":  "code-plan",
+                       "tags":  [
+                                    "brainstorming",
+                                    "design",
+                                    "planning",
+                                    "collaboration",
+                                    "requirements",
+                                    "architecture",
+                                    "decision-tree"
+                                ],
+                       "triggers":  [
+                                        "design",
+                                        "validate"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "code-plan/01_brainstorming",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "02_concise-planning",
+                       "name":  "02_concise-planning",
+                       "description":  "Use when a user asks for a plan for a coding task. Generates a clear, actionable, atomic checklist following TDD and git-best practices, while initializing file-based context tracking.",
+                       "category":  "code-plan",
+                       "tags":  [
+                                    "planning",
+                                    "checklist",
+                                    "tasks",
+                                    "scope",
+                                    "tdd",
+                                    "git",
+                                    "context",
+                                    "organization"
+                                ],
+                       "triggers":  [
+                                        "generate",
+                                        "plan",
+                                        "track"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "code-plan/02_concise-planning",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "03_executing-plans",
+                       "name":  "03_executing-plans",
+                       "description":  "Use when you have a written implementation plan to execute. Load plan, review critically, execute tasks in batches with file-tracked context, report for review between batches. Integrates with pipelin",
+                       "category":  "code-plan",
+                       "tags":  [
+                                    "execution",
+                                    "implementation",
+                                    "batch",
+                                    "review",
+                                    "checkpoint",
+                                    "tasks",
+                                    "git",
+                                    "context-recovery"
+                                ],
+                       "triggers":  [
+                                        "plan",
+                                        "review",
+                                        "track"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "code-plan/03_executing-plans",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "wordpress-centric-high-seo-optimized-blogwriting-skill",
+                       "name":  "wordpress-centric-high-seo-optimized-blogwriting-skill",
+                       "description":  "Generate clean, human-sounding, SEO-optimized WordPress blog posts with optional Yoast metadata, JSON-LD schema markup, and image SEO planning. Supports modular batch output.",
+                       "category":  "content",
+                       "tags":  [
+                                    "writing",
+                                    "blog",
+                                    "seo",
+                                    "content",
+                                    "wordpress"
+                                ],
+                       "triggers":  [
+                                        "generate",
+                                        "optimize",
+                                        "plan"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "writing/wordpress-centric-high-seo-optimized-blogwriting-skill",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "youtube-summarizer",
+                       "name":  "youtube-summarizer",
+                       "description":  "Extract transcripts from YouTube videos and generate comprehensive, detailed summaries using intelligent analysis frameworks",
+                       "category":  "content",
+                       "tags":  [
+
+                                ],
+                       "triggers": ["generate"],
+                       "risk":  "safe",
+                       "path":  "tools/youtube-summarizer",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "systematic-debugging",
+                       "name":  "systematic-debugging",
+                       "description":  "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+                       "category":  "debugging",
+                       "tags":  [
+
+                                ],
+                       "triggers":  [
+                                        "fix",
+                                        "test"
+                                    ],
+                       "risk":  "unknown",
+                       "path":  "debugging/systematic-debugging",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "ui-a11y",
+                       "name":  "ui-a11y",
+                       "description":  "Audit a StyleSeed-based component or page for WCAG 2.2 AA issues and apply practical accessibility fixes where the code makes them safe.",
+                       "category":  "design",
+                       "tags":  [
+                                    "ui",
+                                    "accessibility",
+                                    "wcag",
+                                    "audit",
+                                    "styleseed"
+                                ],
+                       "triggers":  [
+                                        "audit",
+                                        "fix"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "ui-ux/ui-a11y",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "ui-component",
+                       "name":  "ui-component",
+                       "description":  "Generate a new UI component that follows StyleSeed Toss conventions for structure, tokens, accessibility, and component ergonomics.",
+                       "category":  "design",
+                       "tags":  [
+                                    "ui",
+                                    "components",
+                                    "design-system",
+                                    "frontend",
+                                    "styleseed"
+                                ],
+                       "triggers": ["generate"],
+                       "risk":  "safe",
+                       "path":  "ui-ux/ui-component",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "ui-page",
+                       "name":  "ui-page",
+                       "description":  "Scaffold a new mobile-first page using StyleSeed Toss layout patterns, section rhythm, and existing shell components.",
+                       "category":  "design",
+                       "tags":  [
+                                    "ui",
+                                    "page-design",
+                                    "mobile",
+                                    "layout",
+                                    "styleseed"
+                                ],
+                       "triggers": [],
+                       "risk":  "safe",
+                       "path":  "ui-ux/ui-page",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "ui-pattern",
+                       "name":  "ui-pattern",
+                       "description":  "Generate reusable UI patterns such as card sections, grids, lists, forms, and chart wrappers using StyleSeed Toss primitives.",
+                       "category":  "design",
+                       "tags":  [
+                                    "ui",
+                                    "patterns",
+                                    "design-system",
+                                    "reuse",
+                                    "styleseed"
+                                ],
+                       "triggers": ["generate"],
+                       "risk":  "safe",
+                       "path":  "ui-ux/ui-pattern",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "ui-review",
+                       "name":  "ui-review",
+                       "description":  "Review UI code for StyleSeed design-system compliance, accessibility, mobile ergonomics, spacing discipline, and implementation quality.",
+                       "category":  "design",
+                       "tags":  [
+                                    "ui",
+                                    "review",
+                                    "design-system",
+                                    "accessibility",
+                                    "styleseed"
+                                ],
+                       "triggers":  [
+                                        "design",
+                                        "review"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "ui-ux/ui-review",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "ui-setup",
+                       "name":  "ui-setup",
+                       "description":  "Interactive StyleSeed setup wizard for choosing app type, brand color, visual style, typography, and the first screen scaffold.",
+                       "category":  "design",
+                       "tags":  [
+                                    "ui",
+                                    "design-system",
+                                    "setup",
+                                    "frontend",
+                                    "styleseed"
+                                ],
+                       "triggers": [],
+                       "risk":  "safe",
+                       "path":  "ui-ux/ui-setup",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "ui-tokens",
+                       "name":  "ui-tokens",
+                       "description":  "List, add, and update StyleSeed design tokens while keeping JSON sources, CSS variables, and dark-mode values in sync.",
+                       "category":  "design",
+                       "tags":  [
+                                    "ui",
+                                    "tokens",
+                                    "design-system",
+                                    "theming",
+                                    "styleseed"
+                                ],
+                       "triggers": ["design"],
+                       "risk":  "safe",
+                       "path":  "ui-ux/ui-tokens",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "ux-audit",
+                       "name":  "ux-audit",
+                       "description":  "Audit screens against Nielsen\u0027s heuristics and mobile UX best practices using the StyleSeed Toss design language as the implementation context.",
+                       "category":  "design",
+                       "tags":  [
+                                    "ux",
+                                    "audit",
+                                    "usability",
+                                    "mobile",
+                                    "styleseed"
+                                ],
+                       "triggers":  [
+                                        "audit",
+                                        "design"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "ui-ux/ux-audit",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "ux-flow",
+                       "name":  "ux-flow",
+                       "description":  "Design user flows and screen structure using StyleSeed UX patterns such as progressive disclosure, hub-and-spoke navigation, and information pyramids.",
+                       "category":  "design",
+                       "tags":  [
+                                    "ux",
+                                    "flows",
+                                    "navigation",
+                                    "product-design",
+                                    "styleseed"
+                                ],
+                       "triggers": ["design"],
+                       "risk":  "safe",
+                       "path":  "ui-ux/ux-flow",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "uxui-principles",
+                       "name":  "uxui-principles",
+                       "description":  "Evaluate interfaces against 168 research-backed UX/UI principles, detect antipatterns, and inject UX context into AI coding sessions.",
+                       "category":  "design",
+                       "tags":  [
+                                    "ux",
+                                    "ui",
+                                    "design",
+                                    "evaluation",
+                                    "principles",
+                                    "antipatterns",
+                                    "accessibility"
+                                ],
+                       "triggers": [],
+                       "risk":  "safe",
+                       "path":  "ui-ux/uxui-principles",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "bug-hunter",
+                       "name":  "bug-hunter",
+                       "description":  "Systematically finds and fixes bugs using proven debugging techniques. Traces from symptoms to root cause, implements fixes, and prevents regression.",
+                       "category":  "development",
+                       "tags":  [
+
+                                ],
+                       "triggers":  [
+                                        "debug",
+                                        "fix"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "debugging/bug-hunter",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "codebase-audit-pre-push",
+                       "name":  "codebase-audit-pre-push",
+                       "description":  "Deep audit before GitHub push: removes junk files, dead code, security holes, and optimization issues. Checks every file line-by-line for production readiness.",
+                       "category":  "development",
+                       "tags":  [
+
+                                ],
+                       "triggers":  [
+                                        "audit",
+                                        "push"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "github/codebase-audit-pre-push",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "logic-lens",
+                       "name":  "logic-lens",
+                       "description":  "AI-powered Claude Code skill that performs deep code review using formal logic and reasoning frameworks to detect bugs, anti-patterns, and security risks beyond what linters catch.",
+                       "category":  "development",
+                       "tags":  [
+                                    "code-review",
+                                    "logic-analysis",
+                                    "debugging",
+                                    "security-review",
+                                    "claude-code"
+                                ],
+                       "triggers": ["review"],
+                       "risk":  "safe",
+                       "path":  "debugging/logic-lens",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "performance-optimizer",
+                       "name":  "performance-optimizer",
+                       "description":  "Identifies and fixes performance bottlenecks in code, databases, and APIs. Measures before and after to prove improvements.",
+                       "category":  "development",
+                       "tags":  [
+
+                                ],
+                       "triggers": ["fix"],
+                       "risk":  "safe",
+                       "path":  "debugging/performance-optimizer",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "python-pptx-generator",
+                       "name":  "python-pptx-generator",
+                       "description":  "Generate complete Python scripts that build polished PowerPoint decks with python-pptx and real slide content.",
+                       "category":  "development",
+                       "tags":  [
+                                    "python",
+                                    "powerpoint",
+                                    "python-pptx",
+                                    "presentations",
+                                    "slide-decks"
+                                ],
+                       "triggers":  [
+                                        "build",
+                                        "generate"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "doc-create/python-pptx-generator",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "technical-change-tracker",
+                       "name":  "technical-change-tracker",
+                       "description":  "Track code changes with structured JSON records, state machine enforcement, and AI session handoff for bot continuity",
+                       "category":  "development",
+                       "tags":  [
+                                    "change-tracking",
+                                    "session-handoff",
+                                    "documentation",
+                                    "accessibility",
+                                    "state-machine"
+                                ],
+                       "triggers": ["track"],
+                       "risk":  "safe",
+                       "path":  "memory/technical-change-tracker",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "git-pushing",
+                       "name":  "git-pushing",
+                       "description":  "Stage all changes, create a conventional commit, and push to the remote branch. Use when explicitly asks to push changes (\\\"push this\\\", \\\"commit and push\\\"), mentions saving work to remote (\\\"save to",
+                       "category":  "github",
+                       "tags":  [
+
+                                ],
+                       "triggers":  [
+                                        "create",
+                                        "push"
+                                    ],
+                       "risk":  "critical",
+                       "path":  "github/git-pushing",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "social-post-writer-seo",
+                       "name":  "social-post-writer-seo",
+                       "description":  "Social Media Strategist and Content Writer. Creates clear, engaging social media posts for Instagram, LinkedIn, and Facebook.",
+                       "category":  "growth",
+                       "tags":  [
+                                    "social-media",
+                                    "marketing",
+                                    "content-writing",
+                                    "seo",
+                                    "growth"
+                                ],
+                       "triggers":  [
+                                        "create",
+                                        "write"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "marketing/social-post-writer-seo",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "using-superpowers",
+                       "name":  "using-superpowers",
+                       "description":  "Use at the start of any conversation. Establishes how to find and use skills. If there is even a 1% chance a skill might apply, you must invoke the skill before any response. Not negotiable.",
+                       "category":  "tools",
+                       "tags":  [
+                                    "meta",
+                                    "skill-discovery",
+                                    "workflow",
+                                    "process",
+                                    "orchestration"
+                                ],
+                       "triggers": [],
+                       "risk":  "safe",
+                       "path":  "tools/using-superpowers",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "frontend-design",
+                       "name":  "frontend-design",
+                       "description":  "You are a frontend designer-engineer, not a layout generator.",
+                       "category":  "ui-ux",
+                       "tags":  [
+
+                                ],
+                       "triggers": ["design"],
+                       "risk":  "unknown",
+                       "path":  "ui-ux/frontend-design",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "avoid-ai-writing",
+                       "name":  "avoid-ai-writing",
+                       "description":  "Audit and rewrite content to remove AI writing patterns (\\\"AI-isms\\\"). Use when asked to \\\"remove AI-isms,\\\" \\\"clean up AI writing,\\\" \\\"edit writing for AI patterns,\\\" \\\"audit writing for AI tells,\\\" ",
+                       "category":  "writing",
+                       "tags":  [
+                                    "writing",
+                                    "editing",
+                                    "voice",
+                                    "quality",
+                                    "ai-writing",
+                                    "audit",
+                                    "rewrite",
+                                    "publishing"
+                                ],
+                       "triggers": ["audit"],
+                       "risk":  "safe",
+                       "path":  "writing/avoid-ai-writing",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "copywriting",
+                       "name":  "copywriting",
+                       "description":  "Write rigorous, conversion-focused marketing copy for landing pages and emails. Enforces brief confirmation and strict no-fabrication rules.",
+                       "category":  "writing",
+                       "tags":  [
+
+                                ],
+                       "triggers": ["write"],
+                       "risk":  "unknown",
+                       "path":  "writing/copywriting",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "unslop",
+                       "name":  "unslop",
+                       "description":  "Post-process AI-generated text through the unslop CLI to strip AI writing patterns before publishing",
+                       "category":  "writing",
+                       "tags":  [
+                                    "writing",
+                                    "content-quality",
+                                    "ai-writing",
+                                    "text-processing",
+                                    "cli",
+                                    "publishing"
+                                ],
+                       "triggers": ["generate"],
+                       "risk":  "safe",
+                       "path":  "writing/unslop",
+                       "source":  "installed"
+                   }
+               ]
 }

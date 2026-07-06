@@ -1,114 +1,372 @@
 ---
 name: boss
-description: "Meta-skill orchestrator for the Antigravity skill repository. Discovers, selects, and coordinates skills from curated awesome-skills and custom domain skills. Low-token discovery via BOSS_INDEX.json."
+description: "Low-token meta-orchestrator. Discovers, indexes, and coordinates all installed AI agent skills using a three-tier registry, agents.md workspace configuration, and AIngram for persistent knowledge."
 category: meta
 risk: safe
 source: custom
-tags: [orchestration, meta-skill, discovery, skill-management]
+tags: [orchestration, meta-skill, registry, agents-md, aingram, low-token, skill-discovery]
+date_added: "2026-06-10"
 ---
 
-# Boss — Meta-Skill Orchestrator
+# BOSS — Low-Token Meta-Orchestrator
 
-## Purpose
+## Overview
 
-Boss is the central skill coordinator for this Antigravity workspace. It provides a **low-token discovery mechanism** to find and activate the right skill for any task, then coordinates multi-skill execution for complex work.
+**BOSS** is your skill-sidekick that never loads a skill until it needs it. Instead of dumping every SKILL.md into context, BOSS maintains:
 
-## Discovery Protocol (Read This First)
+1. **A three-tier skill registry** — searchable indexes at the boss, project, and remote levels
+2. **An `agents.md` template** — defines agent roles and delegation rules for the agenic workspace
+3. **AIngram memory** — persistent tracking of skill combinations via the AIngram MCP server
 
-**Before any task**, follow this protocol:
+## Memory Philosophy: Native Brain First
 
-### Step 1: Evaluate Task Complexity
+BOSS operates on a two-tier memory hierarchy:
 
-- **Simple task** (single file edit, quick search, basic question) → Solve directly. Do NOT load any skill.
-- **Complex task** (multi-step, multi-domain, requires specialized knowledge) → Proceed to Step 2.
+| Tier | System | Role |
+|------|--------|------|
+| **Tier 1** | **Native Brain/KI** | The LLM's own weights, in-context learning, and reasoning. This is your primary intelligence. |
+| **Tier 2** | **AIngram** | Persistent external memory for skill combinations, decisions, and patterns. Only consulted when native recall fails. |
 
-### Step 2: Read the Index
+**Rules:**
+- Your native brain (the LLM) is always available, always learning in-context, and always the first responder.
+- Never query AIngram for something your native brain already knows.
+- Use AIngram only for cross-session persistence — things you need to remember after the conversation ends.
+- Record skill combinations in AIngram so future sessions benefit from past discoveries.
 
-Read `BOSS_INDEX.json` (this folder). It contains a compact mapping of all available skills:
+## Design Philosophy: Low-Token Strategy
 
-```json
-{
-  "id": "brainstorming",
-  "name": "brainstorming",
-  "category": "workflow",
-  "description": "Use before creative or constructive work...",
-  "triggers": ["brainstorm", "ideate", "plan", "creative"],
-  "path": "awesome/brainstorming",
-  "source": "awesome-skills"
+| Principle | Practice |
+|-----------|----------|
+| Don't load, register | Skills are indexed in compact JSON, not loaded into context |
+| Match before load | Keyword-based registry lookup loads only the skills you'll use |
+| Index once, query often | The registry is a single pre-built file read at startup |
+| Record what works | Only skill *combinations* hit AIngram, not every invocation |
+| Fail fast on simple tasks | Guardrail: if basic tools can do it, don't touch the registry at all |
+
+---
+
+## 1. The Three-Tier Registry
+
+### Tier 1 — BOSS Registry (Local)
+**File:** `.agents/skills/boss/BOSS_INDEX.json`
+
+Auto-generated index of every skill installed under `.agents/skills/boss/`. Each entry has: `id`, `name`, `description`, `category`, `tags` (keywords), `triggers`, `path`, and `risk`.
+
+**Maintenance:** Run `pwsh .agents/skills/boss/update-index.ps1` after adding or removing skills. This scans every category folder (`debugging/`, `ui-ux/`, `writing/`, etc.) for SKILL.md files and rebuilds the index.
+
+### Tier 2 — Project Registry (Optional)
+**File:** `.agents/skills/PROJECT_INDEX.json`
+
+Same format as Tier 1 but lives one level up in the project's own `.agents/skills/` folder. Contains project-specific skills that don't belong in the BOSS install. Load this second and merge if it exists.
+
+> **Scan logic:** If `.agents/skills/` exists and contains subdirectories with SKILL.md files, treat them as a supplementary registry. No separate update script needed — the BOSS orchestration workflow checks for this file on every invocation.
+
+### Tier 3 — Remote Catalog (External)
+**URL:** `https://raw.githubusercontent.com/sickn33/antigravity-awesome-skills/main/CATALOG.md`
+
+If neither local tier has a matching skill, fetch this remote catalog. Install any desired skill before loading it.
+
+### Registry Lookup Order
+
+```
+User Task
+  ├─ Is it simple? → Solve directly (guardrail)
+  └─ Is it complex?
+       ├─ Query BOSS_INDEX.json (Tier 1)
+       ├─ Query PROJECT_INDEX.json if exists (Tier 2)
+       └─ Fetch remote catalog if no match (Tier 3)
+            → Load matched skills into context
+            → Record combination in AIngram
+```
+
+---
+
+## 2. agents.md Template
+
+Place this file at the workspace root as `agents.md`. It defines available agent personas for the agenic workspace and their delegation rules. BOSS uses this template to tell workspace-level orchestrators which agents exist and when to call them.
+
+```markdown
+# Agentic Workspace Configuration
+# Generated by BOSS meta-orchestrator
+# Last updated: {{DATE}}
+
+## Agents
+
+### planner
+- **Skills:** squirrel, code-plan
+- **Triggers:** "plan this feature", "architecture review", "design document"
+- **Description:** Full-cycle code planning and architecture design
+
+### debugger
+- **Skills:** bug-hunter, logic-lens, performance-optimizer, systematic-debugging
+- **Triggers:** "this is broken", "find the bug", "slow performance", "unexpected behavior"
+- **Description:** Systematic debugging and root-cause analysis
+
+### ui-designer
+- **Skills:** frontend-design, ui-component, ui-page, ui-pattern, ui-review, ui-setup, ui-tokens, ui-a11y, ux-audit, ux-flow, uxui-principles
+- **Triggers:** "design a page", "create a component", "audit UX", "accessibility check"
+- **Description:** Full UI/UX pipeline from tokens to pages to accessibility audits
+
+### writer
+- **Skills:** copywriting, unslop, wordpress-blogwriting-skill, social-post-writer-seo
+- **Triggers:** "write copy", "blog post", "social media post", "de-AI this text"
+- **Description:** Conversion-focused copy, SEO blog posts, and content refinement
+
+### git-ops
+- **Skills:** codebase-audit-pre-push, git-pushing
+- **Triggers:** "push to github", "audit before push", "commit this"
+- **Description:** Pre-push codebase audit and git workflow automation
+
+### document-creator
+- **Skills:** python-pptx-generator, writer, youtube-summarizer
+- **Triggers:** "create a presentation", "write a document", "summarize a video"
+- **Description:** Document generation, PowerPoint creation, video summarization
+
+### memory-keeper
+- **Skills:** aingram (native MCP tools: remember, recall, reference, verify)
+- **Triggers:** "remember this", "save this pattern", "what did we decide", "search memory"
+- **Description:** Persistent memory via AIngram MCP server — stores architecture decisions, patterns, and skill combinations
+
+### skill-maker
+- **Skills:** skill-creator, skill-check
+- **Triggers:** "create a new skill", "validate a skill", "scaffold a skill"
+- **Description:** Skill authoring and validation toolkit
+
+## Delegation Rules
+
+1. Match the task's keywords against agent triggers (first-match wins for simple tasks).
+2. For multi-domain tasks, combine agents (e.g., `ui-designer` + `writer` for a landing page with copy).
+3. Always try the simplest agent that can handle the task before combining.
+4. Record successful agent combinations in AIngram for future reference.
+
+## Override
+
+If no agent matches, fall back to general-purpose capabilities. Do not force-fit a task into an agent that doesn't fit.
+```
+
+---
+
+## 3. Orchestration Workflow
+
+Use this step-by-step process on every complex task:
+
+### Step 1: Guardrail Check
+Ask: *"Can I solve this with basic file editing, terminal commands, and conversation?"*
+- If **YES** → Solve directly. STOP.
+- If **NO** → Continue to Step 2.
+
+### Step 2: Registry Query
+1. Read `BOSS_INDEX.json` into a compact search structure.
+2. Extract 2-5 keywords from the user's task.
+3. Match keywords against skill `tags` and `triggers` in the index.
+4. If a `PROJECT_INDEX.json` exists in `.agents/skills/`, merge it (project skills override boss skills on name conflict).
+5. If no match found locally, fetch the remote catalog and recommend installation.
+
+### Step 3: Skill Loading
+For each matched skill:
+1. Read only the YAML frontmatter and "When to Use" section of the SKILL.md.
+2. Determine if the full skill is needed or just the overview guidance.
+3. Load full SKILL.md into context **only** if you need step-by-step instructions.
+4. Never load more than 3 skills at once unless the task genuinely requires it.
+
+### Step 4: agents.md Dispatch (Optional)
+If the workspace has an `agents.md` file:
+1. Cross-reference matched skills against agent definitions in `agents.md`.
+2. Delegate sub-tasks to the appropriate agent persona.
+3. Collect results and synthesize.
+
+### Step 5: AIngram Recording
+After completing the task:
+1. Use native brain first — if the result is obvious and ephemeral, skip recording.
+2. If a new skill combination was used and it's worth remembering cross-session, record it:
+   ```
+   aingram remember "Used {skill-a} + {skill-b} for {task-type}. Reason it worked: ..."
+   ```
+3. If the task revealed a reusable pattern or architecture decision, record that too:
+   ```
+   aingram remember "Decision: {description} — context: {why} — applies to: {domain}"
+   ```
+4. To recall past patterns before starting a new task:
+   ```
+   aingram recall "skill combinations for {domain}"
+   ```
+
+---
+
+## 4. AIngram Memory Integration
+
+### What is AIngram?
+AIngram is a local-first, self-learning memory layer for AI agents. It stores everything in a single SQLite file and exposes MCP tools (`remember`, `recall`, `reference`, `verify`) to any MCP-compatible client (opencode, Claude, Cursor, etc.).
+
+Key features:
+- **Triple retrieval**: Full-text search (FTS5) + vector search (ONNX local embeddings) + knowledge graph → fused via RRF
+- **95.5% recall@10** on LongMemEval-S
+- **Self-learning**: Contradiction detection (DeBERTa-v3), consolidation, knowledge graph extraction
+- **Apache 2.0 license** — free forever, no API keys, no cloud
+- **One SQLite file** — zero config, portable, git-friendly
+
+### Setup
+AIngram is installed globally via pip. The `[mcp]` extra provides the MCP server library:
+
+```powershell
+pip install aingram[mcp]
+```
+
+A thin wrapper script at `.agents/memory/aingram-mcp-server.py` bridges AIngram's Python API to opencode's stdio MCP protocol. This wrapper is configured as an MCP server in opencode's `mcp` section and runs automatically when the agent needs memory tools.
+
+### Wrapper Script
+**File:** `.agents/memory/aingram-mcp-server.py`
+
+The wrapper:
+- Calls `aingram.mcp_server.create_server()` with `require_auth=False` (local-only, no bearer token needed)
+- Uses stdio transport (default) for opencode compatibility
+- Accepts `--db <path>` to point to the SQLite database file
+- Creates the database directory if it doesn't exist
+
+### Database Location
+- **Path:** `.agents/memory/aingram.db` (relative to workspace root)
+- **Full path:** `D:\OneDrive - New Light Anglican Church\Documents\antigravity\skill-repository\.agents\memory\aingram.db`
+
+### Verifying the Server
+When active, AIngram exposes these MCP tools:
+- `remember` — Store a new memory (auto-chunks, embeds, deduplicates)
+- `recall` — Search memory with hybrid retrieval (FTS5 + vector + KG)
+- `reference` — Get detailed context about a specific memory
+- `verify` — Check memory integrity
+
+### Integration with BOSS
+BOSS uses AIngram in Step 5 (above) to persist skill combinations. The memory types stored are:
+
+| Type | Purpose | Example |
+|------|---------|---------|
+| `skill_combination` | Which skills work together | "frontend-design + copywriting for landing pages" |
+| `decision` | Architecture or design decisions | "Use StyleSeed for design system" |
+| `pattern` | Reusable approaches | "Debug flow: bug-hunter → logic-lens" |
+
+### Native Brain Interaction
+Always follow this order:
+1. **Native Brain** — Solve from your own knowledge and reasoning first
+2. **AIngram Recall** — If you need cross-session context, query AIngram
+3. **AIngram Remember** — After completing a significant task, store what you learned
+
+---
+
+## 5. Registry Maintenance
+
+### Regenerating BOSS_INDEX.json
+Run the update script after any skill change in the boss folder:
+```powershell
+pwsh .agents/skills/boss/update-index.ps1
+```
+
+### What the Script Does
+1. Scans every category folder under `.agents/skills/boss/` (non-recursive: one level deep inside each category).
+2. For each subfolder with a `SKILL.md`, parses the YAML frontmatter.
+3. Extracts: `id` (folder name), `name`, `description`, `category`, `tags`, `triggers`, `risk`, `path`.
+4. Writes everything to `BOSS_INDEX.json`.
+5. **Known edge cases:** Skills whose `SKILL.md` lives directly in a category folder (not a subdirectory, e.g. `technical-change-tracker/SKILL.md`) or nested 2+ levels deep (e.g. `doc-create/libreoffice/writer/SKILL.md`) are skipped. To index them, move the `SKILL.md` into a category subfolder matching the standard pattern.
+
+### Adding a New Skill
+```powershell
+# Windows: New-Item -ItemType Directory -Path ".agents/skills/boss/<category>/<skill-name>"
+# POSIX: mkdir -p .agents/skills/boss/<category>/<skill-name>
+# Then create SKILL.md with proper frontmatter
+pwsh .agents/skills/boss/update-index.ps1
+```
+
+### Project-Level Registry
+
+If you have project-specific skills at `.agents/skills/<category>/<skill-name>/SKILL.md`, create a `PROJECT_INDEX.json` by running this scan (skipping the `boss/` subfolder):
+
+```powershell
+$projectSkillsDir = Join-Path (Get-Location) ".agents/skills"
+$projectIndex = @{ version = 1; generatedAt = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ"); registryType = "project"; skills = @() }
+
+Get-ChildItem -Path $projectSkillsDir -Directory | Where-Object { $_.Name -ne "boss" } | ForEach-Object {
+    $cat = $_.Name
+    Get-ChildItem -Path $_.FullName -Directory | ForEach-Object {
+        $skillMd = Join-Path $_.FullName "SKILL.md"
+        if (Test-Path $skillMd) {
+            $content = Get-Content $skillMd -Raw -Encoding UTF8
+            $name = $_.Name; $description = ""; $tags = @(); $risk = "unknown"
+            if ($content -match '(?s)---\s*\n(.*?)\n---') {
+                $fm = $matches[1]
+                if ($fm -match '(?m)^name:\s*(.+)') { $name = $matches[1].Trim().Trim('"').Trim("'") }
+                if ($fm -match '(?m)^description:\s*(.+)') { $description = $matches[1].Trim().Trim('"').Trim("'") }
+                if ($fm -match '(?m)^risk:\s*(.+)') { $risk = $matches[1].Trim() }
+                if ($fm -match '(?m)^tags:\s*\[(.+?)\]') { $tags = $matches[1] -split ',' | ForEach-Object { $_.Trim().Trim('"').Trim("'") } }
+            }
+            $projectIndex.skills += [PSCustomObject]@{
+                id = $_.Name; name = $name; description = $description.Substring(0, [Math]::Min(200, $description.Length))
+                category = $cat; tags = @($tags); triggers = @(); risk = $risk; path = "$cat/$($_.Name)"; source = "project"
+            }
+        }
+    }
 }
+$projectIndex | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $projectSkillsDir "PROJECT_INDEX.json") -Encoding UTF8
 ```
 
-Match the task to skills using:
-1. **Trigger keywords** in the task description
-2. **Category** alignment
-3. **Description** relevance
+### Edge Cases
 
-### Step 3: Load and Execute
+The `update-index.ps1` scanner has two structural edge cases:
 
-- **1 skill matched** → Load its `SKILL.md`, follow its instructions.
-- **2+ skills matched** → Determine orchestration pattern:
-  - **Pipeline**: Output of one feeds into the next (e.g., brainstorm → code → test)
-  - **Parallel**: Independent skills working on different aspects
-  - **Primary + Support**: One lead skill, others provide supplementary data
+1. **SKILL.md at category root** — If a skill places its `SKILL.md` directly in the category folder (e.g., `technical-change-tracker/SKILL.md` instead of `technical-change-tracker/skill-name/SKILL.md`), the scanner skips it. Convention requires: `category/skill-name/SKILL.md`.
 
-## Available Skill Sources
+2. **Two-level nesting** — Skills nested 2+ levels deep (e.g., `doc-create/libreoffice/writer/SKILL.md`) are skipped. Convention requires: `category/skill-name/SKILL.md` (one level deep).
 
-### Awesome Skills (`awesome/`)
-Curated subset from [antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills). Installed via:
+For either case, either restructure the skill folder to match convention, or add its entry manually to `BOSS_INDEX.json` using the same JSON schema.
 
-```powershell
-npx antigravity-awesome-skills --path ".agents/skills/boss/awesome" --category development,workflow --risk safe
-```
+---
 
-### Custom Skills (`custom/`)
-Domain-specific skills for this workspace:
-- `nlac-gospel-preaching` — Sermon preparation and Bible study workflows
-- `nlac-twick` — Twick video studio development
-- `nlac-wordpress` — WordPress content management
-- `nlac-css-architecture` — CSS design system patterns
+## Examples
 
-## Orchestration Patterns
+### Example 1: Simple Task (Guardrail)
+**Task:** "Change button color to blue in styles.css"
+**Action:** Basic file edit. BOSS does not activate. Native brain handles it directly.
 
-### Pattern 1: Pipeline (Sequential)
-```
-Task → Skill A → Skill B → Skill C → Result
-```
-Use when skills form a chain (planning → implementation → testing).
+### Example 2: Multi-Skill Task
+**Task:** "Create a landing page with copy and deploy"
+**Action:**
+1. Registry query matches: `frontend-design`, `copywriting`, `git-pushing`
+2. Load `frontend-design` and `copywriting` SKILL.md headers
+3. Build page and write copy
+4. Record in AIngram for next time:
+   ```
+   aingram remember "Used frontend-design + copywriting for landing page — effective combination for marketing sites"
+   ```
+5. Push with `git-pushing`
 
-### Pattern 2: Parallel (Independent)
-```
-Task → [Skill A, Skill B, Skill C] → Aggregated Result
-```
-Use when skills work on independent aspects simultaneously.
+### Example 3: No Match Found
+**Task:** "Set up a CI/CD pipeline with Jenkins"
+**Action:** Search Tier 1 + Tier 2 → no match. Fetch remote catalog. Recommend installing a CI/CD skill.
 
-### Pattern 3: Primary + Support
-```
-Task → Primary Skill (leads) + Support Skill (provides data) → Result
-```
-Use when one skill clearly dominates and others supplement.
+---
 
-## Adding New Skills
+## Best Practices
 
-1. Create a folder under `awesome/` or `custom/`
-2. Add a `SKILL.md` with YAML frontmatter (name, description, category, tags)
-3. Run `update-index.ps1` to regenerate `BOSS_INDEX.json`
-4. Commit and push to GitHub
+- ✅ **Do** regenerate BOSS_INDEX.json after any skill change
+- ✅ **Do** keep registry queries to 2-5 keywords
+- ✅ **Do** trust your native brain/KI first — only reach for AIngram when you need cross-session persistence
+- ✅ **Do** record skill combinations in AIngram on first success (they help future sessions)
+- ✅ **Do** check agents.md if the workspace has one before manual dispatching
+- ✅ **Do** prefer the simplest Tier before escalating (Local → Project → Remote)
+- ❌ **Don't** load more than 3 full SKILL.md files simultaneously
+- ❌ **Don't** record every skill use in AIngram — only record combinations and decisions
+- ❌ **Don't** use this skill for single-file edits or trivial tasks
+- ❌ **Don't** create new skills through the orchestrator — use `skill-maker` agent instead
+- ❌ **Don't** query AIngram for things your native brain already knows
 
-## Updating from Awesome-Skills
+## Related Skills
 
-To pull in new skills from the upstream repo:
+- `@AIngram` — Local-first, self-learning memory layer for persistent skill combination storage (MCP tools: remember, recall, reference, verify)
+- `@skill-creator` — Use when you need to author a new skill that doesn't exist in any registry
+- `@skill-check` — Validate skills before adding them to the registry
 
-```powershell
-# Re-run the installer with desired categories
-npx antigravity-awesome-skills --path ".agents/skills/boss/awesome" --category development,workflow,design --risk safe
+## Limitations
 
-# Rebuild the index
-.agents/skills/boss/update-index.ps1
-```
-
-## Guardrails
-
-- **Do NOT** use specialized skills for simple tasks
-- **Do NOT** load more than 3-4 skills at once
-- **Do NOT** create new skills — only combine existing ones
-- **Always** evaluate complexity before invoking skills
+- The registry only indexes skills with proper YAML frontmatter
+- Project registry (Tier 2) requires manual creation or separate scanning
+- Remote catalog (Tier 3) requires network access
+- AIngram must be installed and configured as an MCP server before recording combinations
+- The `update-index.ps1` scanner skips skills whose SKILL.md is at the category root (not in a subdirectory) or nested more than one level deep
+- Skills with non-standard folder structure (SKILL.md at category root or 2-level nesting) are not auto-indexed — add them manually

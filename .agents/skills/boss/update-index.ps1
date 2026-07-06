@@ -1,83 +1,134 @@
 # update-index.ps1
-# Rebuilds BOSS_INDEX.json by scanning all SKILL.md files in the boss directory.
-# Run this after adding or removing skills.
+# Rebuilds BOSS_INDEX.json by scanning all one-level-deep category folders
+# under .agents/skills/boss/ for SKILL.md files.
+# Run this after adding, removing, or updating any skill.
+#
+# Category folders are: code-plan/, debugging/, doc-create/, github/,
+# marketing/, memory/, scripts/, skill-create/, technical-change-tracker/,
+# tools/, ui-ux/, writing/
 
 $bossDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $indexFile = Join-Path $bossDir "BOSS_INDEX.json"
 $skills = @()
 
-# Scan awesome/ and custom/ subdirectories
-$sourceDirs = @("awesome", "custom")
+# Get all immediate subdirectories (category folders)
+$categoryDirs = Get-ChildItem -Path $bossDir -Directory | Where-Object {
+    # Skip scripts/ folder and root config files
+    $_.Name -notin @('scripts') -and
+    # Only include folders that have subfolders (skills are one level deep)
+    (Get-ChildItem -Path $_.FullName -Directory -ErrorAction SilentlyContinue).Count -gt 0
+} | Sort-Object Name
 
-foreach ($sourceDir in $sourceDirs) {
-    $dirPath = Join-Path $bossDir $sourceDir
-    if (-not (Test-Path $dirPath)) { continue }
+$skillCount = 0
+$skipCount = 0
 
-    $skillDirs = Get-ChildItem -Path $dirPath -Directory -ErrorAction SilentlyContinue
+foreach ($catDir in $categoryDirs) {
+    $category = $catDir.Name
+    $skillDirs = Get-ChildItem -Path $catDir.FullName -Directory -ErrorAction SilentlyContinue | Sort-Object Name
 
     foreach ($skillDir in $skillDirs) {
         $skillMd = Join-Path $skillDir.FullName "SKILL.md"
-        if (-not (Test-Path $skillMd)) { continue }
+        if (-not (Test-Path $skillMd)) {
+            $skipCount++
+            continue
+        }
 
         $content = Get-Content $skillMd -Raw -Encoding UTF8
 
         # Extract YAML frontmatter
-        $name = ""
+        $name = $skillDir.Name
         $description = ""
-        $category = "uncategorized"
+        $skillCategory = $category
         $tags = @()
         $risk = "unknown"
-        $source = $sourceDir
+        $triggers = @()
 
         if ($content -match '(?s)---\s*\n(.*?)\n---') {
             $frontmatter = $matches[1]
 
-            if ($frontmatter -match 'name:\s*(.+)') { $name = $matches[1].Trim() }
-            if ($frontmatter -match 'description:\s*["\x27]?(.+?)["\x27]?\s*$') { $description = $matches[1].Trim() }
-            if ($frontmatter -match 'category:\s*(.+)') { $category = $matches[1].Trim() }
-            if ($frontmatter -match 'risk:\s*(.+)') { $risk = $matches[1].Trim() }
-            if ($frontmatter -match 'tags:\s*\[(.+?)\]') {
-                $tags = $matches[1] -split ',' | ForEach-Object { $_.Trim() }
+            if ($frontmatter -match '(?m)^name:\s*(.+)') {
+                $name = $matches[1].Trim().Trim('"').Trim("'")
+            }
+            if ($frontmatter -match '(?m)^description:\s*(.+)') {
+                $description = $matches[1].Trim().Trim('"').Trim("'")
+            }
+            if ($frontmatter -match '(?m)^category:\s*(.+)') {
+                $skillCategory = $matches[1].Trim()
+            }
+            if ($frontmatter -match '(?m)^risk:\s*(.+)') {
+                $risk = $matches[1].Trim()
+            }
+            if ($frontmatter -match '(?m)^tags:\s*\[(.+?)\]') {
+                $tags = $matches[1] -split ',' | ForEach-Object { $_.Trim().Trim('"').Trim("'") } | Where-Object { $_ -ne '' }
             }
         }
 
-        # Use directory name as fallback
-        if (-not $name) { $name = $skillDir.Name }
-
-        # Extract triggers from description (first 100 chars as summary)
-        $triggers = @()
+        # Generate triggers from description (action verbs)
         if ($description) {
-            # Common trigger words to look for
-            $triggerWords = @("use", "when", "before", "after", "create", "build", "test", "debug", "plan", "review", "deploy", "design", "write", "analyze", "fix", "implement", "manage", "automate", "convert", "generate")
-            foreach ($word in $triggerWords) {
-                if ($description -match "\b$word\b") { $triggers += $word }
+            $triggerPatterns = @(
+                @{word="create"; desc="creating"}, @{word="build"; desc="building"},
+                @{word="debug"; desc="debugging"}, @{word="fix"; desc="fixing"},
+                @{word="audit"; desc="auditing"}, @{word="review"; desc="reviewing"},
+                @{word="design"; desc="designing"}, @{word="write"; desc="writing"},
+                @{word="plan"; desc="planning"}, @{word="test"; desc="testing"},
+                @{word="deploy"; desc="deploying"}, @{word="analyze"; desc="analyzing"},
+                @{word="optimize"; desc="optimizing"}, @{word="convert"; desc="converting"},
+                @{word="generate"; desc="generating"}, @{word="push"; desc="pushing"},
+                @{word="summarize"; desc="summarizing"}, @{word="validate"; desc="validating"},
+                @{word="track"; desc="tracking"}
+            )
+            $descLower = $description.ToLower()
+            foreach ($tp in $triggerPatterns) {
+                if ($descLower -match "\b$($tp.word)\w*\b") {
+                    $triggers += $tp.word
+                }
             }
         }
 
         $skills += [PSCustomObject]@{
             id = $skillDir.Name
             name = $name
-            description = $description.Substring(0, [Math]::Min(120, $description.Length))
-            category = $category
+            description = if ($description) { $description.Substring(0, [Math]::Min(200, $description.Length)) } else { "" }
+            category = $skillCategory
             tags = $tags
-            triggers = $triggers
+            triggers = $triggers | Sort-Object -Unique
             risk = $risk
-            path = "$sourceDir/$($skillDir.Name)"
-            source = if ($sourceDir -eq "awesome") { "awesome-skills" } else { "custom" }
+            path = "$category/$($skillDir.Name)"
+            source = "installed"
         }
+
+        $skillCount++
     }
 }
 
+# Sort skills by category then name
+$skills = $skills | Sort-Object category, name
+
 # Build the index
 $index = [PSCustomObject]@{
-    version = 1
+    version = 2
     generatedAt = (Get-Date -Format "yyyy-MM-ddTHH:mm:ssZ")
+    registryType = "boss-local"
     skills = $skills
 }
 
-# Write as JSON
-$index | ConvertTo-Json -Depth 5 | Set-Content $indexFile -Encoding UTF8
+# Write as JSON with proper depth
+$json = $index | ConvertTo-Json -Depth 5
 
-Write-Host "Index rebuilt: $($skills.Count) skills indexed."
-Write-Host "  Awesome: $(($skills | Where-Object { $_.source -eq 'awesome-skills' }).Count)"
-Write-Host "  Custom:  $(($skills | Where-Object { $_.source -eq 'custom' }).Count)"
+# Fix single-element triggers arrays that PowerShell serializes as strings
+$json = [System.Text.RegularExpressions.Regex]::Replace($json, '"triggers":\s*"((?:(?!\s*\}).)+)"', '"triggers": ["$1"]')
+
+# Fix empty triggers serialized as objects
+$json = $json -replace '"triggers":\s*\{\s*\}', '"triggers": []'
+
+# Also fix empty tags arrays serialized as empty (though they're already fine, just being safe)
+$json = $json -replace '"tags":\s*\{\s*\}', '"tags": []'
+
+$json | Set-Content $indexFile -Encoding UTF8
+
+Write-Host "BOSS_INDEX.json rebuilt successfully."
+Write-Host "  Categories scanned: $($categoryDirs.Count)"
+Write-Host "  Skills indexed: $skillCount"
+if ($skipCount -gt 0) {
+    Write-Host "  Folders skipped (no SKILL.md): $skipCount"
+}
