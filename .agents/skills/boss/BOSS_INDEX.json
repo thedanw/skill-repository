@@ -1,6 +1,6 @@
 ﻿{
     "version":  2,
-    "generatedAt":  "2026-06-29T20:37:15Z",
+    "generatedAt":  "2026-07-17T22:51:43Z",
     "registryType":  "boss-local",
     "skills":  [
                    {
@@ -91,6 +91,7 @@
                                     "context-recovery"
                                 ],
                        "triggers":  [
+                                        "batch",
                                         "plan",
                                         "review",
                                         "track"
@@ -112,6 +113,7 @@
                                     "wordpress"
                                 ],
                        "triggers":  [
+                                        "batch",
                                         "generate",
                                         "optimize",
                                         "plan"
@@ -128,7 +130,10 @@
                        "tags":  [
 
                                 ],
-                       "triggers": ["generate"],
+                       "triggers":  [
+                                        "extract",
+                                        "generate"
+                                    ],
                        "risk":  "safe",
                        "path":  "tools/youtube-summarizer",
                        "source":  "installed"
@@ -356,7 +361,8 @@
                                 ],
                        "triggers":  [
                                         "audit",
-                                        "push"
+                                        "push",
+                                        "read"
                                     ],
                        "risk":  "safe",
                        "path":  "github/codebase-audit-pre-push",
@@ -463,6 +469,34 @@
                                     ],
                        "risk":  "safe",
                        "path":  "marketing/social-post-writer-seo",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "jina-ai-search-foundation",
+                       "name":  "jina-ai-search-foundation",
+                       "description":  "Use Jina AI Search Foundation APIs (Embeddings, Reranker, Reader, Search, Batch Embeddings) for semantic search, RAG, web scraping, and large-scale document processing. Get your Jina AI API key for fr",
+                       "category":  "tools",
+                       "tags":  [
+                                    "embeddings",
+                                    "reranker",
+                                    "reader",
+                                    "search",
+                                    "batch-embeddings",
+                                    "rag",
+                                    "semantic-search",
+                                    "jina-ai",
+                                    "api",
+                                    "llm"
+                                ],
+                       "triggers":  [
+                                        "batch",
+                                        "embed",
+                                        "read",
+                                        "rerank",
+                                        "search"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "tools/jina-ai-search-foundation",
                        "source":  "installed"
                    },
                    {
