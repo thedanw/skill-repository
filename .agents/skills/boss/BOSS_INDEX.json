@@ -1,6 +1,6 @@
 ﻿{
     "version":  2,
-    "generatedAt":  "2026-07-18T18:26:05Z",
+    "generatedAt":  "2026-07-18T20:38:17Z",
     "registryType":  "boss-local",
     "skills":  [
                    {
@@ -532,6 +532,230 @@
                        "triggers": ["create"],
                        "risk":  "safe",
                        "path":  "meta/agents-md",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "seo-aeo-meta-description-generator",
+                       "name":  "seo-aeo-meta-description-generator",
+                       "description":  "Writes 3 title tag variants and 3 meta description variants per page with SERP preview, OG tags, and Twitter Card tags. Activate when the user wants to write meta tags, title tags, or social sharing t",
+                       "category":  "seo",
+                       "tags":  [
+                                    "seo",
+                                    "aeo",
+                                    "meta",
+                                    "title",
+                                    "description",
+                                    "og",
+                                    "twitter-card",
+                                    "serp",
+                                    "social"
+                                ],
+                       "triggers": ["write"],
+                       "risk":  "safe",
+                       "path":  "seo/seo-aeo-meta-description-generator",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "seo-audit",
+                       "name":  "seo-audit",
+                       "description":  "Diagnose and audit SEO issues affecting crawlability, indexation, rankings, and organic performance. Use when user wants a comprehensive SEO audit, site health check, or technical SEO analysis.",
+                       "category":  "seo",
+                       "tags":  [
+                                    "seo",
+                                    "audit",
+                                    "technical-seo",
+                                    "crawlability",
+                                    "indexation",
+                                    "rankings"
+                                ],
+                       "triggers": ["audit"],
+                       "risk":  "safe",
+                       "path":  "seo/seo-audit",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "seo-cannibalization-detector",
+                       "name":  "seo-cannibalization-detector",
+                       "description":  "Analyzes multiple provided pages to identify keyword overlap and potential cannibalization issues. Suggests differentiation strategies. Use PROACTIVELY when reviewing similar content.",
+                       "category":  "seo",
+                       "tags":  [
+                                    "seo",
+                                    "cannibalization",
+                                    "keyword-overlap",
+                                    "content-strategy"
+                                ],
+                       "triggers":  [
+                                        "analyze",
+                                        "review"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "seo/seo-cannibalization-detector",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "seo-content",
+                       "name":  "seo-content",
+                       "description":  "\u003e",
+                       "category":  "seo",
+                       "tags":  [
+                                    "seo",
+                                    "content",
+                                    "e-e-a-t",
+                                    "quality",
+                                    "audit",
+                                    "readability",
+                                    "ai-citation"
+                                ],
+                       "triggers": [],
+                       "risk":  "safe",
+                       "path":  "seo/seo-content",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "seo-content-writer",
+                       "name":  "seo-content-writer",
+                       "description":  "Writes SEO-optimized content based on provided keywords and topic briefs. Creates engaging, comprehensive content following best practices. Use PROACTIVELY for content creation tasks.",
+                       "category":  "seo",
+                       "tags":  [
+                                    "seo",
+                                    "content-writing",
+                                    "copywriting",
+                                    "keywords",
+                                    "optimization"
+                                ],
+                       "triggers":  [
+                                        "create",
+                                        "optimize",
+                                        "write"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "seo/seo-content-writer",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "seo-keyword-strategist",
+                       "name":  "seo-keyword-strategist",
+                       "description":  "Analyzes keyword usage in provided content, calculates density, suggests semantic variations and LSI keywords based on the topic. Prevents over-optimization. Use PROACTIVELY for content optimization.",
+                       "category":  "seo",
+                       "tags":  [
+                                    "seo",
+                                    "keywords",
+                                    "lsi",
+                                    "density",
+                                    "optimization",
+                                    "semantic"
+                                ],
+                       "triggers": ["analyze"],
+                       "risk":  "safe",
+                       "path":  "seo/seo-keyword-strategist",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "seo-meta-optimizer",
+                       "name":  "seo-meta-optimizer",
+                       "description":  "Creates optimized meta titles, descriptions, and URL suggestions based on character limits and best practices. Generates compelling, keyword-rich metadata. Use PROACTIVELY for new content.",
+                       "category":  "seo",
+                       "tags":  [
+                                    "seo",
+                                    "meta",
+                                    "title",
+                                    "description",
+                                    "url",
+                                    "metadata",
+                                    "optimization"
+                                ],
+                       "triggers":  [
+                                        "create",
+                                        "generate",
+                                        "optimize"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "seo/seo-meta-optimizer",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "seo-page",
+                       "name":  "seo-page",
+                       "description":  "\u003e",
+                       "category":  "seo",
+                       "tags":  [
+                                    "seo",
+                                    "page",
+                                    "analysis",
+                                    "on-page",
+                                    "technical",
+                                    "schema",
+                                    "images",
+                                    "performance"
+                                ],
+                       "triggers": [],
+                       "risk":  "safe",
+                       "path":  "seo/seo-page",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "00_seo-skill-orchestrator",
+                       "name":  "seo-skill-orchestrator",
+                       "description":  "Meta orchestrator for all SEO skills. Defines two comprehensive workflows: (1) Full-site SEO audit from macro structure to micro page analysis, and (2) End-to-end content creation from site-wide strat",
+                       "category":  "seo",
+                       "tags":  [
+                                    "seo",
+                                    "meta",
+                                    "orchestrator",
+                                    "workflow",
+                                    "audit",
+                                    "content-creation",
+                                    "strategy",
+                                    "execution"
+                                ],
+                       "triggers": ["audit"],
+                       "risk":  "safe",
+                       "path":  "seo/00_seo-skill-orchestrator",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "seo-snippet-hunter",
+                       "name":  "seo-snippet-hunter",
+                       "description":  "Formats content to be eligible for featured snippets and SERP features. Creates snippet-optimized content blocks based on best practices. Use PROACTIVELY for question-based content.",
+                       "category":  "seo",
+                       "tags":  [
+                                    "seo",
+                                    "snippet",
+                                    "featured-snippet",
+                                    "serp",
+                                    "content",
+                                    "optimization",
+                                    "questions"
+                                ],
+                       "triggers":  [
+                                        "create",
+                                        "optimize"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "seo/seo-snippet-hunter",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "seo-structure-architect",
+                       "name":  "seo-structure-architect",
+                       "description":  "Analyzes and optimizes content structure including header hierarchy, suggests schema markup, and internal linking opportunities. Creates search-friendly content organization.",
+                       "category":  "seo",
+                       "tags":  [
+                                    "seo",
+                                    "structure",
+                                    "headers",
+                                    "schema",
+                                    "internal-linking",
+                                    "content-organization",
+                                    "hierarchy"
+                                ],
+                       "triggers":  [
+                                        "analyze",
+                                        "create",
+                                        "optimize"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "seo/seo-structure-architect",
                        "source":  "installed"
                    },
                    {
