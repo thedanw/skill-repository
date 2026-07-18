@@ -1,6 +1,6 @@
 ﻿{
     "version":  2,
-    "generatedAt":  "2026-07-17T22:51:43Z",
+    "generatedAt":  "2026-07-18T18:26:05Z",
     "registryType":  "boss-local",
     "skills":  [
                    {
@@ -91,13 +91,25 @@
                                     "context-recovery"
                                 ],
                        "triggers":  [
-                                        "batch",
                                         "plan",
                                         "review",
                                         "track"
                                     ],
                        "risk":  "safe",
                        "path":  "code-plan/03_executing-plans",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "content-strategy",
+                       "name":  "content-strategy",
+                       "description":  "Plan a content strategy, topic clusters, editorial roadmap, and content mix for traffic, authority, and lead generation. Use when deciding what to publish, what topics to prioritize, or how to structu",
+                       "category":  "content",
+                       "tags":  [
+
+                                ],
+                       "triggers": ["plan"],
+                       "risk":  "unknown",
+                       "path":  "content/content-strategy",
                        "source":  "installed"
                    },
                    {
@@ -113,7 +125,6 @@
                                     "wordpress"
                                 ],
                        "triggers":  [
-                                        "batch",
                                         "generate",
                                         "optimize",
                                         "plan"
@@ -130,10 +141,7 @@
                        "tags":  [
 
                                 ],
-                       "triggers":  [
-                                        "extract",
-                                        "generate"
-                                    ],
+                       "triggers": ["generate"],
                        "risk":  "safe",
                        "path":  "tools/youtube-summarizer",
                        "source":  "installed"
@@ -361,8 +369,7 @@
                                 ],
                        "triggers":  [
                                         "audit",
-                                        "push",
-                                        "read"
+                                        "push"
                                     ],
                        "risk":  "safe",
                        "path":  "github/codebase-audit-pre-push",
@@ -472,6 +479,62 @@
                        "source":  "installed"
                    },
                    {
+                       "id":  "brand-guidelines",
+                       "name":  "brand-guidelines",
+                       "description":  "Write copy following Sentry brand guidelines. Use when writing UI text, error messages, empty states, onboarding flows, 404 pages, documentation, marketing copy, or any user-facing content. Covers bot",
+                       "category":  "marketing",
+                       "tags":  [
+
+                                ],
+                       "triggers": ["write"],
+                       "risk":  "unknown",
+                       "path":  "marketing/brand-guidelines",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "copy-editing",
+                       "name":  "copy-editing",
+                       "description":  "You are an expert copy editor specializing in marketing and conversion copy. Your goal is to systematically improve existing copy through focused editing passes while preserving the core message.",
+                       "category":  "marketing",
+                       "tags":  [
+
+                                ],
+                       "triggers": [],
+                       "risk":  "unknown",
+                       "path":  "marketing/copy-editing",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "marketing-psychology",
+                       "name":  "marketing-psychology",
+                       "description":  "Apply behavioral science and mental models to marketing decisions, prioritized using a psychological leverage and feasibility scoring system.",
+                       "category":  "marketing",
+                       "tags":  [
+
+                                ],
+                       "triggers": [],
+                       "risk":  "unknown",
+                       "path":  "marketing/marketing-psychology",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "agents-md",
+                       "name":  "agents-md",
+                       "description":  "Create, update, or maintain AGENTS.md / CLAUDE.md files with minimal, high-signal agent documentation. Use when the user asks to \u0027create AGENTS.md\u0027, \u0027update AGENTS.md\u0027, \u0027maintain agent docs\u0027, or \u0027set ",
+                       "category":  "meta",
+                       "tags":  [
+                                    "agents",
+                                    "documentation",
+                                    "claude",
+                                    "best-practices",
+                                    "meta"
+                                ],
+                       "triggers": ["create"],
+                       "risk":  "safe",
+                       "path":  "meta/agents-md",
+                       "source":  "installed"
+                   },
+                   {
                        "id":  "jina-ai-search-foundation",
                        "name":  "jina-ai-search-foundation",
                        "description":  "Use Jina AI Search Foundation APIs (Embeddings, Reranker, Reader, Search, Batch Embeddings) for semantic search, RAG, web scraping, and large-scale document processing. Get your Jina AI API key for fr",
@@ -488,13 +551,7 @@
                                     "api",
                                     "llm"
                                 ],
-                       "triggers":  [
-                                        "batch",
-                                        "embed",
-                                        "read",
-                                        "rerank",
-                                        "search"
-                                    ],
+                       "triggers": [],
                        "risk":  "safe",
                        "path":  "tools/jina-ai-search-foundation",
                        "source":  "installed"
@@ -578,76 +635,6 @@
                        "triggers": ["generate"],
                        "risk":  "safe",
                        "path":  "writing/unslop",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "copy-editing",
-                       "name":  "copy-editing",
-                       "description":  "You are an expert copy editor specializing in marketing and conversion copy. Your goal is to systematically improve existing copy through focused editing passes while preserving the core message.",
-                       "category":  "marketing",
-                       "tags":  [
-                                    "copy-editing",
-                                    "marketing",
-                                    "conversion",
-                                    "editing",
-                                    "copywriting"
-                                ],
-                       "triggers": ["edit", "improve", "polish"],
-                       "risk":  "unknown",
-                       "path":  "marketing/copy-editing",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "brand-guidelines",
-                       "name":  "brand-guidelines",
-                       "description":  "Write copy following Sentry brand guidelines. Use when writing UI text, error messages, empty states, onboarding flows, 404 pages, documentation, marketing copy, or any user-facing content. Covers both Plain Speech (default) and Sentry Voice tones.",
-                       "category":  "marketing",
-                       "tags":  [
-                                    "brand",
-                                    "guidelines",
-                                    "copywriting",
-                                    "marketing",
-                                    "tone",
-                                    "voice"
-                                ],
-                       "triggers": ["write", "brand", "tone"],
-                       "risk":  "unknown",
-                       "path":  "marketing/brand-guidelines",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "marketing-psychology",
-                       "name":  "marketing-psychology",
-                       "description":  "Apply behavioral science and mental models to marketing decisions, prioritized using a psychological leverage and feasibility scoring system.",
-                       "category":  "marketing",
-                       "tags":  [
-                                    "psychology",
-                                    "behavioral-science",
-                                    "marketing",
-                                    "persuasion",
-                                    "mental-models"
-                                ],
-                       "triggers": ["psychology", "persuasion", "behavior"],
-                       "risk":  "unknown",
-                       "path":  "marketing/marketing-psychology",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "content-strategy",
-                       "name":  "content-strategy",
-                       "description":  "Plan a content strategy, topic clusters, editorial roadmap, and content mix for traffic, authority, and lead generation. Use when deciding what to publish, what topics to prioritize, or how to structure a content program.",
-                       "category":  "content",
-                       "tags":  [
-                                    "content",
-                                    "strategy",
-                                    "planning",
-                                    "editorial",
-                                    "topic-clusters",
-                                    "seo"
-                                ],
-                       "triggers": ["strategy", "plan", "content", "editorial"],
-                       "risk":  "unknown",
-                       "path":  "content/content-strategy",
                        "source":  "installed"
                    }
                ]
