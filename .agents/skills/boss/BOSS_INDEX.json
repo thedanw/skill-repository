@@ -929,6 +929,28 @@
                        "risk":  "safe",
                        "path":  "design/ui-ux-pro-max",
                        "source":  "acquired"
+                   },
+                   {
+                       "id":  "brand-visual-generator",
+                       "name":  "brand-visual-generator",
+                       "description":  "Define, audit, or apply visual identity (typography, colors, spacing, design tokens, frontend aesthetics). Use for brand style guides, design systems, and distinctive frontend implementation.",
+                       "category":  "marketing",
+                       "tags":  [
+                                    "visual-identity",
+                                    "typography",
+                                    "color-palette",
+                                    "design-system",
+                                    "brand-guidelines",
+                                    "frontend-aesthetics"
+                                ],
+                       "triggers":  [
+                                        "design",
+                                        "branding",
+                                        "style"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "marketing/brand-visual-generator",
+                       "source":  "acquired"
                    }
                ]
 }
