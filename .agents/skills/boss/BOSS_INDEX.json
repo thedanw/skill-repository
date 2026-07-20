@@ -951,6 +951,84 @@
                        "risk":  "safe",
                        "path":  "marketing/brand-visual-generator",
                        "source":  "acquired"
+                   },
+                   {
+                       "id":  "church-webdesign",
+                       "name":  "church-webdesign",
+                       "description":  "Apply proven church website design principles to create welcoming, effective church websites that serve both visitors and members. Use when designing or improving church websites.",
+                       "category":  "ui-ux",
+                       "tags":  [
+                                    "church",
+                                    "web-design",
+                                    "website",
+                                    "ministry",
+                                    "nonprofit",
+                                    "accessibility",
+                                    "user-experience"
+                                ],
+                       "triggers":  [
+                                        "design",
+                                        "create",
+                                        "improve",
+                                        "audit"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "ui-ux/church-webdesign",
+                       "source":  "local",
+                       "keywords": [
+                                        "church-website",
+                                        "ministry-website",
+                                        "faith-based-design",
+                                        "congregation",
+                                        "worship",
+                                        "sermon",
+                                        "online-giving",
+                                        "church-online",
+                                        "plan-your-visit",
+                                        "church-marketing"
+                                    ]
+                   },
+                   {
+                       "id":  "designing-beautiful-websites",
+                       "name":  "designing-beautiful-websites",
+                       "description":  "Designs UX/UI for websites and web apps: UX strategy, information architecture, user flows, wireframes, UI systems, component specs, and polished visual design. Use when the user asks to design, redesign, modernise, critique, or improve a website, landing page, web app interface, design system, style guide, or UI kit.",
+                       "category":  "ui-ux",
+                       "tags":  [
+                                    "web-design",
+                                    "ux",
+                                    "ui",
+                                    "wireframes",
+                                    "design-system",
+                                    "visual-design",
+                                    "accessibility"
+                                ],
+                       "triggers":  [
+                                        "design",
+                                        "redesign",
+                                        "critique",
+                                        "improve",
+                                        "modernize",
+                                        "audit"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "ui-ux/designing-beautiful-websites",
+                       "source":  "acquired",
+                       "keywords": [
+                                        "website-design",
+                                        "landing-page",
+                                        "web-app",
+                                        "style-guide",
+                                        "ui-kit",
+                                        "design-tokens",
+                                        "wireframe",
+                                        "prototype",
+                                        "figma",
+                                        "sketch",
+                                        "visual-hierarchy",
+                                        "color-palette",
+                                        "typography",
+                                        "spacing"
+                                    ]
                    }
                ]
 }
