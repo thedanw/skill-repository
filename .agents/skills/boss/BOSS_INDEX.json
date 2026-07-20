@@ -907,6 +907,28 @@
                        "risk":  "safe",
                        "path":  "design/product-design",
                        "source":  "acquired"
+                   },
+                   {
+                       "id":  "ui-ux-pro-max",
+                       "name":  "ui-ux-pro-max",
+                       "description":  "Comprehensive design guide for web and mobile applications. Use when designing new UI components or pages, choosing color palettes and typography, or reviewing code for UX issues.",
+                       "category":  "design",
+                       "tags":  [
+                                    "ui",
+                                    "ux",
+                                    "design-system",
+                                    "color",
+                                    "typography",
+                                    "responsive"
+                                ],
+                       "triggers":  [
+                                        "design",
+                                        "review",
+                                        "ui"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "design/ui-ux-pro-max",
+                       "source":  "acquired"
                    }
                ]
 }
