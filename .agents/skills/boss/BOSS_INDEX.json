@@ -884,6 +884,29 @@
                        "risk":  "safe",
                        "path":  "writing/unslop",
                        "source":  "installed"
+                   },
+                   {
+                       "id":  "product-design",
+                       "name":  "product-design",
+                       "description":  "Apple-level product design — visual systems, UX flows, accessibility, proprietary visual language, design tokens, prototyping, and handoff. Covers Figma, design systems, typography, color, spacing, motion design, and cognitive design principles.",
+                       "category":  "design",
+                       "tags":  [
+                                    "design",
+                                    "ux",
+                                    "design-systems",
+                                    "accessibility",
+                                    "figma",
+                                    "branding",
+                                    "visual-identity"
+                                ],
+                       "triggers":  [
+                                        "design",
+                                        "branding",
+                                        "ui"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "design/product-design",
+                       "source":  "acquired"
                    }
                ]
 }
