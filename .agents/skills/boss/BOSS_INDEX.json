@@ -30,6 +30,38 @@
                        "source":  "installed"
                    },
                    {
+                       "id":  "00-ui-ux-skill-orchestrator",
+                       "name":  "00-ui-ux-skill-orchestrator",
+                       "description":  "Meta-orchestrator that coordinates all UI-UX skills to plan, design, build, audit, and enhance user interfaces. Use when starting a new UI project, redesigning an existing interface, or conducting comprehensive UX/UI audits.",
+                       "category":  "ui-ux",
+                       "tags":  [
+                                    "orchestrator",
+                                    "ui",
+                                    "ux",
+                                    "design",
+                                    "audit",
+                                    "workflow",
+                                    "planning",
+                                    "building",
+                                    "enhancing"
+                                ],
+                       "triggers":  [
+                                    "orchestrate",
+                                    "coordinate",
+                                    "plan",
+                                    "design",
+                                    "build",
+                                    "audit",
+                                    "enhance",
+                                    "ui",
+                                    "ux",
+                                    "workflow"
+                                ],
+                       "risk":  "low",
+                       "path":  "ui-ux/00-ui-ux-skill-orchestrator",
+                       "source":  "custom"
+                   },
+                   {
                        "id":  "01_brainstorming",
                        "name":  "01_brainstorming",
                        "description":  "Use before any creative or constructive work (features, architecture, behavior). Transforms vague ideas into validated designs through disciplined dialogue. Outputs decision tree to decision.md for pi",
