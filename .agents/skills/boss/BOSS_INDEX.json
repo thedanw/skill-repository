@@ -492,6 +492,30 @@
                        "source":  "installed"
                    },
                    {
+                       "id":  "brand-voice-creator",
+                       "name":  "brand-voice-creator",
+                       "description":  "Create a brand voice document from scratch. Defines voice attributes, tone spectrum, vocabulary rules, do/don't examples, and agent-consumable guidelines. Use when establishing a new brand voice or formalizing an implicit one.",
+                       "category":  "marketing",
+                       "tags":  [
+                                    "brand-voice",
+                                    "brand-guidelines",
+                                    "voice-document",
+                                    "tone-of-voice",
+                                    "content-strategy",
+                                    "ai-writing",
+                                    "copywriting"
+                                ],
+                       "triggers":  [
+                                        "create",
+                                        "define",
+                                        "establish",
+                                        "document"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "marketing/brand-voice-creator",
+                       "source":  "installed"
+                   },
+                   {
                        "id":  "copy-editing",
                        "name":  "copy-editing",
                        "description":  "You are an expert copy editor specializing in marketing and conversion copy. Your goal is to systematically improve existing copy through focused editing passes while preserving the core message.",
