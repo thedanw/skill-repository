@@ -1,12 +1,12 @@
-﻿{
+{
     "version":  2,
-    "generatedAt":  "2026-07-18T20:38:17Z",
+    "generatedAt":  "2026-07-21T10:37:18Z",
     "registryType":  "boss-local",
     "skills":  [
                    {
                        "id":  "00_meta-plan-pipeline",
                        "name":  "00_meta-plan-pipeline",
-                       "description":  "Orchestrate the full development workflow: brainstorm → plan → review-execute → review. Coordinates 01_brainstorming, 02_concise-planning, and 03_executing-plans into one consistent pipeline with deci",
+                       "description":  "Orchestrate the full development workflow: brainstorm ? plan ? review-execute ? review. Coordinates 01_brainstorming, 02_concise-planning, and 03_executing-plans into one consistent pipeline with deci",
                        "category":  "code-plan",
                        "tags":  [
                                     "pipeline",
@@ -28,38 +28,6 @@
                        "risk":  "safe",
                        "path":  "code-plan/00_meta-plan-pipeline",
                        "source":  "installed"
-                   },
-                   {
-                       "id":  "00-ui-ux-skill-orchestrator",
-                       "name":  "00-ui-ux-skill-orchestrator",
-                       "description":  "Meta-orchestrator that coordinates all UI-UX skills to plan, design, build, audit, and enhance user interfaces. Use when starting a new UI project, redesigning an existing interface, or conducting comprehensive UX/UI audits.",
-                       "category":  "ui-ux",
-                       "tags":  [
-                                    "orchestrator",
-                                    "ui",
-                                    "ux",
-                                    "design",
-                                    "audit",
-                                    "workflow",
-                                    "planning",
-                                    "building",
-                                    "enhancing"
-                                ],
-                       "triggers":  [
-                                    "orchestrate",
-                                    "coordinate",
-                                    "plan",
-                                    "design",
-                                    "build",
-                                    "audit",
-                                    "enhance",
-                                    "ui",
-                                    "ux",
-                                    "workflow"
-                                ],
-                       "risk":  "low",
-                       "path":  "ui-ux/00-ui-ux-skill-orchestrator",
-                       "source":  "custom"
                    },
                    {
                        "id":  "01_brainstorming",
@@ -139,7 +107,9 @@
                        "tags":  [
 
                                 ],
-                       "triggers": ["plan"],
+                       "triggers":  [
+                                        "plan"
+                                    ],
                        "risk":  "unknown",
                        "path":  "content/content-strategy",
                        "source":  "installed"
@@ -173,7 +143,9 @@
                        "tags":  [
 
                                 ],
-                       "triggers": ["generate"],
+                       "triggers":  [
+                                        "generate"
+                                    ],
                        "risk":  "safe",
                        "path":  "tools/youtube-summarizer",
                        "source":  "installed"
@@ -192,6 +164,64 @@
                                     ],
                        "risk":  "unknown",
                        "path":  "debugging/systematic-debugging",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "church-webdesign",
+                       "name":  "church-webdesign",
+                       "description":  "Design welcoming, effective church websites that serve both visitors and members. Combines church-specific best practices with a proven UX/UI workflow: strategy, IA, wireframes, visual systems, and co",
+                       "category":  "design",
+                       "tags":  [
+                                    "church",
+                                    "web-design",
+                                    "ux",
+                                    "ui",
+                                    "wireframes",
+                                    "design-system",
+                                    "accessibility",
+                                    "ministry"
+                                ],
+                       "triggers":  [
+                                        "design"
+                                    ],
+                       "risk":  "low",
+                       "path":  "design/church-webdesign",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "designing-beautiful-websites",
+                       "name":  "designing-beautiful-websites",
+                       "description":  "Designs UX/UI for websites and web apps: UX strategy, information architecture, user flows, wireframes, UI systems, component specs, and polished visual design. Use when the user asks to design, redes",
+                       "category":  "design",
+                       "tags":  [
+                                    "web-design",
+                                    "ux",
+                                    "ui",
+                                    "wireframes",
+                                    "design-system",
+                                    "visual-design",
+                                    "accessibility"
+                                ],
+                       "triggers":  [
+                                        "design"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "design/designing-beautiful-websites",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "product-design",
+                       "name":  "product-design",
+                       "description":  "Apple-level product design � visual systems, UX flows, accessibility, proprietary visual language, design tokens, prototyping, and handoff. Covers Figma, design systems, typography, color, spacing, mo",
+                       "category":  "design",
+                       "tags":  [
+
+                                ],
+                       "triggers":  [
+                                        "design"
+                                    ],
+                       "risk":  "none",
+                       "path":  "design/product-design",
                        "source":  "installed"
                    },
                    {
@@ -226,7 +256,9 @@
                                     "frontend",
                                     "styleseed"
                                 ],
-                       "triggers": ["generate"],
+                       "triggers":  [
+                                        "generate"
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/ui-component",
                        "source":  "installed"
@@ -243,7 +275,9 @@
                                     "layout",
                                     "styleseed"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/ui-page",
                        "source":  "installed"
@@ -260,7 +294,9 @@
                                     "reuse",
                                     "styleseed"
                                 ],
-                       "triggers": ["generate"],
+                       "triggers":  [
+                                        "generate"
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/ui-pattern",
                        "source":  "installed"
@@ -297,7 +333,9 @@
                                     "frontend",
                                     "styleseed"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/ui-setup",
                        "source":  "installed"
@@ -314,9 +352,27 @@
                                     "theming",
                                     "styleseed"
                                 ],
-                       "triggers": ["design"],
+                       "triggers":  [
+                                        "design"
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/ui-tokens",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "ui-ux-pro-max",
+                       "name":  "ui-ux-pro-max",
+                       "description":  "Comprehensive design guide for web and mobile applications. Use when designing new UI components or pages, choosing color palettes and typography, or reviewing code for UX issues.",
+                       "category":  "design",
+                       "tags":  [
+
+                                ],
+                       "triggers":  [
+                                        "design",
+                                        "review"
+                                    ],
+                       "risk":  "unknown",
+                       "path":  "design/ui-ux-pro-max",
                        "source":  "installed"
                    },
                    {
@@ -351,7 +407,9 @@
                                     "product-design",
                                     "styleseed"
                                 ],
-                       "triggers": ["design"],
+                       "triggers":  [
+                                        "design"
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/ux-flow",
                        "source":  "installed"
@@ -370,7 +428,9 @@
                                     "antipatterns",
                                     "accessibility"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/uxui-principles",
                        "source":  "installed"
@@ -419,7 +479,9 @@
                                     "security-review",
                                     "claude-code"
                                 ],
-                       "triggers": ["review"],
+                       "triggers":  [
+                                        "review"
+                                    ],
                        "risk":  "safe",
                        "path":  "debugging/logic-lens",
                        "source":  "installed"
@@ -432,7 +494,9 @@
                        "tags":  [
 
                                 ],
-                       "triggers": ["fix"],
+                       "triggers":  [
+                                        "fix"
+                                    ],
                        "risk":  "safe",
                        "path":  "debugging/performance-optimizer",
                        "source":  "installed"
@@ -469,7 +533,9 @@
                                     "accessibility",
                                     "state-machine"
                                 ],
-                       "triggers": ["track"],
+                       "triggers":  [
+                                        "track"
+                                    ],
                        "risk":  "safe",
                        "path":  "memory/technical-change-tracker",
                        "source":  "installed"
@@ -511,22 +577,25 @@
                        "source":  "installed"
                    },
                    {
-                       "id":  "brand-guidelines",
-                       "name":  "brand-guidelines",
-                       "description":  "Write copy following Sentry brand guidelines. Use when writing UI text, error messages, empty states, onboarding flows, 404 pages, documentation, marketing copy, or any user-facing content. Covers bot",
+                       "id":  "brand-visual-generator",
+                       "name":  "brand-visual-generator",
+                       "description":  "When the user wants to define, audit, or apply visual identity (typography, colors, spacing, design tokens, frontend aesthetics). Also use when the user mentions \u0027brand style guide,\u0027 \u0027visual identity,",
                        "category":  "marketing",
                        "tags":  [
 
                                 ],
-                       "triggers": ["write"],
+                       "triggers":  [
+                                        "audit",
+                                        "design"
+                                    ],
                        "risk":  "unknown",
-                       "path":  "marketing/brand-guidelines",
+                       "path":  "marketing/brand-visual-generator",
                        "source":  "installed"
                    },
                    {
                        "id":  "brand-voice-creator",
                        "name":  "brand-voice-creator",
-                       "description":  "Create a brand voice document from scratch. Defines voice attributes, tone spectrum, vocabulary rules, do/don't examples, and agent-consumable guidelines. Use when establishing a new brand voice or formalizing an implicit one.",
+                       "description":  "Create a brand voice document from scratch. Defines voice attributes, tone spectrum, vocabulary rules, do/don\u0027t examples, and agent-consumable guidelines. Use when establishing a new brand voice or fo",
                        "category":  "marketing",
                        "tags":  [
                                     "brand-voice",
@@ -538,10 +607,7 @@
                                     "copywriting"
                                 ],
                        "triggers":  [
-                                        "create",
-                                        "define",
-                                        "establish",
-                                        "document"
+                                        "create"
                                     ],
                        "risk":  "safe",
                        "path":  "marketing/brand-voice-creator",
@@ -555,7 +621,9 @@
                        "tags":  [
 
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "unknown",
                        "path":  "marketing/copy-editing",
                        "source":  "installed"
@@ -568,7 +636,9 @@
                        "tags":  [
 
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "unknown",
                        "path":  "marketing/marketing-psychology",
                        "source":  "installed"
@@ -585,9 +655,34 @@
                                     "best-practices",
                                     "meta"
                                 ],
-                       "triggers": ["create"],
+                       "triggers":  [
+                                        "create"
+                                    ],
                        "risk":  "safe",
                        "path":  "meta/agents-md",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "setup",
+                       "name":  "setup",
+                       "description":  "Scaffold a complete agenic workspace from scratch: create .agents folder, link skills via junction/symlink, generate agents.md, and update BOSS_INDEX.json. Use when setting up a new project or cloning",
+                       "category":  "meta",
+                       "tags":  [
+                                    "setup",
+                                    "scaffolding",
+                                    "workspace",
+                                    "junction",
+                                    "symlink",
+                                    "agents-md",
+                                    "bootstrap",
+                                    "initialization"
+                                ],
+                       "triggers":  [
+                                        "create",
+                                        "generate"
+                                    ],
+                       "risk":  "safe",
+                       "path":  "meta/setup",
                        "source":  "installed"
                    },
                    {
@@ -606,7 +701,9 @@
                                     "serp",
                                     "social"
                                 ],
-                       "triggers": ["write"],
+                       "triggers":  [
+                                        "write"
+                                    ],
                        "risk":  "safe",
                        "path":  "seo/seo-aeo-meta-description-generator",
                        "source":  "installed"
@@ -624,7 +721,9 @@
                                     "indexation",
                                     "rankings"
                                 ],
-                       "triggers": ["audit"],
+                       "triggers":  [
+                                        "audit"
+                                    ],
                        "risk":  "safe",
                        "path":  "seo/seo-audit",
                        "source":  "installed"
@@ -662,7 +761,9 @@
                                     "readability",
                                     "ai-citation"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "seo/seo-content",
                        "source":  "installed"
@@ -701,7 +802,9 @@
                                     "optimization",
                                     "semantic"
                                 ],
-                       "triggers": ["analyze"],
+                       "triggers":  [
+                                        "analyze"
+                                    ],
                        "risk":  "safe",
                        "path":  "seo/seo-keyword-strategist",
                        "source":  "installed"
@@ -744,7 +847,9 @@
                                     "images",
                                     "performance"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "seo/seo-page",
                        "source":  "installed"
@@ -764,7 +869,9 @@
                                     "strategy",
                                     "execution"
                                 ],
-                       "triggers": ["audit"],
+                       "triggers":  [
+                                        "audit"
+                                    ],
                        "risk":  "safe",
                        "path":  "seo/00_seo-skill-orchestrator",
                        "source":  "installed"
@@ -831,7 +938,9 @@
                                     "api",
                                     "llm"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "tools/jina-ai-search-foundation",
                        "source":  "installed"
@@ -848,9 +957,37 @@
                                     "process",
                                     "orchestration"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "tools/using-superpowers",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "00-ui-ux-skill-orchestrator",
+                       "name":  "00-ui-ux-skill-orchestrator",
+                       "description":  "Meta-orchestrator that coordinates all UI-UX skills to plan, design, build, audit, and enhance user interfaces. Use when starting a new UI project, redesigning an existing interface, or conducting com",
+                       "category":  "ui-ux",
+                       "tags":  [
+                                    "orchestrator",
+                                    "ui",
+                                    "ux",
+                                    "design",
+                                    "audit",
+                                    "workflow",
+                                    "planning",
+                                    "building",
+                                    "enhancing"
+                                ],
+                       "triggers":  [
+                                        "audit",
+                                        "build",
+                                        "design",
+                                        "plan"
+                                    ],
+                       "risk":  "low",
+                       "path":  "ui-ux/00-ui-ux-skill-orchestrator",
                        "source":  "installed"
                    },
                    {
@@ -861,7 +998,9 @@
                        "tags":  [
 
                                 ],
-                       "triggers": ["design"],
+                       "triggers":  [
+                                        "design"
+                                    ],
                        "risk":  "unknown",
                        "path":  "ui-ux/frontend-design",
                        "source":  "installed"
@@ -881,7 +1020,9 @@
                                     "rewrite",
                                     "publishing"
                                 ],
-                       "triggers": ["audit"],
+                       "triggers":  [
+                                        "audit"
+                                    ],
                        "risk":  "safe",
                        "path":  "writing/avoid-ai-writing",
                        "source":  "installed"
@@ -894,7 +1035,9 @@
                        "tags":  [
 
                                 ],
-                       "triggers": ["write"],
+                       "triggers":  [
+                                        "write"
+                                    ],
                        "risk":  "unknown",
                        "path":  "writing/copywriting",
                        "source":  "installed"
@@ -912,155 +1055,12 @@
                                     "cli",
                                     "publishing"
                                 ],
-                       "triggers": ["generate"],
+                       "triggers":  [
+                                        "generate"
+                                    ],
                        "risk":  "safe",
                        "path":  "writing/unslop",
                        "source":  "installed"
-                   },
-                   {
-                       "id":  "product-design",
-                       "name":  "product-design",
-                       "description":  "Apple-level product design — visual systems, UX flows, accessibility, proprietary visual language, design tokens, prototyping, and handoff. Covers Figma, design systems, typography, color, spacing, motion design, and cognitive design principles.",
-                       "category":  "design",
-                       "tags":  [
-                                    "design",
-                                    "ux",
-                                    "design-systems",
-                                    "accessibility",
-                                    "figma",
-                                    "branding",
-                                    "visual-identity"
-                                ],
-                       "triggers":  [
-                                        "design",
-                                        "branding",
-                                        "ui"
-                                    ],
-                       "risk":  "safe",
-                       "path":  "design/product-design",
-                       "source":  "acquired"
-                   },
-                   {
-                       "id":  "ui-ux-pro-max",
-                       "name":  "ui-ux-pro-max",
-                       "description":  "Comprehensive design guide for web and mobile applications. Use when designing new UI components or pages, choosing color palettes and typography, or reviewing code for UX issues.",
-                       "category":  "design",
-                       "tags":  [
-                                    "ui",
-                                    "ux",
-                                    "design-system",
-                                    "color",
-                                    "typography",
-                                    "responsive"
-                                ],
-                       "triggers":  [
-                                        "design",
-                                        "review",
-                                        "ui"
-                                    ],
-                       "risk":  "safe",
-                       "path":  "design/ui-ux-pro-max",
-                       "source":  "acquired"
-                   },
-                   {
-                       "id":  "brand-visual-generator",
-                       "name":  "brand-visual-generator",
-                       "description":  "Define, audit, or apply visual identity (typography, colors, spacing, design tokens, frontend aesthetics). Use for brand style guides, design systems, and distinctive frontend implementation.",
-                       "category":  "marketing",
-                       "tags":  [
-                                    "visual-identity",
-                                    "typography",
-                                    "color-palette",
-                                    "design-system",
-                                    "brand-guidelines",
-                                    "frontend-aesthetics"
-                                ],
-                       "triggers":  [
-                                        "design",
-                                        "branding",
-                                        "style"
-                                    ],
-                       "risk":  "safe",
-                       "path":  "marketing/brand-visual-generator",
-                       "source":  "acquired"
-                   },
-                   {
-                       "id":  "church-webdesign",
-                       "name":  "church-webdesign",
-                       "description":  "Apply proven church website design principles to create welcoming, effective church websites that serve both visitors and members. Use when designing or improving church websites.",
-                       "category":  "ui-ux",
-                       "tags":  [
-                                    "church",
-                                    "web-design",
-                                    "website",
-                                    "ministry",
-                                    "nonprofit",
-                                    "accessibility",
-                                    "user-experience"
-                                ],
-                       "triggers":  [
-                                        "design",
-                                        "create",
-                                        "improve",
-                                        "audit"
-                                    ],
-                       "risk":  "safe",
-                       "path":  "ui-ux/church-webdesign",
-                       "source":  "local",
-                       "keywords": [
-                                        "church-website",
-                                        "ministry-website",
-                                        "faith-based-design",
-                                        "congregation",
-                                        "worship",
-                                        "sermon",
-                                        "online-giving",
-                                        "church-online",
-                                        "plan-your-visit",
-                                        "church-marketing"
-                                    ]
-                   },
-                   {
-                       "id":  "designing-beautiful-websites",
-                       "name":  "designing-beautiful-websites",
-                       "description":  "Designs UX/UI for websites and web apps: UX strategy, information architecture, user flows, wireframes, UI systems, component specs, and polished visual design. Use when the user asks to design, redesign, modernise, critique, or improve a website, landing page, web app interface, design system, style guide, or UI kit.",
-                       "category":  "ui-ux",
-                       "tags":  [
-                                    "web-design",
-                                    "ux",
-                                    "ui",
-                                    "wireframes",
-                                    "design-system",
-                                    "visual-design",
-                                    "accessibility"
-                                ],
-                       "triggers":  [
-                                        "design",
-                                        "redesign",
-                                        "critique",
-                                        "improve",
-                                        "modernize",
-                                        "audit"
-                                    ],
-                       "risk":  "safe",
-                       "path":  "ui-ux/designing-beautiful-websites",
-                       "source":  "acquired",
-                       "keywords": [
-                                        "website-design",
-                                        "landing-page",
-                                        "web-app",
-                                        "style-guide",
-                                        "ui-kit",
-                                        "design-tokens",
-                                        "wireframe",
-                                        "prototype",
-                                        "figma",
-                                        "sketch",
-                                        "visual-hierarchy",
-                                        "color-palette",
-                                        "typography",
-                                        "spacing"
-                                    ]
                    }
                ]
 }
