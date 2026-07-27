@@ -24,21 +24,21 @@ Orchestrate the full development workflow. Four stages, file-tracked context, gi
 └─────────────┘   └─────────────┘   └───────────────────┘   └──────────┘
       │                 │                     │                    │
       ▼                 ▼                     ▼                    ▼
- 01_brainstorming    02_concise-planning      03_executing-plans       00_meta-plan-pipeline
+01_brainstorming    02_concise-planning      03_executing-plans       00_meta-plan-pipeline
                                          (per batch)
 ```
 
 **Sub-skills used:**
 
-- **01_brainstorming** — Phase 1: Design facilitation, decision tree output
-- **02_concise-planning** — Phase 2: Atomic plan with TDD, git steps, file tracking
-- **03_executing-plans** — Phase 3: Batch execution with checkpoints, context updates
+- **01_brainstorming** — Phase 1: Design facilitation, decision tree output (establish goal, research context, understanding lock, explore approaches, decision log)
+- **02_concise-planning** — Phase 2: Atomic plan with TDD, git steps, file tracking (minimal interaction, initialize planning files, git assessment, generate plan with batches)
+- **03_executing-plans** — Phase 3: Batch execution with context optimization, task management via todo tools, quality gates between batches
 
 ---
 
 ## File Conventions
 
-All planning files live in the **project directory** (where code lives):
+All planning files live in the **project directory/planning/[current plan title]** (where code lives):
 
 | File | Purpose | Created By | Updated By |
 |------|---------|------------|------------|
@@ -61,6 +61,13 @@ Transform the user's idea into a validated design with a decision tree captured 
 ### Process
 
 1. Read `01_brainstorming/SKILL.md` — follow its full process
+   - Establish clear goal and update plan.md with the goal
+   - Research context to understand environment and identify technical/decision gaps
+   - Store findings in findings.md
+   - Explore design approaches and identify essential information gaps
+   - Ask questions until user is satisfied and all essential info gaps explored
+   - Update goal in plan.md if changed during brainstorm
+   - Final research to update findings.md with most relevant info from brainstorm
 2. Scan project context: existing files, docs, README
 3. Ask one question at a time — understand purpose, users, constraints
 4. Clarify non-functional requirements (performance, scale, security)
@@ -252,7 +259,7 @@ Initialize `task_plan.md`:
 
 ### Goal
 
-Execute the plan in batches. After each batch: update context files, git commit, report to user for review. The review-between-batches is what makes this "review-execute" — not a separate phase but an integral part of every batch loop.
+Execute the plan in batches using agent todo tools for task management and context optimization techniques for efficient token usage. After each batch: update context files, git commit, report to user for review. The review-between-batches is what makes this "review-execute" — not a separate phase but an integral part of every batch loop.
 
 ### Context Recovery (If Resuming)
 

@@ -32,7 +32,7 @@ Create a plan that a developer with zero context could follow exactly. DRY. YAGN
 
 ### 3. Initialize Planning Files
 
-Create/Update these in the project directory (not the skill directory):
+Create/Update these in the project/planning/[current plan title] directory (not the skill directory):
 
 | File | Purpose |
 |------|---------|
@@ -69,29 +69,42 @@ Use the following structure. Save to `docs/plans/YYYY-MM-DD-<feature-name>.md` a
 
 ### Action Items (Bite-Sized & TDD-Focused)
 
-Group tasks into batches of 3-5. Every coding task must follow the TDD cycle.
+**Important:** Batch task lists are stored in `task_plan.md`, NOT in this plan file. This plan file only contains batch goals and high-level structure.
+
+Each batch is optimized for small context windows using context optimization techniques (see `skill.agents\skills\boss\ai-meta\context-optimization\SKILL.md`):
+
+- **Compaction**: Summarize completed work in `progress.md` rather than keeping full details in context
+- **Observation Masking**: Replace verbose tool outputs with references to `progress.md` entries
+- **KV-Cache Optimization**: Keep stable context (goals, architecture) at start, variable content at end
+- **Context Partitioning**: For complex batches, consider sub-agent isolation for independent subtasks
+- **Budget Management**: Allocate context: 20% goals/approach, 30% current batch, 30% recent history, 20% buffer
+
+Each batch explicitly uses todo tools for task management:
+- Use `manage_todo_list` to break batches into atomic, trackable tasks
+- Mark one todo as `in_progress` at a time (limit: 1)
+- Update todo status immediately upon completion
 
 ```markdown
 ## Action Items
 
 ### Batch 1: Setup
-- [ ] Task 1.1: [Specific setup step]
-- [ ] Task 1.2: [Initial file creation]
-- [ ] **Commit:** `chore: [description]`
+**Batch Goal:** Establish project foundation and development environment
+- [ ] **Commit:** `chore: initialize project setup`
 
 ### Batch 2: [Component/Feature]
-- [ ] Task 2.1: **Write failing test** for [behavior]
-  Code: `tests/exact/path.py`
-  Line: `def test_behavior(): ...`
-- [ ] Task 2.2: **Run test** to verify it fails
-  Run: `pytest tests/path.py::test_name`
-  Expected: FAIL (AttributeError/ImportError)
-- [ ] Task 2.3: **Implement minimal code** to pass
-  Code: `exact/path/to/file.py`
-- [ ] Task 2.4: **Run test** to verify it passes
-  Run: `pytest tests/path.py::test_name`
-  Expected: PASS
-- [ ] **Commit:** `feat: add [behavior] for [component]`
+**Batch Goal:** Implement core feature with TDD cycle
+- [ ] **Commit:** `feat: implement [component/feature]`
+
+### Batch 3: Test
+**Batch Goal:** Ensure quality through comprehensive testing
+- [ ] **Commit:** `test: verify [feature] functionality`
+
+### Batch 4: Polish
+**Batch Goal:** Refine code quality and readiness for review
+- [ ] **Commit:** `chore: final code quality and cleanup`
+
+### Final
+- [ ] **Push:** `git push origin feature/[name]`
 ```
 
 ### Finalization
