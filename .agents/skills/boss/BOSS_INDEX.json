@@ -1,6 +1,6 @@
 ﻿{
     "version":  2,
-    "generatedAt":  "2026-07-22T13:10:03Z",
+    "generatedAt":  "2026-07-27T16:31:32Z",
     "registryType":  "boss-local",
     "skills":  [
                    {
@@ -20,6 +20,139 @@
                        "triggers": [],
                        "risk":  "safe",
                        "path":  "ai-meta/context-optimization",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "prompt-refinement",
+                       "name":  "prompt-refinement",
+                       "description":  "Refine and optimize user prompts for large language models. Suggests rewrites, examples, and parameter guidance to improve reliability and output quality.",
+                       "category":  "ai-skills",
+                       "tags":  [
+                                    "prompt-engineering",
+                                    "refinement",
+                                    "llm",
+                                    "instruction-tuning"
+                                ],
+                       "triggers": ["optimize"],
+                       "risk":  "safe",
+                       "path":  "ai-skills/prompt-refinement",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "bible-nlt",
+                       "name":  "Bible NLT Fetcher",
+                       "description":  "Fetch the exact wording of the New Living Translation (NLT) for any Bible passage.",
+                       "category":  "bible",
+                       "tags":  [
+
+                                ],
+                       "triggers": [],
+                       "risk":  "unknown",
+                       "path":  "bible/bible-nlt",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "individual_sermon_researcher",
+                       "name":  "Biblical \u0026 Theological Research Protocol",
+                       "description":  "The master instruction set for all biblical and theological research, defining the Research Source Router and the Gold Standard discovery loop.",
+                       "category":  "bible",
+                       "tags":  [
+
+                                ],
+                       "triggers": [],
+                       "risk":  "unknown",
+                       "path":  "bible/individual_sermon_researcher",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "deep-research",
+                       "name":  "deep-research",
+                       "description":  "Execute autonomous multi-step research using Jina AI (Search \u0026 Reader). This skill establishes the logic for the agent to plan, search, read, and synthesize information into comprehensive reports.",
+                       "category":  "bible",
+                       "tags":  [
+
+                                ],
+                       "triggers": ["plan"],
+                       "risk":  "unknown",
+                       "path":  "bible/deep-research",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "illustration_researcher",
+                       "name":  "Illustration Researcher",
+                       "description":  "Research and curate engaging sermon illustrations from a verified knowledgebase.",
+                       "category":  "bible",
+                       "tags":  [
+
+                                ],
+                       "triggers": [],
+                       "risk":  "unknown",
+                       "path":  "bible/illustration_researcher",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "individual_sermon_brainstormer",
+                       "name":  "Individual Sermon Brainstormer",
+                       "description":  "Synthesize research (03-summary.md) into workable outlines and brainstorm main themes and creative presentation options using literary devices.",
+                       "category":  "bible",
+                       "tags":  [
+
+                                ],
+                       "triggers": [],
+                       "risk":  "unknown",
+                       "path":  "bible/individual_sermon_brainstormer",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "brand",
+                       "name":  "New Light Brand Guidelines",
+                       "description":  "Comprehensive brand guidelines for New Light Anglican Church, including colors, typography, design patterns, and styling rules for the Team Hub application.",
+                       "category":  "bible",
+                       "tags":  [
+
+                                ],
+                       "triggers": ["design"],
+                       "risk":  "unknown",
+                       "path":  "bible/brand",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "rhetoric",
+                       "name":  "Rhetoric",
+                       "description":  "A centralized library of rhetorical and homiletical devices for effective sermon communication.",
+                       "category":  "bible",
+                       "tags":  [
+
+                                ],
+                       "triggers": [],
+                       "risk":  "unknown",
+                       "path":  "bible/rhetoric",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "break-writers-block",
+                       "name":  "sermon-brainstorming",
+                       "description":  "Transforms a passage or theme into a gospel-centered sermon outline with illustrations, hooks, and grace dynamics.",
+                       "category":  "bible",
+                       "tags":  [
+
+                                ],
+                       "triggers": [],
+                       "risk":  "unknown",
+                       "path":  "bible/break-writers-block",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "sync-docs",
+                       "name":  "Sync \u0026 Document Generation",
+                       "description":  "Sync markdown to Google Docs and generate high-fidelity RTF, HTML, and PDF documents with New Light Branding.",
+                       "category":  "bible",
+                       "tags":  [
+
+                                ],
+                       "triggers": ["generate"],
+                       "risk":  "unknown",
+                       "path":  "bible/sync-docs",
                        "source":  "installed"
                    },
                    {
@@ -107,7 +240,9 @@
                                     "checkpoint",
                                     "tasks",
                                     "git",
-                                    "context-recovery"
+                                    "context-recovery",
+                                    "todo",
+                                    "context-optimization"
                                 ],
                        "triggers":  [
                                         "plan",
@@ -231,6 +366,26 @@
                        "triggers": ["design"],
                        "risk":  "none",
                        "path":  "design/product-design",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "stock-photo-finder",
+                       "name":  "stock-photo-finder",
+                       "description":  "Find usable free stock photos for design work, with a strong bias toward Unsplash and other trusted free stock sources. Filter by subject, orientation, mood, and licensing needs.",
+                       "category":  "design",
+                       "tags":  [
+                                    "stock-photos",
+                                    "unsplash",
+                                    "pexels",
+                                    "pixabay",
+                                    "openverse",
+                                    "free-images",
+                                    "design-assets",
+                                    "licensing"
+                                ],
+                       "triggers": ["design"],
+                       "risk":  "low",
+                       "path":  "design/stock-photo-finder",
                        "source":  "installed"
                    },
                    {
@@ -372,6 +527,24 @@
                                     ],
                        "risk":  "unknown",
                        "path":  "design/ui-ux-pro-max",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "unsplash-integration",
+                       "name":  "unsplash-integration",
+                       "description":  "Fetch and evaluate Unsplash images for design work using direct Unsplash search URLs, source filtering, and practical licensing guidance.",
+                       "category":  "design",
+                       "tags":  [
+                                    "unsplash",
+                                    "stock-photos",
+                                    "images",
+                                    "design",
+                                    "photography",
+                                    "licensing"
+                                ],
+                       "triggers": ["design"],
+                       "risk":  "low",
+                       "path":  "design/unsplash-integration",
                        "source":  "installed"
                    },
                    {
@@ -663,6 +836,43 @@
                        "source":  "installed"
                    },
                    {
+                       "id":  "context-compression",
+                       "name":  "context-compression",
+                       "description":  "Production-ready compression strategies for million-token agent sessions. Covers anchored iterative summarization, opaque compression, and regenerative summaries. Use when agent sessions exceed contex",
+                       "category":  "memory",
+                       "tags":  [
+                                    "compression",
+                                    "summarization",
+                                    "tokens",
+                                    "session-management",
+                                    "context",
+                                    "memory"
+                                ],
+                       "triggers": ["debug"],
+                       "risk":  "safe",
+                       "path":  "memory/context-compression",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "context-optimization",
+                       "name":  "context-optimization",
+                       "description":  "Extends effective context capacity through strategic compression, masking, caching, and partitioning. Use when context limits constrain task complexity or when reducing token costs.",
+                       "category":  "memory",
+                       "tags":  [
+                                    "context",
+                                    "optimization",
+                                    "compression",
+                                    "masking",
+                                    "caching",
+                                    "partitioning",
+                                    "tokens"
+                                ],
+                       "triggers": [],
+                       "risk":  "safe",
+                       "path":  "memory/context-optimization",
+                       "source":  "installed"
+                   },
+                   {
                        "id":  "context-window-management",
                        "name":  "context-window-management",
                        "description":  "Strategies for managing LLM context windows including summarization, trimming, routing, and avoiding context rot. Use when working with small context LLMs or need to manage limited token budgets effec",
@@ -700,6 +910,24 @@
                        "source":  "installed"
                    },
                    {
+                       "id":  "00-manage-orchestrator",
+                       "name":  "manage-orchestrator",
+                       "description":  "Orchestrate the BOSS skill management sub-skills at .agents/skills/boss/01-manage/. Coordinates skill-create, skill-aquire, and skill-manage sub-skills for creating, acquiring, and managing skills in ",
+                       "category":  "meta",
+                       "tags":  [
+                                    "orchestrator",
+                                    "repository",
+                                    "skill-management",
+                                    "boss",
+                                    "manage",
+                                    "01-manage"
+                                ],
+                       "triggers": ["create"],
+                       "risk":  "safe",
+                       "path":  "01-manage/00-manage-orchestrator",
+                       "source":  "installed"
+                   },
+                   {
                        "id":  "setup",
                        "name":  "setup",
                        "description":  "Scaffold a complete agenic workspace from scratch: create .agents folder, link skills via junction/symlink, generate agents.md, and update BOSS_INDEX.json. Use when setting up a new project or cloning",
@@ -720,6 +948,43 @@
                                     ],
                        "risk":  "safe",
                        "path":  "00-setup/setup",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "skill-aquire",
+                       "name":  "skill-aquire",
+                       "description":  "Search and install skills from the antigravity-awesome-skills GitHub repository. Use when looking for external skills to add to the BOSS repo. Downloads full skill folders including all supporting fil",
+                       "category":  "meta",
+                       "tags":  [
+                                    "acquisition",
+                                    "install",
+                                    "awesome-skills",
+                                    "github",
+                                    "search",
+                                    "import"
+                                ],
+                       "triggers": [],
+                       "risk":  "moderate",
+                       "path":  "01-manage/skill-aquire",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "skill-manage",
+                       "name":  "skill-manage",
+                       "description":  "Manage BOSS skill category folders and keep BOSS_INDEX.json in sync. Use when adding, moving, removing, or reorganizing skills in .agents/skills/boss/. Handles category mapping, index updates, and ind",
+                       "category":  "meta",
+                       "tags":  [
+                                    "management",
+                                    "organization",
+                                    "index",
+                                    "categories",
+                                    "boss",
+                                    "sync",
+                                    "audit"
+                                ],
+                       "triggers": ["audit"],
+                       "risk":  "moderate",
+                       "path":  "01-manage/skill-manage",
                        "source":  "installed"
                    },
                    {
@@ -969,6 +1234,43 @@
                        "source":  "installed"
                    },
                    {
+                       "id":  "llm-prompt-optimizer",
+                       "name":  "llm-prompt-optimizer",
+                       "description":  "Transforms weak prompts into precision-engineered instructions using RSCIT framework, chain-of-thought, few-shot patterns, and structured output templates. Use when prompts return inconsistent results",
+                       "category":  "tools",
+                       "tags":  [
+                                    "prompts",
+                                    "optimization",
+                                    "llm",
+                                    "engineering",
+                                    "tokens",
+                                    "chain-of-thought",
+                                    "few-shot"
+                                ],
+                       "triggers": [],
+                       "risk":  "safe",
+                       "path":  "tools/llm-prompt-optimizer",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "recursive-context-pruning-token-budgeting",
+                       "name":  "recursive-context-pruning-token-budgeting",
+                       "description":  "Implements Gatekeeper logic to prevent context window bloat — pruning redundant context, managing token budgets (30/20/50 split), and enforcing atomic output without bridge phrases. Use when building ",
+                       "category":  "tools",
+                       "tags":  [
+                                    "pruning",
+                                    "tokens",
+                                    "budgeting",
+                                    "atomic-output",
+                                    "conciseness",
+                                    "context-management"
+                                ],
+                       "triggers": ["build"],
+                       "risk":  "safe",
+                       "path":  "tools/recursive-context-pruning-token-budgeting",
+                       "source":  "installed"
+                   },
+                   {
                        "id":  "using-superpowers",
                        "name":  "using-superpowers",
                        "description":  "Use at the start of any conversation. Establishes how to find and use skills. If there is even a 1% chance a skill might apply, you must invoke the skill before any response. Not negotiable.",
@@ -1073,55 +1375,6 @@
                        "triggers": ["generate"],
                        "risk":  "safe",
                        "path":  "writing/unslop",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "stock-photo-finder",
-                       "name":  "stock-photo-finder",
-                       "description":  "Find usable free stock photos for design work, with a strong bias toward Unsplash and other trusted free stock sources. Filter by subject, orientation, mood, and licensing needs.",
-                       "category":  "design",
-                       "tags":  [
-                                    "stock-photos",
-                                    "unsplash",
-                                    "images",
-                                    "design-assets",
-                                    "visual",
-                                    "photography",
-                                    "licensing"
-                                ],
-                       "triggers":  [
-                                        "find",
-                                        "search",
-                                        "photo",
-                                        "image",
-                                        "unsplash"
-                                    ],
-                       "risk":  "safe",
-                       "path":  "design/stock-photo-finder",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "unsplash-integration",
-                       "name":  "unsplash-integration",
-                       "description":  "Fetch and evaluate Unsplash images for design work using direct Unsplash search URLs, source filtering, and practical licensing guidance.",
-                       "category":  "design",
-                       "tags":  [
-                                    "unsplash",
-                                    "stock-photos",
-                                    "images",
-                                    "design",
-                                    "photography",
-                                    "licensing"
-                                ],
-                       "triggers":  [
-                                        "find",
-                                        "search",
-                                        "image",
-                                        "photo",
-                                        "unsplash"
-                                    ],
-                       "risk":  "safe",
-                       "path":  "design/unsplash-integration",
                        "source":  "installed"
                    }
                ]

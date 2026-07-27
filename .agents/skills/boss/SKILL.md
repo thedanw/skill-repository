@@ -128,9 +128,9 @@ Place this file at the workspace root as `agents.md`. It defines available agent
 - **Description:** Persistent memory via AIngram MCP server — stores architecture decisions, patterns, and skill combinations
 
 ### skill-maker
-- **Skills:** skill-creator, skill-check
-- **Triggers:** "create a new skill", "validate a skill", "scaffold a skill"
-- **Description:** Skill authoring and validation toolkit
+- **Skills:** skill-creator, skill-check, manage-orchestrator
+- **Triggers:** "create a new skill", "validate a skill", "scaffold a skill", "manage skills", "acquire skill", "install skill", "organize skills"
+- **Description:** Skill authoring, validation, and management toolkit. Includes manage-orchestrator for coordinating skill-create, skill-aquire, and skill-manage sub-skills in .agents/skills/boss/01-manage/
 
 ## Delegation Rules
 

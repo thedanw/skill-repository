@@ -63,7 +63,7 @@ Manage the BOSS skill category folders and keep `BOSS_INDEX.json` synchronized w
 ```powershell
 $bossDir = ".agents/skills/boss"
 $categoryDirs = Get-ChildItem -Path $bossDir -Directory | Where-Object {
-    $_.Name -notin @('scripts', 'repo-manager')
+    $_.Name -notin @('scripts', '01-manage')
 } | Sort-Object Name
 
 foreach ($cat in $categoryDirs) {
