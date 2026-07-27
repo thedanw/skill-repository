@@ -1,31 +1,12 @@
-﻿{
+{
     "version":  2,
-    "generatedAt":  "2026-07-22T13:10:03Z",
+    "generatedAt":  "2026-07-21T10:37:18Z",
     "registryType":  "boss-local",
     "skills":  [
                    {
-                       "id":  "context-optimization",
-                       "name":  "context-optimization",
-                       "description":  "Context optimization extends the effective capacity of limited context windows through strategic compression, masking, caching, and partitioning. Use when working with small context LLMs or need to ma",
-                       "category":  "ai-meta",
-                       "tags":  [
-                                    "context",
-                                    "optimization",
-                                    "compression",
-                                    "tokens",
-                                    "efficiency",
-                                    "llm",
-                                    "small-context"
-                                ],
-                       "triggers": [],
-                       "risk":  "safe",
-                       "path":  "ai-meta/context-optimization",
-                       "source":  "installed"
-                   },
-                   {
                        "id":  "00_meta-plan-pipeline",
                        "name":  "00_meta-plan-pipeline",
-                       "description":  "Orchestrate the full development workflow: brainstorm → plan → review-execute → review. Coordinates 01_brainstorming, 02_concise-planning, and 03_executing-plans into one consistent pipeline with deci",
+                       "description":  "Orchestrate the full development workflow: brainstorm ? plan ? review-execute ? review. Coordinates 01_brainstorming, 02_concise-planning, and 03_executing-plans into one consistent pipeline with deci",
                        "category":  "code-plan",
                        "tags":  [
                                     "pipeline",
@@ -126,7 +107,9 @@
                        "tags":  [
 
                                 ],
-                       "triggers": ["plan"],
+                       "triggers":  [
+                                        "plan"
+                                    ],
                        "risk":  "unknown",
                        "path":  "content/content-strategy",
                        "source":  "installed"
@@ -160,7 +143,9 @@
                        "tags":  [
 
                                 ],
-                       "triggers": ["generate"],
+                       "triggers":  [
+                                        "generate"
+                                    ],
                        "risk":  "safe",
                        "path":  "tools/youtube-summarizer",
                        "source":  "installed"
@@ -196,7 +181,9 @@
                                     "accessibility",
                                     "ministry"
                                 ],
-                       "triggers": ["design"],
+                       "triggers":  [
+                                        "design"
+                                    ],
                        "risk":  "low",
                        "path":  "design/church-webdesign",
                        "source":  "installed"
@@ -215,7 +202,9 @@
                                     "visual-design",
                                     "accessibility"
                                 ],
-                       "triggers": ["design"],
+                       "triggers":  [
+                                        "design"
+                                    ],
                        "risk":  "safe",
                        "path":  "design/designing-beautiful-websites",
                        "source":  "installed"
@@ -223,12 +212,14 @@
                    {
                        "id":  "product-design",
                        "name":  "product-design",
-                       "description":  "Apple-level product design — visual systems, UX flows, accessibility, proprietary visual language, design tokens, prototyping, and handoff. Covers Figma, design systems, typography, color, spacing, mo",
+                       "description":  "Apple-level product design � visual systems, UX flows, accessibility, proprietary visual language, design tokens, prototyping, and handoff. Covers Figma, design systems, typography, color, spacing, mo",
                        "category":  "design",
                        "tags":  [
 
                                 ],
-                       "triggers": ["design"],
+                       "triggers":  [
+                                        "design"
+                                    ],
                        "risk":  "none",
                        "path":  "design/product-design",
                        "source":  "installed"
@@ -265,7 +256,9 @@
                                     "frontend",
                                     "styleseed"
                                 ],
-                       "triggers": ["generate"],
+                       "triggers":  [
+                                        "generate"
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/ui-component",
                        "source":  "installed"
@@ -282,7 +275,9 @@
                                     "layout",
                                     "styleseed"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/ui-page",
                        "source":  "installed"
@@ -299,7 +294,9 @@
                                     "reuse",
                                     "styleseed"
                                 ],
-                       "triggers": ["generate"],
+                       "triggers":  [
+                                        "generate"
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/ui-pattern",
                        "source":  "installed"
@@ -336,7 +333,9 @@
                                     "frontend",
                                     "styleseed"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/ui-setup",
                        "source":  "installed"
@@ -353,7 +352,9 @@
                                     "theming",
                                     "styleseed"
                                 ],
-                       "triggers": ["design"],
+                       "triggers":  [
+                                        "design"
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/ui-tokens",
                        "source":  "installed"
@@ -406,7 +407,9 @@
                                     "product-design",
                                     "styleseed"
                                 ],
-                       "triggers": ["design"],
+                       "triggers":  [
+                                        "design"
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/ux-flow",
                        "source":  "installed"
@@ -425,7 +428,9 @@
                                     "antipatterns",
                                     "accessibility"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "ui-ux/uxui-principles",
                        "source":  "installed"
@@ -463,24 +468,6 @@
                        "source":  "installed"
                    },
                    {
-                       "id":  "llm-prompt-optimizer",
-                       "name":  "llm-prompt-optimizer",
-                       "description":  "Use when improving prompts for any LLM. Applies proven prompt engineering techniques to boost output quality, reduce hallucinations, and cut token usage.",
-                       "category":  "development",
-                       "tags":  [
-                                    "prompt-engineering",
-                                    "optimization",
-                                    "llm",
-                                    "ai",
-                                    "quality",
-                                    "hallucination-reduction"
-                                ],
-                       "triggers": [],
-                       "risk":  "safe",
-                       "path":  "ai-meta/llm-prompt-optimizer",
-                       "source":  "installed"
-                   },
-                   {
                        "id":  "logic-lens",
                        "name":  "logic-lens",
                        "description":  "AI-powered Claude Code skill that performs deep code review using formal logic and reasoning frameworks to detect bugs, anti-patterns, and security risks beyond what linters catch.",
@@ -492,7 +479,9 @@
                                     "security-review",
                                     "claude-code"
                                 ],
-                       "triggers": ["review"],
+                       "triggers":  [
+                                        "review"
+                                    ],
                        "risk":  "safe",
                        "path":  "debugging/logic-lens",
                        "source":  "installed"
@@ -505,27 +494,11 @@
                        "tags":  [
 
                                 ],
-                       "triggers": ["fix"],
+                       "triggers":  [
+                                        "fix"
+                                    ],
                        "risk":  "safe",
                        "path":  "debugging/performance-optimizer",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "prompt-engineer",
-                       "name":  "prompt-engineer",
-                       "description":  "Transforms user prompts into optimized prompts using frameworks (RTF, RISEN, Chain of Thought, RODES, Chain of Density, RACE, RISE, STAR, SOAP, CLEAR, GROW)",
-                       "category":  "development",
-                       "tags":  [
-                                    "prompt-engineering",
-                                    "optimization",
-                                    "frameworks",
-                                    "ai-enhancement",
-                                    "templates",
-                                    "quality"
-                                ],
-                       "triggers": ["optimize"],
-                       "risk":  "safe",
-                       "path":  "ai-meta/prompt-engineer",
                        "source":  "installed"
                    },
                    {
@@ -560,7 +533,9 @@
                                     "accessibility",
                                     "state-machine"
                                 ],
-                       "triggers": ["track"],
+                       "triggers":  [
+                                        "track"
+                                    ],
                        "risk":  "safe",
                        "path":  "memory/technical-change-tracker",
                        "source":  "installed"
@@ -631,7 +606,9 @@
                                     "ai-writing",
                                     "copywriting"
                                 ],
-                       "triggers": ["create"],
+                       "triggers":  [
+                                        "create"
+                                    ],
                        "risk":  "safe",
                        "path":  "marketing/brand-voice-creator",
                        "source":  "installed"
@@ -644,7 +621,9 @@
                        "tags":  [
 
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "unknown",
                        "path":  "marketing/copy-editing",
                        "source":  "installed"
@@ -657,29 +636,11 @@
                        "tags":  [
 
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "unknown",
                        "path":  "marketing/marketing-psychology",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "context-window-management",
-                       "name":  "context-window-management",
-                       "description":  "Strategies for managing LLM context windows including summarization, trimming, routing, and avoiding context rot. Use when working with small context LLMs or need to manage limited token budgets effec",
-                       "category":  "memory",
-                       "tags":  [
-                                    "context",
-                                    "window",
-                                    "management",
-                                    "tokens",
-                                    "summarization",
-                                    "trimming",
-                                    "routing",
-                                    "small-context"
-                                ],
-                       "triggers": [],
-                       "risk":  "safe",
-                       "path":  "memory/context-window-management",
                        "source":  "installed"
                    },
                    {
@@ -694,9 +655,11 @@
                                     "best-practices",
                                     "meta"
                                 ],
-                       "triggers": ["create"],
+                       "triggers":  [
+                                        "create"
+                                    ],
                        "risk":  "safe",
-                       "path":  "00-setup/agents-md",
+                       "path":  "meta/agents-md",
                        "source":  "installed"
                    },
                    {
@@ -719,7 +682,7 @@
                                         "generate"
                                     ],
                        "risk":  "safe",
-                       "path":  "00-setup/setup",
+                       "path":  "meta/setup",
                        "source":  "installed"
                    },
                    {
@@ -738,7 +701,9 @@
                                     "serp",
                                     "social"
                                 ],
-                       "triggers": ["write"],
+                       "triggers":  [
+                                        "write"
+                                    ],
                        "risk":  "safe",
                        "path":  "seo/seo-aeo-meta-description-generator",
                        "source":  "installed"
@@ -756,7 +721,9 @@
                                     "indexation",
                                     "rankings"
                                 ],
-                       "triggers": ["audit"],
+                       "triggers":  [
+                                        "audit"
+                                    ],
                        "risk":  "safe",
                        "path":  "seo/seo-audit",
                        "source":  "installed"
@@ -794,7 +761,9 @@
                                     "readability",
                                     "ai-citation"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "seo/seo-content",
                        "source":  "installed"
@@ -833,7 +802,9 @@
                                     "optimization",
                                     "semantic"
                                 ],
-                       "triggers": ["analyze"],
+                       "triggers":  [
+                                        "analyze"
+                                    ],
                        "risk":  "safe",
                        "path":  "seo/seo-keyword-strategist",
                        "source":  "installed"
@@ -876,7 +847,9 @@
                                     "images",
                                     "performance"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "seo/seo-page",
                        "source":  "installed"
@@ -896,7 +869,9 @@
                                     "strategy",
                                     "execution"
                                 ],
-                       "triggers": ["audit"],
+                       "triggers":  [
+                                        "audit"
+                                    ],
                        "risk":  "safe",
                        "path":  "seo/00_seo-skill-orchestrator",
                        "source":  "installed"
@@ -963,7 +938,9 @@
                                     "api",
                                     "llm"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "tools/jina-ai-search-foundation",
                        "source":  "installed"
@@ -980,7 +957,9 @@
                                     "process",
                                     "orchestration"
                                 ],
-                       "triggers": [],
+                       "triggers":  [
+
+                                    ],
                        "risk":  "safe",
                        "path":  "tools/using-superpowers",
                        "source":  "installed"
@@ -1019,7 +998,9 @@
                        "tags":  [
 
                                 ],
-                       "triggers": ["design"],
+                       "triggers":  [
+                                        "design"
+                                    ],
                        "risk":  "unknown",
                        "path":  "ui-ux/frontend-design",
                        "source":  "installed"
@@ -1039,7 +1020,9 @@
                                     "rewrite",
                                     "publishing"
                                 ],
-                       "triggers": ["audit"],
+                       "triggers":  [
+                                        "audit"
+                                    ],
                        "risk":  "safe",
                        "path":  "writing/avoid-ai-writing",
                        "source":  "installed"
@@ -1052,7 +1035,9 @@
                        "tags":  [
 
                                 ],
-                       "triggers": ["write"],
+                       "triggers":  [
+                                        "write"
+                                    ],
                        "risk":  "unknown",
                        "path":  "writing/copywriting",
                        "source":  "installed"
@@ -1070,58 +1055,11 @@
                                     "cli",
                                     "publishing"
                                 ],
-                       "triggers": ["generate"],
+                       "triggers":  [
+                                        "generate"
+                                    ],
                        "risk":  "safe",
                        "path":  "writing/unslop",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "stock-photo-finder",
-                       "name":  "stock-photo-finder",
-                       "description":  "Find usable free stock photos for design work, with a strong bias toward Unsplash and other trusted free stock sources. Filter by subject, orientation, mood, and licensing needs.",
-                       "category":  "design",
-                       "tags":  [
-                                    "stock-photos",
-                                    "unsplash",
-                                    "images",
-                                    "design-assets",
-                                    "visual",
-                                    "photography",
-                                    "licensing"
-                                ],
-                       "triggers":  [
-                                        "find",
-                                        "search",
-                                        "photo",
-                                        "image",
-                                        "unsplash"
-                                    ],
-                       "risk":  "safe",
-                       "path":  "design/stock-photo-finder",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "unsplash-integration",
-                       "name":  "unsplash-integration",
-                       "description":  "Fetch and evaluate Unsplash images for design work using direct Unsplash search URLs, source filtering, and practical licensing guidance.",
-                       "category":  "design",
-                       "tags":  [
-                                    "unsplash",
-                                    "stock-photos",
-                                    "images",
-                                    "design",
-                                    "photography",
-                                    "licensing"
-                                ],
-                       "triggers":  [
-                                        "find",
-                                        "search",
-                                        "image",
-                                        "photo",
-                                        "unsplash"
-                                    ],
-                       "risk":  "safe",
-                       "path":  "design/unsplash-integration",
                        "source":  "installed"
                    }
                ]

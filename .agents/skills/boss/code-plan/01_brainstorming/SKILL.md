@@ -42,14 +42,21 @@ Your job is to **slow the process down just enough to get it right**.
 
 ## The Process
 
-### 1️⃣ Understand the Current Context (Mandatory First Step)
+### 1️⃣ Establish Clear Goal and Research Context (Mandatory First Steps)
 
-Before asking any questions:
+**Step 1: Establish Clear Goal**
+- Ask the user for a clear goal statement for what they want to accomplish
+- Update `plan.md` with this goal statement at the beginning of the file
+- If `plan.md` doesn't exist, create it with the goal as the first content
 
-- Review the current project state: files, documentation, plans, prior decisions
-- Read `findings.md` if it exists (from pipeline Phase 0 Detect)
-- Identify what already exists vs. what is proposed
-- Note constraints that appear implicit but unconfirmed
+**Step 2: Research Context and Identify Gaps**
+- Run a research process to understand the context of the environment:
+  - Review existing files, documentation, plans, prior decisions
+  - Read `findings.md` if it exists (from pipeline Phase 0 Detect)
+  - Identify what already exists vs. what is proposed
+  - Note constraints that appear implicit but unconfirmed
+- Identify potential technical and decision gaps that need to be addressed in the brainstorm process
+- Store research findings in `findings.md` (create if doesn't exist, append if exists)
 
 **Do not design yet.**
 
@@ -139,6 +146,25 @@ Maintain a running **Decision Log** as decisions are made. For each decision:
 - Why this option was chosen
 
 **This is the decision tree output.** Every decision gets captured immediately, not reconstructed after.
+
+---
+
+### 8️⃣ Finalize Brainstorm and Update Context
+
+**Step 8: Update Goal in plan.md**
+- Review if the goal has evolved during brainstorming based on discoveries and decisions made
+- If the goal has changed, update `plan.md` with the refined goal statement
+- If the goal remains the same, confirm it's still accurate
+
+**Step 9: Final Research Update**
+- Run a final research process to update `findings.md` with the most relevant information based on the brainstorm
+- Incorporate insights from decision-making, identified gaps, and validated approaches
+- Ensure `findings.md` contains the synthesized knowledge needed for the planning phase
+
+**Step 10: User Satisfaction Check**
+- Ask the user if they are satisfied with the brainstorming process and if all essential information gaps have been explored
+- If not satisfied, continue with additional questioning and exploration
+- If satisfied, proceed to exit criteria check
 
 ---
 
