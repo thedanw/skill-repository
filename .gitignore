@@ -34,3 +34,16 @@ node_modules/
 
 # Node modules
 node_modules/
+# Sensitive credentials and tokens
+**/credentials.json
+**/token.json
+**/client_secret*.json
+
+# Large files
+downloads/*.jpg
+downloads/*.png
+downloads/*.jpeg
+
+# Bible study sync scripts - sensitive files
+.agents/skills/boss/bible/sync-docs/scripts/credentials.json
+.agents/skills/boss/bible/sync-docs/scripts/token.json
