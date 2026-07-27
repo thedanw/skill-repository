@@ -1,6 +1,6 @@
 ﻿{
     "version":  2,
-    "generatedAt":  "2026-06-29T20:37:15Z",
+    "generatedAt":  "2026-07-06T14:36:33Z",
     "registryType":  "boss-local",
     "skills":  [
                    {
@@ -463,6 +463,98 @@
                                     ],
                        "risk":  "safe",
                        "path":  "marketing/social-post-writer-seo",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "context-compression",
+                       "name":  "context-compression",
+                       "description":  "Production-ready compression strategies for million-token agent sessions. Covers anchored iterative summarization, opaque compression, and regenerative summaries. Use when agent sessions exceed contex",
+                       "category":  "memory",
+                       "tags":  [
+                                    "compression",
+                                    "summarization",
+                                    "tokens",
+                                    "session-management",
+                                    "context",
+                                    "memory"
+                                ],
+                       "triggers": ["debug"],
+                       "risk":  "safe",
+                       "path":  "memory/context-compression",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "context-optimization",
+                       "name":  "context-optimization",
+                       "description":  "Extends effective context capacity through strategic compression, masking, caching, and partitioning. Use when context limits constrain task complexity or when reducing token costs.",
+                       "category":  "memory",
+                       "tags":  [
+                                    "context",
+                                    "optimization",
+                                    "compression",
+                                    "masking",
+                                    "caching",
+                                    "partitioning",
+                                    "tokens"
+                                ],
+                       "triggers": [],
+                       "risk":  "safe",
+                       "path":  "memory/context-optimization",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "context-window-management",
+                       "name":  "context-window-management",
+                       "description":  "Strategies for managing LLM context windows including summarization, trimming, routing, and avoiding context rot. Use when building multi-turn agent systems that risk exceeding context limits.",
+                       "category":  "memory",
+                       "tags":  [
+                                    "context",
+                                    "memory",
+                                    "tokens",
+                                    "summarization",
+                                    "trimming",
+                                    "routing"
+                                ],
+                       "triggers": ["build"],
+                       "risk":  "safe",
+                       "path":  "memory/context-window-management",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "llm-prompt-optimizer",
+                       "name":  "llm-prompt-optimizer",
+                       "description":  "Transforms weak prompts into precision-engineered instructions using RSCIT framework, chain-of-thought, few-shot patterns, and structured output templates. Use when prompts return inconsistent results",
+                       "category":  "tools",
+                       "tags":  [
+                                    "prompts",
+                                    "optimization",
+                                    "llm",
+                                    "engineering",
+                                    "tokens",
+                                    "chain-of-thought",
+                                    "few-shot"
+                                ],
+                       "triggers": [],
+                       "risk":  "safe",
+                       "path":  "tools/llm-prompt-optimizer",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "recursive-context-pruning-token-budgeting",
+                       "name":  "recursive-context-pruning-token-budgeting",
+                       "description":  "Implements Gatekeeper logic to prevent context window bloat — pruning redundant context, managing token budgets (30/20/50 split), and enforcing atomic output without bridge phrases. Use when building ",
+                       "category":  "tools",
+                       "tags":  [
+                                    "pruning",
+                                    "tokens",
+                                    "budgeting",
+                                    "atomic-output",
+                                    "conciseness",
+                                    "context-management"
+                                ],
+                       "triggers": ["build"],
+                       "risk":  "safe",
+                       "path":  "tools/recursive-context-pruning-token-budgeting",
                        "source":  "installed"
                    },
                    {

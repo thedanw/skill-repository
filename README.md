@@ -72,10 +72,9 @@ BOSS orchestrates skill discovery automatically:
 
 ## Junction Setup
 
-Link BOSS into each Antigravity workspace:
-```powershell
-# From the workspace directory:
-mklink /J "skills\boss" "D:\OneDrive - New Light Anglican Church\Documents\antigravity\skill-repository\.agents\skills\boss"
+Link BOSS into each Antigravity workspace by running this script from a standard Command Prompt terminal:
+```cmd
+powershell.exe -ExecutionPolicy Bypass -File "D:\daniel\Documents\antigravity\skill-repository\create-skills-junction.ps1"
 ```
 
 ## Syncing
