@@ -6,7 +6,7 @@ risk: safe
 source: adapted
 tags: [brainstorming, design, planning, collaboration, requirements, architecture, decision-tree]
 triggers: [brainstorm, design, plan, explore, ideate, discuss, requirements]
-allowed-tools: Read Write Glob Grep
+allowed-tools: Read Write Glob Grep vscode_askQuestions
 ---
 
 # Brainstorming Ideas Into Designs
@@ -42,7 +42,7 @@ Your job is to **slow the process down just enough to get it right**.
 
 ## The Process
 
-### 1️⃣ Establish Clear Goal and Research Context (Mandatory First Steps)
+### 1. Establish Clear Goal and Research Context (Mandatory First Steps)
 
 **Step 1: Establish Clear Goal**
 - Ask the user for a clear goal statement for what they want to accomplish
@@ -62,7 +62,7 @@ Your job is to **slow the process down just enough to get it right**.
 
 ---
 
-### 2️⃣ Understanding the Idea (One Question at a Time)
+### 2. Understanding the Idea (One Question at a Time)
 
 Your goal is **shared clarity**, not speed.
 
@@ -71,12 +71,13 @@ Your goal is **shared clarity**, not speed.
 - Prefer **multiple-choice questions** when possible
 - Use open-ended questions only when necessary
 - If a topic needs depth, split it into multiple questions
+- **Use the `vscode_askQuestions` tool to present multiple-choice questions as selectable options** — this allows users to click their answer instead of typing
 
 Focus on understanding: purpose, target users, constraints, success criteria, explicit non-goals.
 
 ---
 
-### 3️⃣ Non-Functional Requirements (Mandatory)
+### 3. Non-Functional Requirements (Mandatory)
 
 You MUST explicitly clarify or propose assumptions for:
 
@@ -86,11 +87,11 @@ You MUST explicitly clarify or propose assumptions for:
 - Reliability / availability needs
 - Maintenance and ownership expectations
 
-If the user is unsure, propose reasonable defaults and mark them as **assumptions**.
+If the user is unsure, **add the item to the Decision Gap Log** and address it using the one-question-at-a-time process. Never make assumptions on the user's behalf.
 
 ---
 
-### 4️⃣ Understanding Lock (Hard Gate)
+### 4. Understanding Lock (Hard Gate)
 
 Before proposing **any design**, pause and provide:
 
@@ -113,9 +114,14 @@ Then ask:
 
 **Do NOT proceed until explicit confirmation is given.**
 
+**After Understanding Lock is confirmed:**
+- Create `decision.md` in the project directory
+- Initialize the **Decision Gap Log** with all open questions, unclarified non-functional requirements, and any assumptions that need validation
+- This becomes the working list of decisions to make
+
 ---
 
-### 5️⃣ Explore Design Approaches
+### 5. Explore Design Approaches
 
 Once understanding is confirmed:
 
@@ -124,11 +130,13 @@ Once understanding is confirmed:
 - Explain trade-offs: complexity, extensibility, risk, maintenance
 - Avoid premature optimization (**YAGNI ruthlessly**)
 
+**Ask the user to select or refine an approach before proceeding.** This selection is recorded as the first entry in the Decision Log.
+
 This is still **not** final design.
 
 ---
 
-### 6️⃣ Present the Design (Incrementally)
+### 6. Present the Design (Incrementally)
 
 Break design into sections of **200–300 words max**. After each section, ask:
 
@@ -138,30 +146,82 @@ Cover as relevant: Architecture, Components, Data flow, Error handling, Edge cas
 
 ---
 
-### 7️⃣ Decision Log (Mandatory — Running Throughout)
+### 7. Decision Log (Mandatory — Running Throughout)
 
-Maintain a running **Decision Log** as decisions are made. For each decision:
-- What was decided
-- Alternatives considered
-- Why this option was chosen
+Maintain a running **Decision Log** in `decision.md` as decisions are made.
+For each decision, record **one compressed line**:
 
-**This is the decision tree output.** Every decision gets captured immediately, not reconstructed after.
+```
+Decision → Rationale
+```
+
+**Compression rules (apply prompt-optimizer techniques):**
+- **Imperative verbs only** — "Use X" not "We decided to use X"
+- **No filler** — Drop "The decision is", "We chose", "After consideration"
+- **Colon-delimited rationale** — Combine reason + constraint in one clause
+- **Reference by alias** — Use aliases from top of file (defined in Aliases section)
+- **Max 120 chars** — Hard limit; split if exceeded
+- **No code, no markdown** — Plain text only
+
+**Examples:**
+```
+# Verbose (avoid)
+1 We decided to use PostgreSQL for the database because it supports JSONB and we need flexible schema
+
+# Compressed (target)
+1 Use PostgreSQL → JSONB support + flexible schema required
+```
+
+**This is the decision tree output.** Every decision must be written and maintained in decision.md immediately, not reconstructed after.
 
 ---
 
-### 8️⃣ Finalize Brainstorm and Update Context
+### 8. Decision Gaps (Mandatory — Running Throughout)
 
-**Step 8: Update Goal in plan.md**
+Maintain a running **Decision Gap Log** at the end of the decision.md file.
+Track **only open gaps** (resolved gaps are captured in the Decision Log above):
+
+```
+Gap → Status (open|deferred)
+```
+
+After each decision:
+- Remove gaps that are answered (they become Decision Log entries)
+- Add new gaps that arise from the decision
+- Process the next open gap with the user as the next loop
+
+**Single source of truth:** A gap moves from Gap Log → Decision Log when resolved. No duplication.
+
+---
+
+### 9. Optimize Decision Log (Mandatory — Before Exit)
+
+Before finalizing, run an **optimization pass** on `decision.md`:
+
+1. **Deduplicate** — Remove any repeated rationale or context already in Understanding Lock
+2. **Compact** — Merge consecutive decisions on same topic into one line with combined rationale
+3. **Reference** — Replace repeated feature names with a short alias defined once at top
+4. **Verify consistency** — Every open gap has a path to resolution; no orphaned decisions
+5. **Trim** — Enforce 120-char limit; split or rephrase if needed
+6. **Compress** — Apply prompt-optimizer compression: imperative verbs, drop filler, colon-delimit
+
+Target: **Decision Log + Gap Log ≤ 40 lines total** for typical features.
+
+---
+
+### 10. Finalize Brainstorm and Update Context
+
+**Update Goal in plan.md**
 - Review if the goal has evolved during brainstorming based on discoveries and decisions made
 - If the goal has changed, update `plan.md` with the refined goal statement
 - If the goal remains the same, confirm it's still accurate
 
-**Step 9: Final Research Update**
+**Final Research Update**
 - Run a final research process to update `findings.md` with the most relevant information based on the brainstorm
 - Incorporate insights from decision-making, identified gaps, and validated approaches
 - Ensure `findings.md` contains the synthesized knowledge needed for the planning phase
 
-**Step 10: User Satisfaction Check**
+**User Satisfaction Check**
 - Ask the user if they are satisfied with the brainstorming process and if all essential information gaps have been explored
 - If not satisfied, continue with additional questioning and exploration
 - If satisfied, proceed to exit criteria check
@@ -170,16 +230,21 @@ Maintain a running **Decision Log** as decisions are made. For each decision:
 
 ## Output: decision.md
 
-Once the design is validated, write `decision.md` in the **project directory**:
+**`decision.md` is created after Understanding Lock (Step 4) and maintained throughout the brainstorming process.** The final validated design is already captured in the file — no separate write step needed.
+
+The file structure in the **project directory**:
 
 ```markdown
 # Decision: [Feature Name]
 
+## Aliases
+[Short aliases for repeated terms, e.g., API=Application Programming Interface]
+
 ## What & Why
-[What is being built and why]
+[What is being built and why — ≤3 lines]
 
 ## Who
-[Target users]
+[Target users — ≤1 line]
 
 ## Constraints
 - [Constraint 1]
@@ -191,18 +256,13 @@ Once the design is validated, write `decision.md` in the **project directory**:
 ## Assumptions
 - [Assumption 1] (marked if uncertain)
 
-## Decision Log
-| # | Decision | Alternatives | Rationale |
-|---|----------|-------------|-----------|
-| 1 | [What] | [Alt1, Alt2] | [Why] |
-| 2 | [What] | [Alt1, Alt2] | [Why] |
+## Decision Log: decision → Rationale
+1 Use PostgreSQL → JSONB support + flexible schema required
+2 Use REST over GraphQL → simpler caching + team familiarity
 
-## Approaches Considered
-### Recommended: [Name]
-[Why this approach]
-
-### Alternative: [Name]
-[Trade-off summary]
+## Decision Gap Log
+1 Auth strategy
+2 Rate limiting approach
 ```
 
 Update `findings.md` with any architecture notes from the design.
@@ -211,7 +271,7 @@ Update `findings.md` with any architecture notes from the design.
 
 ## After Documentation
 
-Only after `decision.md` is written, ask:
+Once the design is validated and captured in `decision.md`, ask:
 
 > "Ready to create the implementation plan?"
 
@@ -226,8 +286,10 @@ Exit brainstorming mode **only when all are true:**
 - [ ] At least one design approach explicitly accepted
 - [ ] Major assumptions documented
 - [ ] Key risks acknowledged
-- [ ] Decision Log complete
-- [ ] `decision.md` written to project directory
+- [ ] Decision Log complete (≤40 lines with Gap Log)
+- [ ] All decision gaps resolved or explicitly deferred
+- [ ] Optimization pass completed (Section 9)
+- [ ] `decision.md` created and maintained in project directory
 
 If any criterion is unmet: **continue refinement. Do NOT proceed.**
 
