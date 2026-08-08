@@ -1,7 +1,7 @@
----
+﻿---
 name: uxui-principles
 description: "Evaluate interfaces against 168 research-backed UX/UI principles, detect antipatterns, and inject UX context into AI coding sessions."
-category: design
+category: ui-ux
 risk: safe
 source: community
 date_added: "2026-04-03"

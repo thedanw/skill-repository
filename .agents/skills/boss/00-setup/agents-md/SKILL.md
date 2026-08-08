@@ -1,7 +1,7 @@
----
+﻿---
 name: agents-md
 description: "Create, update, or maintain AGENTS.md / CLAUDE.md files with minimal, high-signal agent documentation. Use when the user asks to 'create AGENTS.md', 'update AGENTS.md', 'maintain agent docs', or 'set up CLAUDE.md'."
-category: meta
+category: 00-setup
 risk: safe
 source: adapted
 tags: [agents, documentation, claude, best-practices, meta]

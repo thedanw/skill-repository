@@ -1,5 +1,6 @@
----
+﻿---
 name: Illustration Researcher
+category: bible
 description: Research and curate engaging sermon illustrations from a verified knowledgebase.
 ---
 

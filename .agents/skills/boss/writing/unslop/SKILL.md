@@ -1,4 +1,4 @@
----
+﻿---
 name: unslop
 description: "Post-process AI-generated text through the unslop CLI to strip AI writing patterns before publishing"
 category: writing

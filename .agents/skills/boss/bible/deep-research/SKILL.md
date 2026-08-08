@@ -1,5 +1,6 @@
----
+﻿---
 name: deep-research
+category: bible
 description: "Execute autonomous multi-step research using Jina AI (Search & Reader). This skill establishes the logic for the agent to plan, search, read, and synthesize information into comprehensive reports."
 ---
 

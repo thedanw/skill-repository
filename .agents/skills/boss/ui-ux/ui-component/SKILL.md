@@ -1,7 +1,7 @@
----
+﻿---
 name: ui-component
 description: "Generate a new UI component that follows StyleSeed Toss conventions for structure, tokens, accessibility, and component ergonomics."
-category: design
+category: ui-ux
 risk: safe
 source: community
 source_repo: bitjaru/styleseed

@@ -276,7 +276,7 @@ pwsh .agents/skills/boss/01-manage/skill-manage/scripts/update-index.ps1
 2. For each subfolder with a `SKILL.md`, parses the YAML frontmatter.
 3. Extracts: `id` (folder name), `name`, `description`, `category`, `tags`, `triggers`, `risk`, `path`.
 4. Writes everything to `BOSS_INDEX.json`.
-5. **Known edge cases:** Skills whose `SKILL.md` lives directly in a category folder (not a subdirectory, e.g. `technical-change-tracker/SKILL.md`) or nested 2+ levels deep (e.g. `doc-create/libreoffice/writer/SKILL.md`) are skipped. To index them, move the `SKILL.md` into a category subfolder matching the standard pattern.
+5. **Known edge cases:** A folder inside a category with no `SKILL.md` (e.g. support folders like `bible/.knowledge` or `bible/workflows`) is skipped. Skills must follow the standard pattern `category/skill-name/SKILL.md` to be indexed.
 
 ### Adding a New Skill
 ```powershell
@@ -324,7 +324,7 @@ The `update-index.ps1` scanner has two structural edge cases:
 
 1. **SKILL.md at category root** — If a skill places its `SKILL.md` directly in the category folder (e.g., `technical-change-tracker/SKILL.md` instead of `technical-change-tracker/skill-name/SKILL.md`), the scanner skips it. Convention requires: `category/skill-name/SKILL.md`.
 
-2. **Two-level nesting** — Skills nested 2+ levels deep (e.g., `doc-create/libreoffice/writer/SKILL.md`) are skipped. Convention requires: `category/skill-name/SKILL.md` (one level deep).
+2. **Two-level nesting** — Skills nested 2+ levels deep are skipped. Convention requires: `category/skill-name/SKILL.md` (one level deep).
 
 For either case, either restructure the skill folder to match convention, or add its entry manually to `BOSS_INDEX.json` using the same JSON schema.
 

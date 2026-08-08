@@ -1,5 +1,6 @@
----
+﻿---
 name: Biblical & Theological Research Protocol
+category: bible
 description: The master instruction set for all biblical and theological research, defining the Research Source Router and the Gold Standard discovery loop.
 ---
 

@@ -101,21 +101,16 @@ All skill registration flows through skill-manage:
 | cat_id | category_description |
 |--------|---------------------|
 | 00-setup | Scaffold and configure agentic workspace: agents.md, skill junctions, BOSS index |
-| ai-meta | Optimize agent context, prompts, multi-agent orchestration for token efficiency |
-| ai-skills | Build and refine LLM prompts, instructions, agent behaviors |
+| ai-meta | Optimize agent context and prompts; build and refine LLM prompts, instructions, and agent behaviors for token efficiency |
 | bible | Biblical research, sermon preparation, theological study |
 | code-plan | Plan features, design architecture, create technical specs, break down work |
-| content | Create, transform, manage content assets |
 | debugging | Debug production issues: logging, profiling, error analysis, root cause analysis |
-| design | Visual design, brand guidelines, UI patterns |
-| doc-create | Generate documents, presentations, formatted outputs |
 | github | Git operations, GitHub workflows, CI/CD pipelines |
-| marketing | Marketing strategy, growth tactics, SEO, social media |
+| marketing | Marketing strategy, growth tactics, SEO, keyword research, and social media |
 | memory | Knowledge management, persistent memory, context persistence |
-| seo | Search engine optimization, keyword research, content optimization |
 | tools | General utilities, converters, helper scripts |
-| ui-ux | User interface design, accessibility, frontend components |
-| writing | Writing, copywriting, editing, content creation |
+| ui-ux | User interface design, accessibility, frontend components, visual design, and brand guidelines |
+| writing | Writing, copywriting, editing, content creation, and document or presentation generation |
 
 **Rules:**
 - Category descriptions **manually curated** by skill-manage (not auto-generated)
@@ -174,18 +169,14 @@ All skill registration flows through skill-manage:
 │       └── refs/
 │           ├── schemas.md           ← Index schemas
 │           └── categories.md        ← LIVE category reference (auto-generated)
-├── ai-meta/                     ← Category folders (skills live here)
-├── ai-skills/
+├── 00-setup/                   ← Category folders (skills live here)
+├── ai-meta/
 ├── bible/
 ├── code-plan/
-├── content/
 ├── debugging/
-├── design/
-├── doc-create/
 ├── github/
 ├── marketing/
 ├── memory/
-├── seo/
 ├── tools/
 ├── ui-ux/
 └── writing/

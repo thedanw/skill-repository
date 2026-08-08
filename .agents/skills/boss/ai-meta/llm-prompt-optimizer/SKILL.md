@@ -1,7 +1,7 @@
----
+﻿---
 name: llm-prompt-optimizer
 description: "Use when improving prompts for any LLM. Applies proven prompt engineering techniques to boost output quality, reduce hallucinations, and cut token usage."
-category: development
+category: ai-meta
 risk: safe
 source: adapted
 tags: [prompt-engineering, optimization, llm, ai, quality, hallucination-reduction]

@@ -1,4 +1,4 @@
----
+﻿---
 name: css-architecture
 description: "Organize CSS using BEM, SMACSS, and CSS-in-JS patterns. Use when building scalable, maintainable styling systems with proper naming conventions."
 category: ui-ux

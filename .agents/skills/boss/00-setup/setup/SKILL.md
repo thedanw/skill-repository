@@ -1,7 +1,7 @@
----
+﻿---
 name: setup
 description: "Scaffold a complete agenic workspace from scratch: create .agents folder, link skills via junction/symlink, generate agents.md, and update BOSS_INDEX.json. Use when setting up a new project or cloning a repo that needs the skill repository linked."
-category: meta
+category: 00-setup
 risk: safe
 source: custom
 tags: [setup, scaffolding, workspace, junction, symlink, agents-md, bootstrap, initialization]

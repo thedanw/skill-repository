@@ -1,7 +1,7 @@
----
+﻿---
 name: prompt-engineer
 description: "Transforms user prompts into optimized prompts using frameworks (RTF, RISEN, Chain of Thought, RODES, Chain of Density, RACE, RISE, STAR, SOAP, CLEAR, GROW)"
-category: development
+category: ai-meta
 risk: safe
 source: adapted
 tags: [prompt-engineering, optimization, frameworks, ai-enhancement, templates, quality]

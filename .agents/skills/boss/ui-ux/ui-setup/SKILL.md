@@ -1,7 +1,7 @@
----
+﻿---
 name: ui-setup
 description: "Interactive StyleSeed setup wizard for choosing app type, brand color, visual style, typography, and the first screen scaffold."
-category: design
+category: ui-ux
 risk: safe
 source: community
 source_repo: bitjaru/styleseed

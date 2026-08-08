@@ -83,15 +83,17 @@ powershell -ExecutionPolicy Bypass -File ../skill-manage/scripts/update-index.ps
 │   │   └── skill-manage/    ← category & index management (single registration authority)
 │   │       ├── scripts/     ← update-index.ps1 (single build step)
 │   │       └── refs/        ← schemas.md, categories.md (live refs)
+│   ├── 00-setup/            ← workspace scaffolding (agents.md, junctions)
+│   ├── ai-meta/             ← prompts, agent behavior, context
+│   ├── bible/               ← biblical research, sermons
 │   ├── code-plan/           ← planning, brainstorm, architecture
 │   ├── debugging/           ← debug, fix, troubleshoot
-│   ├── doc-create/          ← document creation
 │   ├── github/              ← git, GitHub, CI/CD
 │   ├── marketing/           ← marketing, growth, SEO
 │   ├── memory/              ← memory & knowledge management
 │   ├── tools/               ← general tools & utilities
 │   ├── ui-ux/               ← UI, UX, design, frontend
-│   └── writing/             ← writing & content
+│   └── writing/             ← writing, content, documents
 └── ...                      ← other categories
 ```
 

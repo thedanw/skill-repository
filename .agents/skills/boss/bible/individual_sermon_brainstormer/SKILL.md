@@ -1,5 +1,6 @@
----
+﻿---
 name: Individual Sermon Brainstormer
+category: bible
 description: Synthesize research (03-summary.md) into workable outlines and brainstorm main themes and creative presentation options using literary devices.
 ---
 

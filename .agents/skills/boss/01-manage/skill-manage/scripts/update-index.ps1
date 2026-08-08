@@ -29,21 +29,16 @@ $refsCategoriesFile = Join-Path $bossDir "01-manage\skill-manage\refs\categories
 # Maintained by skill-manage. cat_id MUST match the folder name exactly.
 $categoryDescriptions = @{
     "00-setup"  = "Scaffold and configure an agentic workspace: agents.md, skill junctions, BOSS index"
-    "ai-meta"   = "Optimize agent context, prompts, and multi-agent orchestration for token efficiency"
-    "ai-skills" = "Build and refine LLM prompts, instructions, and agent behaviors"
+    "ai-meta"   = "Optimize agent context and prompts; build and refine LLM prompts, instructions, and agent behaviors for token efficiency"
     "bible"     = "Biblical research, sermon preparation, and theological study"
     "code-plan" = "Plan features, design architecture, create technical specs, break down work"
-    "content"   = "Create, transform, and manage content assets"
     "debugging" = "Debug production issues: logging, profiling, error analysis, root cause analysis"
-    "design"    = "Visual design, brand guidelines, and UI patterns"
-    "doc-create"= "Generate documents, presentations, and formatted outputs"
     "github"    = "Git operations, GitHub workflows, CI/CD pipelines"
-    "marketing" = "Marketing strategy, growth tactics, SEO, social media"
+    "marketing" = "Marketing strategy, growth tactics, SEO, keyword research, and social media"
     "memory"    = "Knowledge management, persistent memory, context persistence"
-    "seo"       = "Search engine optimization, keyword research, content optimization"
     "tools"     = "General utilities, converters, and helper scripts"
-    "ui-ux"     = "User interface design, accessibility, frontend components"
-    "writing"   = "Writing, copywriting, editing, and content creation"
+    "ui-ux"     = "User interface design, accessibility, frontend components, visual design, and brand guidelines"
+    "writing"   = "Writing, copywriting, editing, content creation, and document or presentation generation"
 }
 
 # Vague terms to exclude from search_terms (too generic to be useful)
@@ -222,8 +217,32 @@ foreach ($catDir in $categoryDirs) {
             if ($frontmatter -match '(?m)^name:\s*(.+)') {
                 $name = $matches[1].Trim().Trim('"').Trim("'")
             }
-            if ($frontmatter -match '(?m)^description:\s*(.+)') {
-                $description = $matches[1].Trim().Trim('"').Trim("'")
+            if ($frontmatter -match '(?m)^description:\s*(.+)$') {
+                $descLine = $matches[1].Trim().Trim('"').Trim("'")
+                if ($descLine -in @('>', '|', '>-', '|-', '>+', '|+')) {
+                    # YAML folded/literal block scalar: collect following indented lines
+                    $blockLines = @()
+                    $inBlock = $false
+                    foreach ($fmLine in ($frontmatter -split "`n")) {
+                        if ($fmLine -match '^description:') { $inBlock = $true; continue }
+                        if ($inBlock) {
+                            if ($fmLine -match '^\s+\S') {
+                                $blockLines += ($fmLine -replace '^\s+', '').TrimEnd()
+                            } elseif ($fmLine -match '^\s*$') {
+                                $blockLines += ''
+                            } else {
+                                break
+                            }
+                        }
+                    }
+                    if ($descLine -like '|*') {
+                        $description = ($blockLines -join "`n").Trim()
+                    } else {
+                        $description = (($blockLines -join ' ') -replace '\s+', ' ').Trim()
+                    }
+                } else {
+                    $description = $descLine
+                }
             }
             if ($frontmatter -match '(?m)^category:\s*(.+)') {
                 $skillCategory = $matches[1].Trim()

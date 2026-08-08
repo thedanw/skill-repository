@@ -8,7 +8,7 @@
     {
         "id":  "00_seo-skill-orchestrator",
         "description":  "Meta orchestrator for all SEO skills. Defines two comprehensive workflows: (1) Full-site SEO audit from macro structure to micro page analysis, and...",
-        "path":  "seo/00_seo-skill-orchestrator",
+        "path":  "marketing/00_seo-skill-orchestrator",
         "search_terms":  "meta, seo, analysis, audit, audit-site"
     },
     {
@@ -86,7 +86,7 @@
     {
         "id":  "church-webdesign",
         "description":  "Design welcoming, effective church websites that serve both visitors and members. Combines church-specific best practices with a proven UX/UI workf...",
-        "path":  "design/church-webdesign",
+        "path":  "ui-ux/church-webdesign",
         "search_terms":  "church, component, ui, ux, accessibility"
     },
     {
@@ -98,7 +98,7 @@
     {
         "id":  "content-strategy",
         "description":  "Plan a content strategy, topic clusters, editorial roadmap, and content mix for traffic, authority, and lead generation. Use when deciding what to ...",
-        "path":  "content/content-strategy",
+        "path":  "writing/content-strategy",
         "search_terms":  "authority, clusters, content, deciding, editorial"
     },
     {
@@ -152,7 +152,7 @@
     {
         "id":  "designing-beautiful-websites",
         "description":  "Designs UX/UI for websites and web apps: UX strategy, information architecture, user flows, wireframes, UI systems, component specs, and polished v...",
-        "path":  "design/designing-beautiful-websites",
+        "path":  "ui-ux/designing-beautiful-websites",
         "search_terms":  "component, ui, ux, accessibility, app"
     },
     {
@@ -190,6 +190,12 @@
         "description":  "Use Jina AI Search Foundation APIs (Embeddings, Reranker, Reader, Search, Batch Embeddings) for semantic search, RAG, web scraping, and large-scale...",
         "path":  "tools/jina-ai-search-foundation",
         "search_terms":  "api, embed, jina, llm, scrape"
+    },
+    {
+        "id":  "libreoffice-writer",
+        "description":  "Document creation, format conversion (ODT/DOCX/PDF), mail merge, and automation with LibreOffice Writer.",
+        "path":  "writing/libreoffice-writer",
+        "search_terms":  "merge, pdf, automation, conversion, creation"
     },
     {
         "id":  "llm-prompt-optimizer",
@@ -230,7 +236,7 @@
     {
         "id":  "product-design",
         "description":  "Apple-level product design — visual systems, UX flows, accessibility, proprietary visual language, design tokens, prototyping, and handoff. Covers ...",
-        "path":  "design/product-design",
+        "path":  "ui-ux/product-design",
         "search_terms":  "color, typography, accessibility, apple, cognitive"
     },
     {
@@ -242,13 +248,13 @@
     {
         "id":  "prompt-refinement",
         "description":  "Improve user prompts for large language models. Suggests rewrites, examples, and parameter guidance to improve reliability and output quality.: rew...",
-        "path":  "ai-skills/prompt-refinement",
+        "path":  "ai-meta/prompt-refinement",
         "search_terms":  "llm, prompt, examples, guidance, instruction-tuning"
     },
     {
         "id":  "python-pptx-generator",
         "description":  "Create complete Python scripts that build polished PowerPoint decks with python-pptx and real slide content.: generate from input",
-        "path":  "doc-create/python-pptx-generator",
+        "path":  "writing/python-pptx-generator",
         "search_terms":  "powerpoint, pptx, python, slide, content"
     },
     {
@@ -266,61 +272,61 @@
     {
         "id":  "seo-aeo-meta-description-generator",
         "description":  "Writes 3 title tag variants and 3 meta description variants per page with SERP preview, OG tags, and Twitter Card tags. Activate when the user want...",
-        "path":  "seo/seo-aeo-meta-description-generator",
+        "path":  "marketing/seo-aeo-meta-description-generator",
         "search_terms":  "meta, seo, tag, activate, aeo"
     },
     {
         "id":  "seo-audit",
         "description":  "Diagnose and audit SEO issues affecting crawlability, indexation, rankings, and organic performance: use when user wants a comprehensive SEO audit,...",
-        "path":  "seo/seo-audit",
+        "path":  "marketing/seo-audit",
         "search_terms":  "seo, affecting, analysis, analyze, audit"
     },
     {
         "id":  "seo-cannibalization-detector",
         "description":  "Analyzes multiple provided pages to identify keyword overlap and potential cannibalization issues. Suggests differentiation strategies. Use PROACTI...",
-        "path":  "seo/seo-cannibalization-detector",
+        "path":  "marketing/seo-cannibalization-detector",
         "search_terms":  "keyword, seo, analyzes, content, content-overlap"
     },
     {
         "id":  "seo-content",
-        "description":  "\u003e",
-        "path":  "seo/seo-content",
-        "search_terms":  "seo, ai-citation, analysis, audit, content"
+        "description":  "Content quality and E-E-A-T analysis with AI citation readiness assessment: use when user says \"content quality\", \"E-E-A-T\", \"content analysis\", \"r...",
+        "path":  "marketing/seo-content",
+        "search_terms":  "seo, ai-citation, analysis, assessment, audit"
     },
     {
         "id":  "seo-content-writer",
         "description":  "Writes SEO-optimized content based on provided keywords and topic briefs. Creates engaging, comprehensive content following best practices. Use PRO...",
-        "path":  "seo/seo-content-writer",
+        "path":  "marketing/seo-content-writer",
         "search_terms":  "copywriting, seo, article, based, best"
     },
     {
         "id":  "seo-keyword-strategist",
         "description":  "Analyzes keyword usage in provided content, calculates density, suggests semantic variations and LSI keywords based on the topic. Prevents over-opt...",
-        "path":  "seo/seo-keyword-strategist",
+        "path":  "marketing/seo-keyword-strategist",
         "search_terms":  "keyword, seo, analyzes, based, calculates"
     },
     {
         "id":  "seo-meta-optimizer",
         "description":  "Creates optimized meta titles, descriptions, and URL suggestions based on character limits and best practices. Generates compelling, keyword-rich m...",
-        "path":  "seo/seo-meta-optimizer",
+        "path":  "marketing/seo-meta-optimizer",
         "search_terms":  "keyword, meta, seo, based, best"
     },
     {
         "id":  "seo-page",
-        "description":  "\u003e",
-        "path":  "seo/seo-page",
-        "search_terms":  "review, schema, seo, analysis, analyze"
+        "description":  "Deep single-page SEO analysis covering on-page elements, content quality, technical meta tags, schema, images, and performance: use when user says ...",
+        "path":  "marketing/seo-page",
+        "search_terms":  "meta, review, schema, seo, analysis"
     },
     {
         "id":  "seo-snippet-hunter",
         "description":  "Formats content to be eligible for featured snippets and SERP features. Creates snippet-optimized content blocks based on best practices. Use PROAC...",
-        "path":  "seo/seo-snippet-hunter",
+        "path":  "marketing/seo-snippet-hunter",
         "search_terms":  "seo, snippet, answer, based, best"
     },
     {
         "id":  "seo-structure-architect",
         "description":  "Analyzes and optimizes content structure including header hierarchy, suggests schema markup, and internal linking opportunities. Creates search-fri...",
-        "path":  "seo/seo-structure-architect",
+        "path":  "marketing/seo-structure-architect",
         "search_terms":  "schema, search, seo, analyzes, architect"
     },
     {
@@ -338,7 +344,7 @@
     {
         "id":  "stock-photo-finder",
         "description":  "Find usable free stock photos for design work, with a strong bias toward Unsplash and other trusted free stock sources. Filter by subject, orientat...",
-        "path":  "design/stock-photo-finder",
+        "path":  "ui-ux/stock-photo-finder",
         "search_terms":  "filter, image, photo, search, stock"
     },
     {
@@ -404,7 +410,7 @@
     {
         "id":  "ui-ux-pro-max",
         "description":  "Comprehensive design guide for web and mobile applications: use when designing new UI components or pages, choosing color palettes and typography, ...",
-        "path":  "design/ui-ux-pro-max",
+        "path":  "ui-ux/ui-ux-pro-max",
         "search_terms":  "color, typography, ui, ux, applications"
     },
     {
@@ -416,7 +422,7 @@
     {
         "id":  "unsplash-integration",
         "description":  "Fetch and evaluate Unsplash images for design work using direct Unsplash search URLs, source filtering, and practical licensing guidance.",
-        "path":  "design/unsplash-integration",
+        "path":  "ui-ux/unsplash-integration",
         "search_terms":  "image, integration, photo, search, unsplash"
     },
     {

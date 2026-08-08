@@ -1,0 +1,8 @@
+﻿=== Junction Update Script ===
+Source Root: D:\daniel\Documents\antigravity
+Target Root: D:\daniel\Documents\vibecoding
+Search Root: D:\daniel\Documents\vibecoding
+Dry Run: True
+
+Scanning for junctions...
+Using PowerShell to find reparse points...

@@ -1,4 +1,4 @@
----
+﻿---
 name: avoid-ai-writing
 description: "Audit and rewrite content to remove AI writing patterns (\"AI-isms\"). Use when asked to \"remove AI-isms,\" \"clean up AI writing,\" \"edit writing for AI patterns,\" \"audit writing for AI tells,\" or \"make this sound less like AI.\" Supports detect-only mode, edit-in-place mode, voice profiles (casual/professional/technical/warm/blunt), and iterate-to-convergence."
 category: writing

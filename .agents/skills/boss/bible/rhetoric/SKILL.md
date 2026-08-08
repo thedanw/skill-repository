@@ -1,5 +1,6 @@
----
+﻿---
 name: Rhetoric
+category: bible
 description: A centralized library of rhetorical and homiletical devices for effective sermon communication.
 ---
 

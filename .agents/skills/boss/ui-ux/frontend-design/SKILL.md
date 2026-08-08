@@ -1,5 +1,6 @@
----
+﻿---
 name: frontend-design
+category: ui-ux
 description: "You are a frontend designer-engineer, not a layout generator."
 risk: unknown
 source: community

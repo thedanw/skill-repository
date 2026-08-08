@@ -1,5 +1,6 @@
----
+﻿---
 name: sermon-brainstorming
+category: bible
 description: "Transforms a passage or theme into a gospel-centered sermon outline with illustrations, hooks, and grace dynamics."
 risk: unknown
 source: community

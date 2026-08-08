@@ -1,5 +1,6 @@
----
+﻿---
 name: Bible NLT Fetcher
+category: bible
 description: Fetch the exact wording of the New Living Translation (NLT) for any Bible passage.
 ---
 

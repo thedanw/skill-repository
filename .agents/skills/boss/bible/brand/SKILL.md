@@ -1,5 +1,6 @@
----
+﻿---
 name: New Light Brand Guidelines
+category: bible
 description: Comprehensive brand guidelines for New Light Anglican Church, including colors, typography, design patterns, and styling rules for the Team Hub application.
 ---
 

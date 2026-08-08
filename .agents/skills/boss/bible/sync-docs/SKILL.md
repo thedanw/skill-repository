@@ -1,5 +1,6 @@
----
+﻿---
 name: Sync & Document Generation
+category: bible
 description: Sync markdown to Google Docs and generate high-fidelity RTF, HTML, and PDF documents with New Light Branding.
 ---
 
