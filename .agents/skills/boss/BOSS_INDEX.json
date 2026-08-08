@@ -1,6 +1,6 @@
 ﻿{
     "version":  2,
-    "generatedAt":  "2026-07-27T16:31:32Z",
+    "generatedAt":  "2026-08-08T14:37:45Z",
     "registryType":  "boss-local",
     "skills":  [
                    {
@@ -18,8 +18,22 @@
                                     "small-context"
                                 ],
                        "triggers": [],
-                       "risk":  "safe",
                        "path":  "ai-meta/context-optimization",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "md-token-optimizer",
+                       "name":  "markdown-token-optimizer",
+                       "description":  "Analyzes markdown files for token efficiency. TRIGGERS: optimize markdown, reduce tokens, token count, token bloat, too many tokens, make concise, shrink file, file too large, optimize for AI, token e",
+                       "category":  "ai-meta",
+                       "tags":  [
+
+                                ],
+                       "triggers":  [
+                                        "analyze",
+                                        "optimize"
+                                    ],
+                       "path":  "ai-meta/md-token-optimizer",
                        "source":  "installed"
                    },
                    {
@@ -34,7 +48,6 @@
                                     "instruction-tuning"
                                 ],
                        "triggers": ["optimize"],
-                       "risk":  "safe",
                        "path":  "ai-skills/prompt-refinement",
                        "source":  "installed"
                    },
@@ -47,7 +60,6 @@
 
                                 ],
                        "triggers": [],
-                       "risk":  "unknown",
                        "path":  "bible/bible-nlt",
                        "source":  "installed"
                    },
@@ -60,7 +72,6 @@
 
                                 ],
                        "triggers": [],
-                       "risk":  "unknown",
                        "path":  "bible/individual_sermon_researcher",
                        "source":  "installed"
                    },
@@ -73,7 +84,6 @@
 
                                 ],
                        "triggers": ["plan"],
-                       "risk":  "unknown",
                        "path":  "bible/deep-research",
                        "source":  "installed"
                    },
@@ -86,7 +96,6 @@
 
                                 ],
                        "triggers": [],
-                       "risk":  "unknown",
                        "path":  "bible/illustration_researcher",
                        "source":  "installed"
                    },
@@ -99,7 +108,6 @@
 
                                 ],
                        "triggers": [],
-                       "risk":  "unknown",
                        "path":  "bible/individual_sermon_brainstormer",
                        "source":  "installed"
                    },
@@ -112,7 +120,6 @@
 
                                 ],
                        "triggers": ["design"],
-                       "risk":  "unknown",
                        "path":  "bible/brand",
                        "source":  "installed"
                    },
@@ -125,7 +132,6 @@
 
                                 ],
                        "triggers": [],
-                       "risk":  "unknown",
                        "path":  "bible/rhetoric",
                        "source":  "installed"
                    },
@@ -138,7 +144,6 @@
 
                                 ],
                        "triggers": [],
-                       "risk":  "unknown",
                        "path":  "bible/break-writers-block",
                        "source":  "installed"
                    },
@@ -151,7 +156,6 @@
 
                                 ],
                        "triggers": ["generate"],
-                       "risk":  "unknown",
                        "path":  "bible/sync-docs",
                        "source":  "installed"
                    },
@@ -177,7 +181,6 @@
                                         "review",
                                         "track"
                                     ],
-                       "risk":  "safe",
                        "path":  "code-plan/00_meta-plan-pipeline",
                        "source":  "installed"
                    },
@@ -199,7 +202,6 @@
                                         "design",
                                         "validate"
                                     ],
-                       "risk":  "safe",
                        "path":  "code-plan/01_brainstorming",
                        "source":  "installed"
                    },
@@ -223,7 +225,6 @@
                                         "plan",
                                         "track"
                                     ],
-                       "risk":  "safe",
                        "path":  "code-plan/02_concise-planning",
                        "source":  "installed"
                    },
@@ -249,7 +250,6 @@
                                         "review",
                                         "track"
                                     ],
-                       "risk":  "safe",
                        "path":  "code-plan/03_executing-plans",
                        "source":  "installed"
                    },
@@ -262,7 +262,6 @@
 
                                 ],
                        "triggers": ["plan"],
-                       "risk":  "unknown",
                        "path":  "content/content-strategy",
                        "source":  "installed"
                    },
@@ -283,7 +282,6 @@
                                         "optimize",
                                         "plan"
                                     ],
-                       "risk":  "safe",
                        "path":  "writing/wordpress-centric-high-seo-optimized-blogwriting-skill",
                        "source":  "installed"
                    },
@@ -296,7 +294,6 @@
 
                                 ],
                        "triggers": ["generate"],
-                       "risk":  "safe",
                        "path":  "tools/youtube-summarizer",
                        "source":  "installed"
                    },
@@ -312,7 +309,6 @@
                                         "fix",
                                         "test"
                                     ],
-                       "risk":  "unknown",
                        "path":  "debugging/systematic-debugging",
                        "source":  "installed"
                    },
@@ -332,7 +328,6 @@
                                     "ministry"
                                 ],
                        "triggers": ["design"],
-                       "risk":  "low",
                        "path":  "design/church-webdesign",
                        "source":  "installed"
                    },
@@ -351,7 +346,6 @@
                                     "accessibility"
                                 ],
                        "triggers": ["design"],
-                       "risk":  "safe",
                        "path":  "design/designing-beautiful-websites",
                        "source":  "installed"
                    },
@@ -364,7 +358,6 @@
 
                                 ],
                        "triggers": ["design"],
-                       "risk":  "none",
                        "path":  "design/product-design",
                        "source":  "installed"
                    },
@@ -384,7 +377,6 @@
                                     "licensing"
                                 ],
                        "triggers": ["design"],
-                       "risk":  "low",
                        "path":  "design/stock-photo-finder",
                        "source":  "installed"
                    },
@@ -404,7 +396,6 @@
                                         "audit",
                                         "fix"
                                     ],
-                       "risk":  "safe",
                        "path":  "ui-ux/ui-a11y",
                        "source":  "installed"
                    },
@@ -421,7 +412,6 @@
                                     "styleseed"
                                 ],
                        "triggers": ["generate"],
-                       "risk":  "safe",
                        "path":  "ui-ux/ui-component",
                        "source":  "installed"
                    },
@@ -438,7 +428,6 @@
                                     "styleseed"
                                 ],
                        "triggers": [],
-                       "risk":  "safe",
                        "path":  "ui-ux/ui-page",
                        "source":  "installed"
                    },
@@ -455,7 +444,6 @@
                                     "styleseed"
                                 ],
                        "triggers": ["generate"],
-                       "risk":  "safe",
                        "path":  "ui-ux/ui-pattern",
                        "source":  "installed"
                    },
@@ -475,7 +463,6 @@
                                         "design",
                                         "review"
                                     ],
-                       "risk":  "safe",
                        "path":  "ui-ux/ui-review",
                        "source":  "installed"
                    },
@@ -492,7 +479,6 @@
                                     "styleseed"
                                 ],
                        "triggers": [],
-                       "risk":  "safe",
                        "path":  "ui-ux/ui-setup",
                        "source":  "installed"
                    },
@@ -509,7 +495,6 @@
                                     "styleseed"
                                 ],
                        "triggers": ["design"],
-                       "risk":  "safe",
                        "path":  "ui-ux/ui-tokens",
                        "source":  "installed"
                    },
@@ -525,7 +510,6 @@
                                         "design",
                                         "review"
                                     ],
-                       "risk":  "unknown",
                        "path":  "design/ui-ux-pro-max",
                        "source":  "installed"
                    },
@@ -543,7 +527,6 @@
                                     "licensing"
                                 ],
                        "triggers": ["design"],
-                       "risk":  "low",
                        "path":  "design/unsplash-integration",
                        "source":  "installed"
                    },
@@ -563,7 +546,6 @@
                                         "audit",
                                         "design"
                                     ],
-                       "risk":  "safe",
                        "path":  "ui-ux/ux-audit",
                        "source":  "installed"
                    },
@@ -580,7 +562,6 @@
                                     "styleseed"
                                 ],
                        "triggers": ["design"],
-                       "risk":  "safe",
                        "path":  "ui-ux/ux-flow",
                        "source":  "installed"
                    },
@@ -599,7 +580,6 @@
                                     "accessibility"
                                 ],
                        "triggers": [],
-                       "risk":  "safe",
                        "path":  "ui-ux/uxui-principles",
                        "source":  "installed"
                    },
@@ -615,7 +595,6 @@
                                         "debug",
                                         "fix"
                                     ],
-                       "risk":  "safe",
                        "path":  "debugging/bug-hunter",
                        "source":  "installed"
                    },
@@ -631,7 +610,6 @@
                                         "audit",
                                         "push"
                                     ],
-                       "risk":  "safe",
                        "path":  "github/codebase-audit-pre-push",
                        "source":  "installed"
                    },
@@ -649,7 +627,6 @@
                                     "hallucination-reduction"
                                 ],
                        "triggers": [],
-                       "risk":  "safe",
                        "path":  "ai-meta/llm-prompt-optimizer",
                        "source":  "installed"
                    },
@@ -666,7 +643,6 @@
                                     "claude-code"
                                 ],
                        "triggers": ["review"],
-                       "risk":  "safe",
                        "path":  "debugging/logic-lens",
                        "source":  "installed"
                    },
@@ -679,7 +655,6 @@
 
                                 ],
                        "triggers": ["fix"],
-                       "risk":  "safe",
                        "path":  "debugging/performance-optimizer",
                        "source":  "installed"
                    },
@@ -697,7 +672,6 @@
                                     "quality"
                                 ],
                        "triggers": ["optimize"],
-                       "risk":  "safe",
                        "path":  "ai-meta/prompt-engineer",
                        "source":  "installed"
                    },
@@ -717,7 +691,6 @@
                                         "build",
                                         "generate"
                                     ],
-                       "risk":  "safe",
                        "path":  "doc-create/python-pptx-generator",
                        "source":  "installed"
                    },
@@ -734,7 +707,6 @@
                                     "state-machine"
                                 ],
                        "triggers": ["track"],
-                       "risk":  "safe",
                        "path":  "memory/technical-change-tracker",
                        "source":  "installed"
                    },
@@ -750,7 +722,6 @@
                                         "create",
                                         "push"
                                     ],
-                       "risk":  "critical",
                        "path":  "github/git-pushing",
                        "source":  "installed"
                    },
@@ -770,7 +741,6 @@
                                         "create",
                                         "write"
                                     ],
-                       "risk":  "safe",
                        "path":  "marketing/social-post-writer-seo",
                        "source":  "installed"
                    },
@@ -786,7 +756,6 @@
                                         "audit",
                                         "design"
                                     ],
-                       "risk":  "unknown",
                        "path":  "marketing/brand-visual-generator",
                        "source":  "installed"
                    },
@@ -805,7 +774,6 @@
                                     "copywriting"
                                 ],
                        "triggers": ["create"],
-                       "risk":  "safe",
                        "path":  "marketing/brand-voice-creator",
                        "source":  "installed"
                    },
@@ -818,7 +786,6 @@
 
                                 ],
                        "triggers": [],
-                       "risk":  "unknown",
                        "path":  "marketing/copy-editing",
                        "source":  "installed"
                    },
@@ -831,7 +798,6 @@
 
                                 ],
                        "triggers": [],
-                       "risk":  "unknown",
                        "path":  "marketing/marketing-psychology",
                        "source":  "installed"
                    },
@@ -849,7 +815,6 @@
                                     "memory"
                                 ],
                        "triggers": ["debug"],
-                       "risk":  "safe",
                        "path":  "memory/context-compression",
                        "source":  "installed"
                    },
@@ -868,7 +833,6 @@
                                     "tokens"
                                 ],
                        "triggers": [],
-                       "risk":  "safe",
                        "path":  "memory/context-optimization",
                        "source":  "installed"
                    },
@@ -888,7 +852,6 @@
                                     "small-context"
                                 ],
                        "triggers": [],
-                       "risk":  "safe",
                        "path":  "memory/context-window-management",
                        "source":  "installed"
                    },
@@ -905,26 +868,7 @@
                                     "meta"
                                 ],
                        "triggers": ["create"],
-                       "risk":  "safe",
                        "path":  "00-setup/agents-md",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "00-manage-orchestrator",
-                       "name":  "manage-orchestrator",
-                       "description":  "Orchestrate the BOSS skill management sub-skills at .agents/skills/boss/01-manage/. Coordinates skill-create, skill-aquire, and skill-manage sub-skills for creating, acquiring, and managing skills in ",
-                       "category":  "meta",
-                       "tags":  [
-                                    "orchestrator",
-                                    "repository",
-                                    "skill-management",
-                                    "boss",
-                                    "manage",
-                                    "01-manage"
-                                ],
-                       "triggers": ["create"],
-                       "risk":  "safe",
-                       "path":  "01-manage/00-manage-orchestrator",
                        "source":  "installed"
                    },
                    {
@@ -946,45 +890,7 @@
                                         "create",
                                         "generate"
                                     ],
-                       "risk":  "safe",
                        "path":  "00-setup/setup",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "skill-aquire",
-                       "name":  "skill-aquire",
-                       "description":  "Search and install skills from the antigravity-awesome-skills GitHub repository. Use when looking for external skills to add to the BOSS repo. Downloads full skill folders including all supporting fil",
-                       "category":  "meta",
-                       "tags":  [
-                                    "acquisition",
-                                    "install",
-                                    "awesome-skills",
-                                    "github",
-                                    "search",
-                                    "import"
-                                ],
-                       "triggers": [],
-                       "risk":  "moderate",
-                       "path":  "01-manage/skill-aquire",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "skill-manage",
-                       "name":  "skill-manage",
-                       "description":  "Manage BOSS skill category folders and keep BOSS_INDEX.json in sync. Use when adding, moving, removing, or reorganizing skills in .agents/skills/boss/. Handles category mapping, index updates, and ind",
-                       "category":  "meta",
-                       "tags":  [
-                                    "management",
-                                    "organization",
-                                    "index",
-                                    "categories",
-                                    "boss",
-                                    "sync",
-                                    "audit"
-                                ],
-                       "triggers": ["audit"],
-                       "risk":  "moderate",
-                       "path":  "01-manage/skill-manage",
                        "source":  "installed"
                    },
                    {
@@ -1004,7 +910,6 @@
                                     "social"
                                 ],
                        "triggers": ["write"],
-                       "risk":  "safe",
                        "path":  "seo/seo-aeo-meta-description-generator",
                        "source":  "installed"
                    },
@@ -1022,7 +927,6 @@
                                     "rankings"
                                 ],
                        "triggers": ["audit"],
-                       "risk":  "safe",
                        "path":  "seo/seo-audit",
                        "source":  "installed"
                    },
@@ -1041,7 +945,6 @@
                                         "analyze",
                                         "review"
                                     ],
-                       "risk":  "safe",
                        "path":  "seo/seo-cannibalization-detector",
                        "source":  "installed"
                    },
@@ -1060,7 +963,6 @@
                                     "ai-citation"
                                 ],
                        "triggers": [],
-                       "risk":  "safe",
                        "path":  "seo/seo-content",
                        "source":  "installed"
                    },
@@ -1081,7 +983,6 @@
                                         "optimize",
                                         "write"
                                     ],
-                       "risk":  "safe",
                        "path":  "seo/seo-content-writer",
                        "source":  "installed"
                    },
@@ -1099,7 +1000,6 @@
                                     "semantic"
                                 ],
                        "triggers": ["analyze"],
-                       "risk":  "safe",
                        "path":  "seo/seo-keyword-strategist",
                        "source":  "installed"
                    },
@@ -1122,7 +1022,6 @@
                                         "generate",
                                         "optimize"
                                     ],
-                       "risk":  "safe",
                        "path":  "seo/seo-meta-optimizer",
                        "source":  "installed"
                    },
@@ -1142,7 +1041,6 @@
                                     "performance"
                                 ],
                        "triggers": [],
-                       "risk":  "safe",
                        "path":  "seo/seo-page",
                        "source":  "installed"
                    },
@@ -1162,7 +1060,6 @@
                                     "execution"
                                 ],
                        "triggers": ["audit"],
-                       "risk":  "safe",
                        "path":  "seo/00_seo-skill-orchestrator",
                        "source":  "installed"
                    },
@@ -1184,7 +1081,6 @@
                                         "create",
                                         "optimize"
                                     ],
-                       "risk":  "safe",
                        "path":  "seo/seo-snippet-hunter",
                        "source":  "installed"
                    },
@@ -1207,7 +1103,6 @@
                                         "create",
                                         "optimize"
                                     ],
-                       "risk":  "safe",
                        "path":  "seo/seo-structure-architect",
                        "source":  "installed"
                    },
@@ -1229,7 +1124,6 @@
                                     "llm"
                                 ],
                        "triggers": [],
-                       "risk":  "safe",
                        "path":  "tools/jina-ai-search-foundation",
                        "source":  "installed"
                    },
@@ -1248,7 +1142,6 @@
                                     "few-shot"
                                 ],
                        "triggers": [],
-                       "risk":  "safe",
                        "path":  "tools/llm-prompt-optimizer",
                        "source":  "installed"
                    },
@@ -1266,7 +1159,6 @@
                                     "context-management"
                                 ],
                        "triggers": ["build"],
-                       "risk":  "safe",
                        "path":  "tools/recursive-context-pruning-token-budgeting",
                        "source":  "installed"
                    },
@@ -1283,7 +1175,6 @@
                                     "orchestration"
                                 ],
                        "triggers": [],
-                       "risk":  "safe",
                        "path":  "tools/using-superpowers",
                        "source":  "installed"
                    },
@@ -1309,8 +1200,26 @@
                                         "design",
                                         "plan"
                                     ],
-                       "risk":  "low",
                        "path":  "ui-ux/00-ui-ux-skill-orchestrator",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "css-architecture",
+                       "name":  "css-architecture",
+                       "description":  "Organize CSS using BEM, SMACSS, and CSS-in-JS patterns. Use when building scalable, maintainable styling systems with proper naming conventions.",
+                       "category":  "ui-ux",
+                       "tags":  [
+                                    "css",
+                                    "architecture",
+                                    "bem",
+                                    "smacss",
+                                    "css-in-js",
+                                    "styling",
+                                    "design-system",
+                                    "maintainability"
+                                ],
+                       "triggers": ["build"],
+                       "path":  "ui-ux/css-architecture",
                        "source":  "installed"
                    },
                    {
@@ -1322,7 +1231,6 @@
 
                                 ],
                        "triggers": ["design"],
-                       "risk":  "unknown",
                        "path":  "ui-ux/frontend-design",
                        "source":  "installed"
                    },
@@ -1342,7 +1250,6 @@
                                     "publishing"
                                 ],
                        "triggers": ["audit"],
-                       "risk":  "safe",
                        "path":  "writing/avoid-ai-writing",
                        "source":  "installed"
                    },
@@ -1355,7 +1262,6 @@
 
                                 ],
                        "triggers": ["write"],
-                       "risk":  "unknown",
                        "path":  "writing/copywriting",
                        "source":  "installed"
                    },
@@ -1373,7 +1279,6 @@
                                     "publishing"
                                 ],
                        "triggers": ["generate"],
-                       "risk":  "safe",
                        "path":  "writing/unslop",
                        "source":  "installed"
                    }
