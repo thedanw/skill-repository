@@ -92,7 +92,7 @@ Write-Host "  ✓ $agentsMdPath"
 # Step 4: Rebuild BOSS_INDEX.json
 if (-not $SkipIndexUpdate) {
     Write-Host "[4/4] Rebuilding BOSS_INDEX.json..." -ForegroundColor Yellow
-    $updateScript = Join-Path -Path $junctionPath -ChildPath "boss\update-index.ps1"
+    $updateScript = Join-Path -Path $junctionPath -ChildPath "boss\01-manage\skill-manage\scripts\update-index.ps1"
     if (Test-Path -Path $updateScript) {
         & $updateScript
         Write-Host "  ✓ BOSS_INDEX.json updated"

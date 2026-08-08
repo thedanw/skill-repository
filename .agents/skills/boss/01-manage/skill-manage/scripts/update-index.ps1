@@ -10,11 +10,13 @@
 #   - 01-manage/skill-manage/refs/categories.md  (LIVE category reference, auto-generated)
 
 # --- Resolve BOSS root regardless of script location --------------------------
-# Walk up from the script directory until we find the folder that contains
-# SKILL.md and 01-manage/ (i.e. the BOSS skill root).
+# Walk up from the script directory until we find the BOSS skill root.
+# The boss root is the folder containing category-index.json (and 01-manage/).
+# We key on category-index.json because nested SKILL.md folders (like
+# skill-manage/) or a 01-manage subfolder are not reliable markers.
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $bossDir = $scriptDir
-while (-not (Test-Path (Join-Path $bossDir 'SKILL.md')) -and (Split-Path $bossDir -Parent) -ne $bossDir) {
+while (-not (Test-Path (Join-Path $bossDir 'category-index.json')) -and (Split-Path $bossDir -Parent) -ne $bossDir) {
     $bossDir = Split-Path $bossDir -Parent
 }
 

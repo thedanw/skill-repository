@@ -1,17 +1,16 @@
 # Output Patterns
 
-Use these patterns when skills need to produce consistent, high-quality output.
+Use these patterns when skills need consistent, high-quality output.
 
 ## Template Pattern
 
-Provide templates for output format. Match the level of strictness to your needs.
+Provide templates for output format. Match strictness to needs.
 
-**For strict requirements (like API responses or data formats):**
-
+**Strict (API responses, data formats):**
 ```markdown
 ## Report structure
 
-ALWAYS use this exact template structure:
+ALWAYS use this exact template:
 
 # [Analysis Title]
 
@@ -28,12 +27,11 @@ ALWAYS use this exact template structure:
 2. Specific actionable recommendation
 ```
 
-**For flexible guidance (when adaptation is useful):**
-
+**Flexible (adaptation useful):**
 ```markdown
 ## Report structure
 
-Here is a sensible default format, but use your best judgment:
+Sensible default, use judgment:
 
 # [Analysis Title]
 
@@ -41,17 +39,17 @@ Here is a sensible default format, but use your best judgment:
 [Overview]
 
 ## Key findings
-[Adapt sections based on what you discover]
+[Adapt sections based on discoveries]
 
 ## Recommendations
-[Tailor to the specific context]
+[Tailor to context]
 
-Adjust sections as needed for the specific analysis type.
+Adjust sections as needed for analysis type.
 ```
 
 ## Examples Pattern
 
-For skills where output quality depends on seeing examples, provide input/output pairs:
+For skills where output quality depends on examples, provide input/output pairs:
 
 ```markdown
 ## Commit message format
@@ -76,7 +74,7 @@ fix(reports): correct date formatting in timezone conversion
 Use UTC timestamps consistently across report generation
 ```
 
-Follow this style: type(scope): brief description, then detailed explanation.
+Follow style: type(scope): brief description, then detailed explanation.
 ```
 
-Examples help Claude understand the desired style and level of detail more clearly than descriptions alone.
+Examples clarify desired style and detail level better than descriptions alone.

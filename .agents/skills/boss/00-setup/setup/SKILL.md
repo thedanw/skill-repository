@@ -113,7 +113,7 @@ This workspace uses the **BOSS meta-orchestrator** — a low-token skill registr
 Run the update script so the new `setup` skill is registered:
 
 ```powershell
-pwsh "$WORKSPACE_ROOT\.agents\skills\boss\update-index.ps1"
+pwsh "$WORKSPACE_ROOT\.agents\skills\boss\01-manage\skill-manage\scripts\update-index.ps1"
 ```
 
 ### Step 7: Verify

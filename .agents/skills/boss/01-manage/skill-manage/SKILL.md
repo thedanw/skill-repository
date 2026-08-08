@@ -155,16 +155,20 @@ All skill registration flows through skill-manage:
 
 ```
 .agents/skills/boss/
-├── category-index.json          ← CAT-IDX (auto-generated)
-├── alphabetical-index.json      ← ALPHA-IDX (auto-generated)
-├── BOSS_INDEX.json              ← Legacy (backward compat)
-├── SKILL.md                     ← BOSS meta-orchestrator
-├── update-index.ps1             ← Index rebuild script (enhanced)
-├── 01-manage/                   ← Tooling only (not a category)
+├── category-index.json              ← CAT-IDX (auto-generated)
+├── alphabetical-index.json          ← ALPHA-IDX (auto-generated)
+├── BOSS_INDEX.json                  ← Legacy (backward compat)
+├── SKILL.md                         ← BOSS meta-orchestrator
+├── 01-manage/                       ← Tooling only (not a category)
 │   ├── 00-manage-orchestrator/
 │   ├── skill-create/
 │   ├── skill-aquire/
-│   └── skill-manage/            ← THIS SKILL
+│   └── skill-manage/                ← THIS SKILL
+│       ├── scripts/
+│       │   └── update-index.ps1     ← Index rebuild script (single build step)
+│       └── refs/
+│           ├── schemas.md           ← Index schemas
+│           └── categories.md        ← LIVE category reference (auto-generated)
 ├── ai-meta/                     ← Category folders (skills live here)
 ├── ai-skills/
 ├── bible/
@@ -241,7 +245,7 @@ Remove-Item -Path ".agents/skills/boss/<category>/<skill-name>" -Recurse -Force
 
 Run enhanced update script:
 ```powershell
-powershell -ExecutionPolicy Bypass -File .agents/skills/boss/update-index.ps1
+powershell -ExecutionPolicy Bypass -File .agents/skills/boss/01-manage/skill-manage/scripts/update-index.ps1
 ```
 
 **What update-index.ps1 does (enhanced):**
@@ -253,6 +257,7 @@ powershell -ExecutionPolicy Bypass -File .agents/skills/boss/update-index.ps1
 6. Builds ALPHA-IDX: flat array sorted by id, includes path + search_terms
 7. Writes `category-index.json` and `alphabetical-index.json`
 8. Optionally updates legacy `BOSS_INDEX.json` for backward compat
+9. Updates `refs/categories.md` (LIVE category reference)
 
 ### TAXONOMY MAINTENANCE — Category Descriptions
 

@@ -48,11 +48,17 @@ BOSS operates on a two-tier memory hierarchy:
 ## 1. The Three-Tier Registry
 
 ### Tier 1 — BOSS Registry (Local)
-**File:** `.agents/skills/boss/BOSS_INDEX.json`
+**Files:** 
+- `.agents/skills/boss/category-index.json` (CAT-IDX) — Skills grouped by category for agent category-first reasoning
+- `.agents/skills/boss/alphabetical-index.json` (ALPHA-IDX) — Flat skills array for human reference and direct lookup
+- `.agents/skills/boss/BOSS_INDEX.json` — Legacy format (kept for backward compatibility)
 
-Auto-generated index of every skill installed under `.agents/skills/boss/`. Each entry has: `id`, `name`, `description`, `category`, `tags` (keywords), `triggers`, `path`, and `risk`.
+Auto-generated indexes of every skill installed under `.agents/skills/boss/`. 
 
-**Maintenance:** Run `pwsh .agents/skills/boss/update-index.ps1` after adding or removing skills. This scans every category folder (`debugging/`, `ui-ux/`, `writing/`, etc.) for SKILL.md files and rebuilds the index.
+**CAT-IDX Schema:** Array of category objects with `cat_id`, `category_description`, `skills[{id, description}]`
+**ALPHA-IDX Schema:** Array of skill objects with `id`, `description`, `path`, `search_terms`
+
+**Maintenance:** Run `pwsh .agents/skills/boss/01-manage/skill-manage/scripts/update-index.ps1` after adding or removing skills. This scans every category folder for SKILL.md files and rebuilds both indexes.
 
 ### Tier 2 — Project Registry (Optional)
 **File:** `.agents/skills/PROJECT_INDEX.json`
@@ -66,18 +72,24 @@ Same format as Tier 1 but lives one level up in the project's own `.agents/skill
 
 If neither local tier has a matching skill, fetch this remote catalog. Install any desired skill before loading it.
 
-### Registry Lookup Order
+### Registry Lookup Order (Optimized for Low-Token Workflows)
 
 ```
 User Task
   ├─ Is it simple? → Solve directly (guardrail)
   └─ Is it complex?
-       ├─ Query BOSS_INDEX.json (Tier 1)
+       ├─ Read category-index.json (CAT-IDX) — ~2KB
+       │    └─ Agent reasons about category_description → selects relevant category
+       ├─ Read single category file from CAT-IDX — ~1-2KB
+       │    └─ Agent scans skill descriptions → selects best skill
+       ├─ (Optional) Read alphabetical-index.json (ALPHA-IDX) for full details
        ├─ Query PROJECT_INDEX.json if exists (Tier 2)
        └─ Fetch remote catalog if no match (Tier 3)
             → Load matched skills into context
             → Record combination in AIngram
 ```
+
+**Token Efficiency:** Agent loads ~3-5KB total vs 25KB+ for full BOSS_INDEX.json scan.
 
 ---
 
@@ -103,9 +115,9 @@ Place this file at the workspace root as `agents.md`. It defines available agent
 - **Description:** Systematic debugging and root-cause analysis
 
 ### ui-designer
-- **Skills:** frontend-design, ui-component, ui-page, ui-pattern, ui-review, ui-setup, ui-tokens, ui-a11y, ux-audit, ux-flow, uxui-principles
-- **Triggers:** "design a page", "create a component", "audit UX", "accessibility check"
-- **Description:** Full UI/UX pipeline from tokens to pages to accessibility audits
+- **Skills:** frontend-design, ui-component, ui-page, ui-pattern, ui-review, ui-setup, ui-tokens, ui-a11y, ux-audit, ux-flow, uxui-principles, css-architecture
+- **Triggers:** "design a page", "create a component", "audit UX", "accessibility check", "css architecture", "BEM", "SMACSS", "CSS-in-JS"
+- **Description:** Full UI/UX pipeline from tokens to pages to accessibility audits, including CSS architecture methodologies
 
 ### writer
 - **Skills:** copywriting, unslop, wordpress-blogwriting-skill, social-post-writer-seo
@@ -253,10 +265,10 @@ Always follow this order:
 
 ## 5. Registry Maintenance
 
-### Regenerating BOSS_INDEX.json
+### Regenerating the Indexes
 Run the update script after any skill change in the boss folder:
 ```powershell
-pwsh .agents/skills/boss/update-index.ps1
+pwsh .agents/skills/boss/01-manage/skill-manage/scripts/update-index.ps1
 ```
 
 ### What the Script Does
@@ -271,7 +283,7 @@ pwsh .agents/skills/boss/update-index.ps1
 # Windows: New-Item -ItemType Directory -Path ".agents/skills/boss/<category>/<skill-name>"
 # POSIX: mkdir -p .agents/skills/boss/<category>/<skill-name>
 # Then create SKILL.md with proper frontmatter
-pwsh .agents/skills/boss/update-index.ps1
+pwsh .agents/skills/boss/01-manage/skill-manage/scripts/update-index.ps1
 ```
 
 ### Project-Level Registry
