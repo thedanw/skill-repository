@@ -261,11 +261,6 @@
                            "path":  "memory/context-compression"
                        },
                        {
-                           "id":  "context-optimization",
-                           "description":  "Extends effective context capacity through strategic compression, masking, caching, and partitioning: use when context limits constrain task comple...",
-                           "path":  "memory/context-optimization"
-                       },
-                       {
                            "id":  "context-window-management",
                            "description":  "Strategies for managing LLM context windows including summarization, trimming, routing, and avoiding context rot: use when working with small conte...",
                            "path":  "memory/context-window-management"
@@ -285,11 +280,6 @@
                            "id":  "jina-ai-search-foundation",
                            "description":  "Use Jina AI Search Foundation APIs (Embeddings, Reranker, Reader, Search, Batch Embeddings) for semantic search, RAG, web scraping, and large-scale...",
                            "path":  "tools/jina-ai-search-foundation"
-                       },
-                       {
-                           "id":  "llm-prompt-optimizer",
-                           "description":  "Transforms weak prompts into precision-engineered instructions using RSCIT framework, chain-of-thought, few-shot patterns, and structured output te...",
-                           "path":  "tools/llm-prompt-optimizer"
                        },
                        {
                            "id":  "recursive-context-pruning-token-budgeting",

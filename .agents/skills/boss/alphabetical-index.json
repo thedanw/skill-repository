@@ -114,12 +114,6 @@
         "search_terms":  "compress, context, llm, token, budgets"
     },
     {
-        "id":  "context-optimization",
-        "description":  "Extends effective context capacity through strategic compression, masking, caching, and partitioning: use when context limits constrain task comple...",
-        "path":  "memory/context-optimization",
-        "search_terms":  "context, token, caching, capacity, complexity"
-    },
-    {
         "id":  "context-window-management",
         "description":  "Strategies for managing LLM context windows including summarization, trimming, routing, and avoiding context rot: use when working with small conte...",
         "path":  "memory/context-window-management",
@@ -202,12 +196,6 @@
         "description":  "improving prompts for any LLM. Applies proven prompt engineering techniques to boost output quality, reduce hallucinations, and cut token usage.: u...",
         "path":  "ai-meta/llm-prompt-optimizer",
         "search_terms":  "llm, prompt, token, ai, applies"
-    },
-    {
-        "id":  "llm-prompt-optimizer",
-        "description":  "Transforms weak prompts into precision-engineered instructions using RSCIT framework, chain-of-thought, few-shot patterns, and structured output te...",
-        "path":  "tools/llm-prompt-optimizer",
-        "search_terms":  "llm, prompt, token, bad-output, chain"
     },
     {
         "id":  "logic-lens",

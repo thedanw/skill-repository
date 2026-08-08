@@ -1,6 +1,6 @@
 ﻿{
     "version":  2,
-    "generatedAt":  "2026-08-08T14:54:52Z",
+    "generatedAt":  "2026-08-08T14:58:23Z",
     "registryType":  "boss-local",
     "skills":  [
                    {
@@ -723,24 +723,6 @@
                        "source":  "installed"
                    },
                    {
-                       "id":  "context-optimization",
-                       "name":  "context-optimization",
-                       "description":  "Extends effective context capacity through strategic compression, masking, caching, and partitioning. Use when context limits constrain task complexity or when reducing token costs.",
-                       "category":  "memory",
-                       "tags":  [
-                                    "context",
-                                    "optimization",
-                                    "compression",
-                                    "masking",
-                                    "caching",
-                                    "partitioning",
-                                    "tokens"
-                                ],
-                       "triggers": [],
-                       "path":  "memory/context-optimization",
-                       "source":  "installed"
-                   },
-                   {
                        "id":  "context-window-management",
                        "name":  "context-window-management",
                        "description":  "Strategies for managing LLM context windows including summarization, trimming, routing, and avoiding context rot. Use when working with small context LLMs or need to manage limited token budgets effec",
@@ -794,24 +776,6 @@
                                 ],
                        "triggers": [],
                        "path":  "tools/jina-ai-search-foundation",
-                       "source":  "installed"
-                   },
-                   {
-                       "id":  "llm-prompt-optimizer",
-                       "name":  "llm-prompt-optimizer",
-                       "description":  "Transforms weak prompts into precision-engineered instructions using RSCIT framework, chain-of-thought, few-shot patterns, and structured output templates. Use when prompts return inconsistent results",
-                       "category":  "tools",
-                       "tags":  [
-                                    "prompts",
-                                    "optimization",
-                                    "llm",
-                                    "engineering",
-                                    "tokens",
-                                    "chain-of-thought",
-                                    "few-shot"
-                                ],
-                       "triggers": [],
-                       "path":  "tools/llm-prompt-optimizer",
                        "source":  "installed"
                    },
                    {
