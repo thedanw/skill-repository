@@ -1,6 +1,6 @@
 ---
 name: skill-creator
-description: "Create new skills or adapt existing skills for the BOSS repo. Scaffold SKILL.md with proper frontmatter, write content, validate, and update BOSS_INDEX. Use when adding new skills to .agents/skills/boss/."
+description: "Create or adapt skills for BOSS repo. Scaffold SKILL.md with proper frontmatter, write content, validate, update BOSS_INDEX."
 category: skill-create
 risk: safe
 source: local
@@ -11,70 +11,65 @@ allowed-tools: Read Write Glob Grep Bash
 
 # Skill Creator — BOSS Edition
 
-Create or adapt skills for the BOSS repository. Extends the base skill-creator pattern with BOSS-specific awareness: frontmatter schema, category mapping, BOSS_INDEX updates, and keyword enrichment.
+Create or adapt skills for BOSS repository. Extends base skill-creator with BOSS-specific awareness: frontmatter schema, category mapping, BOSS_INDEX updates, keyword enrichment.
 
 ## When to Use
 
-- Creating a brand-new skill from scratch
-- Adapting an external skill from the awesome-skills repo
-- Re-scaffolding a skill that has the wrong structure
-- Adding keywords/tags to improve BOSS discoverability
+- Creating brand-new skill from scratch
+- Adapting external skill from awesome-skills repo
+- Re-scaffolding skill with wrong structure
+- Adding keywords/tags for BOSS discoverability
 
 ## Prerequisites
 
-1. Determine the target **category folder** under `.agents/skills/boss/`
-2. Check BOSS_INDEX.json for existing skills in that category (avoid duplicates)
-3. Verify the skill name is kebab-case
+1. Determine target **category folder** under `.agents/skills/boss/`
+2. Check `alphabetical-index.json` for existing skills (avoid duplicates)
+3. Verify skill name is kebab-case
 
 ## Workflow
 
 ### Phase 1: BRAINSTORM
 
-Before writing anything:
-
-1. **Search existing** — grep BOSS_INDEX.json for similar skills
-2. **Identify the gap** — what does this skill do that no existing skill covers?
-3. **Determine scope** — single-purpose or multi-purpose?
+1. **Search existing** — grep `alphabetical-index.json` for similar skills
+2. **Identify gap** — what does this skill do that none covers?
+3. **Determine scope** — single or multi-purpose?
 4. **Choose approach**:
    - **From scratch** — no reference, greenfield
-   - **Adapt** — base on an existing skill (internal or from awesome-skills)
-   - **Extend** — add to an existing skill's capability
+   - **Adapt** — base on existing skill (internal or awesome-skills)
+   - **Extend** — add to existing skill's capability
 
-Output a brief: name, category, purpose, approach.
+Output brief: name, category, purpose, approach.
 
 ### Phase 2: PLAN
 
-Define the skill spec:
-
+Define spec:
 ```
 Name:     kebab-case-name
 Category: boss-category-folder
-Purpose:  One sentence: WHAT it does + WHEN to use it
+Purpose:  One sentence: WHAT + WHEN
 Tags:     3-8 search tags
-Triggers: 3-6 action verbs users would say
+Triggers: 3-6 action verbs
 Risk:     safe | moderate | critical
 ```
 
-Design the SKILL.md structure. Choose a pattern:
+Choose pattern:
 
 | Pattern | Best for | Example |
 |---------|----------|---------|
-| **Workflow** | Step-by-step processes | "1. Analyze → 2. Build → 3. Verify" |
-| **Task** | Single-action tools | "Run this script to..." |
-| **Reference** | Documentation/cheatsheets | API reference, pattern library |
-| **Capabilities** | Feature-rich tools | Multiple distinct commands |
+| Workflow | Step-by-step processes | "1. Analyze → 2. Build → 3. Verify" |
+| Task | Single-action tools | "Run this script to..." |
+| Reference | Documentation/cheatsheets | API reference, pattern library |
+| Capabilities | Feature-rich tools | Multiple distinct commands |
 
 ### Phase 3: SCAFFOLD
 
-Create the skill directory:
-
+Create directory:
 ```powershell
 $skillPath = ".agents/skills/boss/<category>/<skill-name>"
 New-Item -ItemType Directory -Path $skillPath -Force
 ```
 
-Generate SKILL.md with BOSS-compliant frontmatter:
-
+Generate SKILL.md with BOSS frontmatter:
 ```markdown
 ---
 name: skill-name
@@ -100,97 +95,71 @@ allowed-tools:
 ## Key Rules
 ```
 
-Create supporting files as needed:
-- `README.md` — extended docs (optional)
-- `scripts/` — helper scripts (optional)
-- `references/` — detailed reference docs (optional)
+Supporting files (optional):
+- `README.md` — extended docs
+- `scripts/` — helper scripts
+- `references/` — detailed reference docs
 
 ### Phase 4: WRITE
 
-Fill in the SKILL.md body:
-
-1. **Frontmatter first** — ensure all fields are complete
+Fill SKILL.md body:
+1. **Frontmatter first** — all fields complete
 2. **Overview** — 2-3 sentences max
-3. **When to Use** — explicit trigger conditions ("Use when user says X")
-4. **Workflow** — numbered steps, clear and actionable
+3. **When to Use** — explicit triggers ("Use when user says X")
+4. **Workflow** — numbered steps, clear, actionable
 5. **Examples** — at least 2 input/output pairs
 6. **Key Rules** — constraints, pitfalls, gotchas
-7. **Keyword enrichment** — add a `keywords` field to the BOSS_INDEX entry (not frontmatter, but in the JSON):
-   - Synonyms and related terms
-   - Domain-specific vocabulary
-   - Common misspellings or alternate phrasings
-   - Acronyms and abbreviations
+7. **Search terms** — search_terms are auto-generated by `update-index.ps1` from tags/triggers/description. Write specific, coder-friendly tags so the generated search_terms are useful.
 
-### Phase 5: AUDIT
+### Phase 5: COMPRESS
 
-Validate before publishing:
+Optimize token count with `.agents\skills\boss\ai-meta\md-token-optimizer\skill.md`
 
-1. **Run skill-check** — read `skill-check/SKILL.md` and apply its validation
-2. **BOSS-specific checks**:
+### Phase 6: AUDIT
+
+Validate before publish:
+1. **Run skill-check** — read `skill-check/SKILL.md`, apply validation
+2. **BOSS checks**:
    - [ ] Name is kebab-case
-   - [ ] Description includes WHAT + WHEN
+   - [ ] Description has WHAT + WHEN
    - [ ] Category matches folder name
-   - [ ] Tags array is populated (not empty)
-   - [ ] Triggers array has 3-6 action verbs
-   - [ ] Risk field is set
-   - [ ] Source field is set
-   - [ ] Path is correct ("category/skill-name")
-3. **Frontmatter schema compliance** — required fields present
-4. **Content quality** — examples present, no placeholder text
+   - [ ] Tags populated (not empty)
+   - [ ] Triggers: 3-6 action verbs
+   - [ ] Risk field set
+   - [ ] Source field set
+   - [ ] Path correct ("category/skill-name")
+3. **Frontmatter schema** — required fields present
+4. **Content quality** — examples present, no placeholders
 
-### Phase 6: INDEX
+### Phase 7: REGISTER (Delegate to skill-manage)
 
-Register in BOSS_INDEX:
+**skill-manage is the single registration authority. Do NOT edit any index directly.**
 
-1. Add entry to BOSS_INDEX.json:
-
-```json
-{
-  "id": "skill-name",
-  "name": "Skill Name",
-  "description": "WHAT it does + WHEN to use it (same as frontmatter)",
-  "category": "category-folder",
-  "tags": ["tag1", "tag2"],
-  "triggers": ["verb1", "verb2", "verb3"],
-  "risk": "safe",
-  "path": "category-folder/skill-name",
-  "source": "local"
-}
-```
-
-2. Run `update-index.ps1`:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .agents/skills/boss/update-index.ps1
-```
+1. Hand off to `../skill-manage/SKILL.md` → follow its **ADD SKILL** (canonical registration) workflow
+2. skill-manage determines category, checks duplicates, confirms frontmatter
+3. skill-manage runs `update-index.ps1` to regenerate both indexes + legacy index
+4. Verify: skill appears in `category-index.json` and `alphabetical-index.json` with correct `path`
 
 ## Frontmatter Fields Reference
 
 | Field | Required | Format | Example |
 |-------|----------|--------|---------|
 | `name` | Yes | kebab-case | `blog-writer` |
-| `description` | Yes | "WHAT + WHEN" string | "Generate SEO blog posts. Use when creating content." |
+| `description` | Yes | "WHAT + WHEN" | "Generate SEO blog posts. Use when creating content." |
 | `category` | Yes | boss folder name | `content` |
 | `risk` | Yes | safe/moderate/critical | `safe` |
-| `tags` | Yes | array of lowercase strings | `[writing, seo, content]` |
-| `triggers` | Yes | array of verbs | `[write, generate, create]` |
+| `tags` | Yes | lowercase array | `[writing, seo, content]` |
+| `triggers` | Yes | verb array | `[write, generate, create]` |
 | `source` | Yes | installed/local/adapted | `local` |
 | `allowed-tools` | No | tool names | `Read Write Bash` |
 
-## Keyword Enrichment Strategy
+## Search Term Strategy
 
-To improve low-token discovery in BOSS matching, add a `keywords` field directly to the BOSS_INDEX.json entry (not in the skill's frontmatter — this is metadata for the index only):
+`search_terms` in `alphabetical-index.json` are **auto-generated** by `update-index.ps1` from the skill's `tags`, `triggers`, `description`, and folder name (max 5 specific coder terms).
 
-```json
-{
-  "id": "blog-writer",
-  ...
-  "keywords": ["article", "post", "content-marketing", "wordpress", "cms", "copy", "blog"]
-}
-```
+To get good search terms, write:
+- **Specific tags** — concrete coder terms (e.g., `debug`, `refactor`, `deploy`, `seo`, `sermon`)
+- **Descriptive description** — domain vocabulary the transform can extract
+- **Actionable triggers** — verbs a user would actually say
 
-Keywords should include:
-- Synonyms of tags and description terms
-- Related domain terms users might search for
-- Common alternative phrasings
-- Acronyms if applicable
+Do **not** hand-edit `keywords` into any index — registration belongs to skill-manage.

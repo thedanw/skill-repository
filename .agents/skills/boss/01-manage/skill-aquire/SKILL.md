@@ -1,6 +1,6 @@
 ---
 name: skill-aquire
-description: "Search and install skills from the antigravity-awesome-skills GitHub repository. Use when looking for external skills to add to the BOSS repo. Downloads full skill folders including all supporting files, then adapts them for BOSS compatibility."
+description: "Search and install skills from antigravity-awesome-skills GitHub repo. Use when adding external skills to BOSS. Downloads full skill folders, adapts for BOSS compatibility."
 category: meta
 risk: moderate
 source: local
@@ -11,41 +11,33 @@ allowed-tools: Read Write Glob Grep Bash
 
 # Skill Aquire
 
-Search and install skills from the [antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills) GitHub repository. Downloads the full skill folder (including all supporting files), then adapts it for BOSS compatibility.
+Search and install skills from [antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills) GitHub repo. Downloads full skill folder (all supporting files), adapts for BOSS compatibility.
 
 ## Data Source
 
-- **Local index**: `awesome-skills_index.json` (in this directory) — 33K+ entries, searchable offline
-- **Remote repo**: `https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills` — source of truth for downloads
+- **Local index**: `awesome-skills_index.json` — 33K+ entries, searchable offline
+- **Remote repo**: `https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills` — source of truth
 - **Raw download**: `https://raw.githubusercontent.com/sickn33/antigravity-awesome-skills/main/skills/<skill-name>/`
 
 ## Workflow
 
 ### Phase 1: SEARCH
 
-1. **Understand the need** — what capability is the user looking for?
-2. **Search the local index** — grep `awesome-skills_index.json` for matching terms:
-
+1. **Understand need** — what capability?
+2. **Search local index** — grep `awesome-skills_index.json`:
 ```powershell
-# Search by keyword in name/description
 Select-String -Path "awesome-skills_index.json" -Pattern "<keyword>" -CaseSensitive:$false
 ```
-
-3. **Cross-reference BOSS_INDEX** — check if already installed:
-
+3. **Cross-ref index** — check if already installed:
 ```powershell
-Select-String -Path "../boss/BOSS_INDEX.json" -Pattern "<skill-name>" -CaseSensitive:$false
+Select-String -Path "../boss/alphabetical-index.json" -Pattern "<skill-name>" -CaseSensitive:$false
 ```
-
-4. **Present results** — show matching skills with:
-   - Name and description
-   - Category (awesome-skills category, not BOSS category)
-   - Whether already installed in BOSS
+4. **Present results** — name, description, awesome-skills category, BOSS install status
 
 ### Phase 2: SELECT
 
-1. **User picks a skill** from the search results
-2. **Confirm the target BOSS category** — map from awesome-skills category to BOSS category:
+1. **User picks skill** from results
+2. **Map category** — awesome-skills → BOSS:
 
 | Awesome Category | BOSS Category |
 |-----------------|---------------|
@@ -63,16 +55,12 @@ Select-String -Path "../boss/BOSS_INDEX.json" -Pattern "<skill-name>" -CaseSensi
 | ai-agents | meta |
 | ai-ml | development |
 
-3. **Confirm install path**: `.agents/skills/boss/<category>/<skill-name>/`
+3. **Confirm path**: `.agents/skills/boss/<category>/<skill-name>/`
 
 ### Phase 3: DOWNLOAD
 
-Clone or download the skill from GitHub. Two approaches:
-
-**Option A: Sparse git clone (recommended for single skill)**
-
+**Option A: Sparse git clone (recommended)**
 ```powershell
-# Create temp clone with sparse checkout
 $tempDir = "$env:TEMP\awesome-skill-download"
 git clone --depth 1 --filter=blob:none --sparse `
   https://github.com/sickn33/antigravity-awesome-skills.git $tempDir
@@ -80,33 +68,22 @@ cd $tempDir
 git sparse-checkout set "skills/<skill-name>"
 ```
 
-**Option B: Direct raw download (for simple skills)**
-
+**Option B: Direct raw download (simple skills)**
 ```powershell
-# Download individual files via raw.githubusercontent.com
 $baseUrl = "https://raw.githubusercontent.com/sickn33/antigravity-awesome-skills/main/skills/<skill-name>"
 Invoke-WebRequest -Uri "$baseUrl/SKILL.md" -OutFile "<target>/SKILL.md"
 ```
 
-After download, copy the full skill folder to the target:
-
+Copy to target:
 ```powershell
 $target = ".agents/skills/boss/<category>/<skill-name>"
 Copy-Item -Path "$tempDir/skills/<skill-name>" -Destination $target -Recurse -Force
-```
-
-Clean up temp:
-
-```powershell
 Remove-Item $tempDir -Recurse -Force
 ```
 
 ### Phase 4: ADAPT
 
-The downloaded skill needs BOSS compatibility:
-
-1. **Review the SKILL.md frontmatter** — ensure it has BOSS-required fields:
-
+1. **Review frontmatter** — ensure BOSS fields:
 ```yaml
 ---
 name: skill-name
@@ -121,37 +98,35 @@ allowed-tools:
 ```
 
 2. **Adapt frontmatter**:
-   - Set `category` to the BOSS category folder name
-   - Set `source` to `"adapted"`
-   - Add/adjust `tags` for BOSS discovery
-   - Add/adjust `triggers` with action verbs
+   - `category` → BOSS category folder name
+   - `source` → `"adapted"`
+   - Adjust `tags` for BOSS discovery
+   - Adjust `triggers` with action verbs
    - Set `risk` appropriately
-   - Ensure `description` includes WHAT + WHEN
+   - Ensure `description` has WHAT + WHEN
 
-3. **Review the body**:
-   - Remove references to Claude Code / Opencode / specific toolchains if not relevant
-   - Ensure instructions work in the BOSS/agent-agnostic context
+3. **Review body**:
+   - Remove Claude Code/Opencode/toolchain refs if irrelevant
+   - Ensure BOSS/agent-agnostic context
    - Keep all supporting files (scripts/, references/, etc.)
 
-4. **Validate** — run skill-check against the adapted skill:
-
+4. **Validate** — run skill-check:
 ```powershell
-# Read skill-check/SKILL.md and apply its validation
+# Read skill-check/SKILL.md and apply validation
 ```
 
-### Phase 5: INDEX
+### Phase 5: REGISTER (Delegate to skill-manage)
 
-1. Add entry to BOSS_INDEX.json with `source: "adapted"`
-2. Run update-index.ps1:
+**skill-manage is the single registration authority. Do NOT edit any index directly.**
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .agents/skills/boss/update-index.ps1
-```
+1. Hand off to `../skill-manage/SKILL.md` → follow its **ADD SKILL** (canonical registration) workflow
+2. Ensure frontmatter `category:` matches the target folder (skill-manage validates)
+3. skill-manage runs `update-index.ps1` to regenerate both indexes + legacy index
+4. Verify: skill appears in `category-index.json` and `alphabetical-index.json` with `source: "adapted"`
 
 ## Search Tips
 
-The `awesome-skills_index.json` has this schema per entry:
-
+Index schema per entry:
 ```json
 {
   "id": "skill-folder-name",
@@ -170,17 +145,17 @@ The `awesome-skills_index.json` has this schema per entry:
 }
 ```
 
-Search strategies:
-- **By capability**: grep for verbs in description ("generate", "analyze", "build")
-- **By domain**: grep for domain terms ("seo", "wordpress", "react", "api")
-- **By category**: filter the JSON by `category` field
-- **By target**: check `plugin.targets` for BOSS-compatible skills
+Strategies:
+- **By capability**: grep verbs ("generate", "analyze", "build")
+- **By domain**: grep terms ("seo", "wordpress", "react", "api")
+- **By category**: filter by `category` field
+- **By target**: check `plugin.targets` for BOSS-compatible
 
 ## Key Rules
 
-- Always cross-ref BOSS_INDEX before installing (avoid duplicates)
-- Always adapt frontmatter to BOSS schema before indexing
-- Preserve all supporting files from the original skill
-- Set `source` to `"adapted"` (not `"installed"`) for aquired skills
-- If a skill already exists in BOSS, suggest updating instead of overwriting
+- Cross-ref alphabetical-index.json before install (avoid duplicates)
+- Adapt frontmatter to BOSS schema before indexing
+- Preserve all supporting files from original
+- Set `source` to `"adapted"` for acquired skills
+- If exists in BOSS, suggest update over overwrite
 - Clean up temp files after download

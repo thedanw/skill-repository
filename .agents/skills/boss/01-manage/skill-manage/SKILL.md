@@ -1,231 +1,301 @@
 ---
 name: skill-manage
-description: "Manage BOSS skill category folders and keep BOSS_INDEX.json in sync. Use when adding, moving, removing, or reorganizing skills in .agents/skills/boss/. Handles category mapping, index updates, and index audit."
+description: "Manage BOSS skill taxonomy and maintain dual indexes (Category Index + Alphabetical Index). Owns category definitions, skill descriptions, coder search terms, index generation. Use when adding, moving, removing, or reorganizing skills in .agents/skills/boss/."
 category: meta
 risk: moderate
 source: local
-tags: [management, organization, index, categories, boss, sync, audit]
-triggers: [manage, move, add, remove, reorganize, sync, audit, clean, update-index, category]
+tags: [management, taxonomy, index, categories, boss, sync, audit, governance]
+triggers: [manage, move, add, remove, reorganize, sync, audit, clean, update-index, category, taxonomy]
 allowed-tools: Read Write Glob Grep Bash
 ---
 
 # Skill Manage
 
-Manage the BOSS skill category folders and keep `BOSS_INDEX.json` synchronized with the actual skill layout.
+Manage BOSS skill taxonomy and maintain **two minimal indexes** for low-token agentic workflows:
 
-## What It Does
+1. **Category Index (CAT-IDX)** — `category-index.json` — Skills grouped by category for agent category-first reasoning
+2. **Alphabetical Index (ALPHA-IDX)** — `alphabetical-index.json` — Flat skills array for human reference and direct lookup
 
-- **Audit** — scan boss/ folder vs BOSS_INDEX.json, find mismatches
-- **Add skill** — move a new skill into the correct category folder + update index
-- **Move skill** — relocate a skill to a different category folder + update index
-- **Remove skill** — delete a skill folder + remove from index
-- **Rebuild index** — run `update-index.ps1` to regenerate BOSS_INDEX.json
-- **Fix drift** — reconcile folder structure with index entries
+## Index Schemas
+
+### Category Index (CAT-IDX) — `category-index.json`
+
+```json
+[
+  {
+    "cat_id": "debugging",
+    "category_description": "Debug production issues: logging, profiling, error analysis, root cause analysis",
+    "skills": [
+      {
+        "id": "context-optimization",
+        "description": "Reduce token usage for small-context LLMs: compression, caching, partitioning strategies",
+        "path": "ai-meta/context-optimization"
+      }
+    ]
+  }
+]
+```
+
+**Fields:**
+- `cat_id` — Folder name, semantic, unique, kebab-case (e.g., `debugging`, `code-plan`)
+- `category_description` — Minimum words, task-focused, imperative (e.g., "Debug production issues: logging, profiling, error analysis")
+- `skills[].id` — Folder name, semantic, unique, kebab-case
+- `skills[].description` — Minimum words, when/why to use, task-focused
+- `skills[].path` — Relative to `.agents/skills/boss/` (e.g., `ai-meta/context-optimization`) — **required for cross-category references**
+
+### Alphabetical Index (ALPHA-IDX) — `alphabetical-index.json`
+
+```json
+[
+  {
+    "id": "context-optimization",
+    "description": "Reduce token usage for small-context LLMs: compression, caching, partitioning strategies",
+    "path": "ai-meta/context-optimization",
+    "search_terms": "context, tokens, compression, cache, partition, llm"
+  }
+]
+```
+
+**Fields:**
+- `id` — Folder name, semantic, unique, kebab-case
+- `description` — Same as CAT-IDX skill description (when/why to use)
+- `path` — Relative to `.agents/skills/boss/` (e.g., `code-plan/01_brainstorming`)
+- `search_terms` — One line, comma-separated, specific coder terms only (e.g., "debug, error" not "fix, solve")
+
+## Single Source of Truth Rule
+
+**Only one copy of a skill exists** (under `.agents/skills/boss/<category>/<skill-name>/`).
+
+- Skills may be **listed in multiple categories** in CAT-IDX for discoverability
+- Each CAT-IDX listing **must include `path`** to actual location
+- ALPHA-IDX always includes `path` for direct navigation
+- No file duplication — cross-category references are index-only via `path`
+
+## Single Registration Authority
+
+**skill-manage is the SINGLE authority for registering skills in the BOSS repository.**
+
+All skill registration flows through skill-manage:
+
+| Skill | Does | Registration |
+|-------|------|--------------|
+| skill-create | Scaffolds SKILL.md content | Delegates to skill-manage |
+| skill-aquire | Downloads/adapts external skills | Delegates to skill-manage |
+| skill-manage | Owns taxonomy, categories, indexes | **Owns registration** |
+
+**Rules:**
+- Registration = determine category, check duplicates, confirm frontmatter, rebuild indexes
+- **Never** manually edit `category-index.json`, `alphabetical-index.json`, or `BOSS_INDEX.json`
+- **Never** register a skill by hand-editing an index — always run the update script
+- Skill **names, descriptions, search_terms, and catalogue (category) assignments** are governed here
+
+## Taxonomy Governance
+
+### Category Definitions (Maintained by skill-manage)
+
+| cat_id | category_description |
+|--------|---------------------|
+| 00-setup | Scaffold and configure agentic workspace: agents.md, skill junctions, BOSS index |
+| ai-meta | Optimize agent context, prompts, multi-agent orchestration for token efficiency |
+| ai-skills | Build and refine LLM prompts, instructions, agent behaviors |
+| bible | Biblical research, sermon preparation, theological study |
+| code-plan | Plan features, design architecture, create technical specs, break down work |
+| content | Create, transform, manage content assets |
+| debugging | Debug production issues: logging, profiling, error analysis, root cause analysis |
+| design | Visual design, brand guidelines, UI patterns |
+| doc-create | Generate documents, presentations, formatted outputs |
+| github | Git operations, GitHub workflows, CI/CD pipelines |
+| marketing | Marketing strategy, growth tactics, SEO, social media |
+| memory | Knowledge management, persistent memory, context persistence |
+| seo | Search engine optimization, keyword research, content optimization |
+| tools | General utilities, converters, helper scripts |
+| ui-ux | User interface design, accessibility, frontend components |
+| writing | Writing, copywriting, editing, content creation |
+
+**Rules:**
+- Category descriptions **manually curated** by skill-manage (not auto-generated)
+- New categories require: folder creation + table entry + index rebuild
+- Category IDs must match folder names exactly (kebab-case, semantic)
+
+### Skill Descriptions (Generated from SKILL.md frontmatter)
+
+**Source:** SKILL.md frontmatter `description` field
+**Transform:** Rewrite "what it does" → "when/why to use" (task-focused)
+
+| Original (what) | Transformed (when/why) |
+|-----------------|------------------------|
+| "Refine and optimize user prompts for large language models" | "Improve LLM output quality: rewrite prompts, add examples, tune parameters" |
+| "Fetch the exact wording of the New Living Translation (NLT) for any Bible passage" | "Retrieve NLT Bible text: exact verse lookup for study or sermon prep" |
+
+**Rules:**
+- Minimum words to clearly communicate when/why
+- Imperative, task-focused language
+- No marketing fluff ("comprehensive", "powerful", "seamless")
+- Generated by update-index.ps1, manually reviewable
+
+### Coder Search Terms (Generated from skill content)
+
+**Source:** Skill's tags, triggers, description, folder name
+**Filter:** Specific terms a coder would type, max 5 terms, one comma-separated line
+
+| Skill | search_terms |
+|-------|--------------|
+| context-optimization | context, tokens, compression, cache, partition, llm |
+| pylance-refactoring | refactor, python, imports, types, wildcard, pylance |
+| 01_brainstorming | brainstorm, design, plan, requirements, architecture |
+| git-pushing | git, push, commit, remote, branch |
+
+**Rules:**
+- No vague terms: "fix", "solve", "manage", "handle", "process", "tool", "utility"
+- Yes specific terms: "debug", "error", "refactor", "deploy", "test", "lint", "build"
+- Max 5 terms per skill
+- One line, comma-separated, no trailing comma
 
 ## BOSS Folder Structure
 
 ```
 .agents/skills/boss/
-├── BOSS_INDEX.json      ← master registry (auto-generated)
-├── SKILL.md             ← BOSS meta-orchestrator
-├── update-index.ps1     ← index rebuild script
-├── code-plan/           ← skills for code planning
-├── debugging/           ← debugging & troubleshooting skills
-├── doc-create/          ← document creation skills
-├── github/              ← GitHub/Git operations
-├── marketing/           ← marketing & growth
-├── memory/              ← memory & knowledge management
-├── tools/               ← general tools & utilities
-├── ui-ux/               ← UI/UX, design, frontend
-└── writing/             ← writing & content skills
+├── category-index.json          ← CAT-IDX (auto-generated)
+├── alphabetical-index.json      ← ALPHA-IDX (auto-generated)
+├── BOSS_INDEX.json              ← Legacy (backward compat)
+├── SKILL.md                     ← BOSS meta-orchestrator
+├── update-index.ps1             ← Index rebuild script (enhanced)
+├── 01-manage/                   ← Tooling only (not a category)
+│   ├── 00-manage-orchestrator/
+│   ├── skill-create/
+│   ├── skill-aquire/
+│   └── skill-manage/            ← THIS SKILL
+├── ai-meta/                     ← Category folders (skills live here)
+├── ai-skills/
+├── bible/
+├── code-plan/
+├── content/
+├── debugging/
+├── design/
+├── doc-create/
+├── github/
+├── marketing/
+├── memory/
+├── seo/
+├── tools/
+├── ui-ux/
+└── writing/
 ```
-
-## Current Category Mapping
-
-| Category Folder | Purpose | Example Skills |
-|----------------|---------|----------------|
-| `code-plan` | Code planning, architecture | squirrel |
-| `debugging` | Debug, fix, troubleshoot | systematic-debugging, bug-hunter, logic-lens, performance-optimizer |
-| `doc-create` | Create documents, presentations | python-pptx-generator |
-| `github` | Git, GitHub, CI/CD | git-pushing, codebase-audit-pre-push |
-| `marketing` | Marketing, growth, SEO, social | social-post-writer-seo |
-| `memory` | Memory systems, knowledge | mcp-agent-memory |
-| `tools` | General tools, utilities | youtube-summarizer |
-| `ui-ux` | UI, UX, design, frontend | ui-a11y, ui-component, frontend-design |
-| `writing` | Writing, copywriting, content | copywriting, unslop, wordpress-centric-blog |
 
 ## Workflow
 
-### AUDIT — Find Drift Between Folders and Index
+### AUDIT — Find Drift Between Folders and Indexes
 
-1. **Scan folder structure**:
-
-```powershell
-$bossDir = ".agents/skills/boss"
-$categoryDirs = Get-ChildItem -Path $bossDir -Directory | Where-Object {
-    $_.Name -notin @('scripts', '01-manage')
-} | Sort-Object Name
-
-foreach ($cat in $categoryDirs) {
-    $skills = Get-ChildItem -Path $cat.FullName -Directory | Sort-Object Name
-    Write-Host "$($cat.Name): $($skills.Count) skills"
-    foreach ($s in $skills) {
-        $hasMd = Test-Path (Join-Path $s.FullName "SKILL.md")
-        Write-Host "  $($s.Name) $(if(-not $hasMd){'[NO SKILL.md]'})"
-    }
-}
-```
-
-2. **Compare against BOSS_INDEX.json** — for each index entry:
-   - Does the path still exist?
-   - Does the category match the actual folder?
-   - Are there skills in folders missing from the index?
-
+1. **Scan folder structure**
+2. **Compare against both indexes**:
+   - CAT-IDX: Every skill folder appears in exactly one category's skills array
+   - ALPHA-IDX: Every skill folder appears exactly once in the array
+   - Both indexes have matching descriptions for same skill ID
 3. **Report mismatches**:
 
 | Issue | Severity | Fix |
 |-------|----------|-----|
-| Skill in folder but not in index | Warning | Add to index, run update-index.ps1 |
-| Index entry but folder missing | Critical | Remove from index or restore folder |
-| Category mismatch | Warning | Update either folder location or index entry |
-| Empty tags/tracks | Info | Enrich frontmatter |
-| `risk: "unknown"` | Info | Set correct risk level |
+| Skill in folder but not in CAT-IDX | Critical | Add to category, rebuild |
+| Skill in folder but not in ALPHA-IDX | Critical | Add to alphabetical, rebuild |
+| Skill in CAT-IDX but folder missing | Critical | Remove from index or restore folder |
+| Skill in ALPHA-IDX but folder missing | Critical | Remove from index or restore folder |
+| Description mismatch between indexes | Warning | Regenerate from SKILL.md |
+| Category description missing | Warning | Add to taxonomy table, rebuild |
+| search_terms missing or vague | Warning | Regenerate from skill content |
 
-### ADD SKILL — Install New Skill to Boss
+### ADD SKILL — Install New Skill to Boss (Canonical Registration)
 
-1. **Determine category** — match skill purpose to category table above
-2. **Check for duplicates** — search BOSS_INDEX.json for same name
+This is the **single registration path** for all skills (used directly, or delegated to by skill-create and skill-aquire).
+
+1. **Determine category** — match skill purpose to category table
+2. **Check for duplicates** — search both indexes for same ID
 3. **Create folder**:
-
 ```powershell
 New-Item -ItemType Directory -Path ".agents/skills/boss/<category>/<skill-name>" -Force
 ```
-
 4. **Write SKILL.md** — with proper BOSS frontmatter (see skill-create)
-5. **Add to BOSS_INDEX.json** — insert entry matching schema
-6. **Run update-index.ps1**:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .agents/skills/boss/update-index.ps1
-```
+5. **Confirm frontmatter** — `category:` must match the folder name (validation enforces this)
+6. **Run update-index.ps1** — regenerates both indexes from all SKILL.md files
+7. **Verify** — skill appears in `category-index.json` and `alphabetical-index.json` with correct `path`
 
 ### MOVE SKILL — Change Category
 
 1. **Confirm source and destination** — old category → new category
 2. **Move folder**:
-
 ```powershell
 Move-Item -Path ".agents/skills/boss/<old-category>/<skill-name>" `
           -Destination ".agents/skills/boss/<new-category>/<skill-name>" -Force
 ```
-
-3. **Update BOSS_INDEX.json** — change `category` and `path` fields
-4. **Run update-index.ps1**
+3. **Run update-index.ps1** — regenerates both indexes with new category
 
 ### REMOVE SKILL — Delete Skill
 
-1. **Confirm deletion** — warn user, this is destructive
+1. **Confirm deletion** — warn user, destructive
 2. **Remove folder**:
-
 ```powershell
 Remove-Item -Path ".agents/skills/boss/<category>/<skill-name>" -Recurse -Force
 ```
+3. **Run update-index.ps1** — regenerates both indexes without the skill
 
-3. **Remove from BOSS_INDEX.json** — delete the entry
-4. **Run update-index.ps1**
+### REBUILD INDEX — Full Regeneration (Single Source of Truth)
 
-### REBUILD INDEX — Full Regeneration
-
-Run the update script:
-
+Run enhanced update script:
 ```powershell
 powershell -ExecutionPolicy Bypass -File .agents/skills/boss/update-index.ps1
 ```
 
-**Note**: update-index.ps1 only scans one-level-deep category folders. It skips:
-- Folders at category root level (no subfolder)
-- Folders 2+ levels deep
-- The `scripts/` folder
+**What update-index.ps1 does (enhanced):**
+1. Scans all category folders (excludes `scripts/`, `01-manage/`)
+2. Reads SKILL.md frontmatter from each skill
+3. Generates skill description (when/why format) from frontmatter.description
+4. Generates search_terms from tags + triggers + description
+5. Builds CAT-IDX: groups by category, uses manual category descriptions
+6. Builds ALPHA-IDX: flat array sorted by id, includes path + search_terms
+7. Writes `category-index.json` and `alphabetical-index.json`
+8. Optionally updates legacy `BOSS_INDEX.json` for backward compat
 
-For skills in non-standard locations, manually add entries to BOSS_INDEX.json.
+### TAXONOMY MAINTENANCE — Category Descriptions
 
-### FIX DRIFT — Full Reconciliation
+**Add new category:**
+1. Create folder: `New-Item -ItemType Directory -Path ".agents/skills/boss/<new-category>"`
+2. Add entry to Category Definitions table in this SKILL.md
+3. Run update-index.ps1
 
-Run this combined check:
+**Update category description:**
+1. Edit Category Definitions table in this SKILL.md
+2. Run update-index.ps1
 
-```powershell
-$bossDir = ".agents/skills/boss"
-$index = Get-Content "$bossDir/BOSS_INDEX.json" -Raw | ConvertFrom-Json
+**Remove category:**
+1. Move all skills to other categories first
+2. Remove folder: `Remove-Item -Path ".agents/skills/boss/<category>" -Recurse -Force`
+3. Remove entry from Category Definitions table
+4. Run update-index.ps1
 
-# Get all actual skill folders
-$actualSkills = @()
-$categoryDirs = Get-ChildItem -Path $bossDir -Directory | Where-Object { $_.Name -ne 'scripts' }
-foreach ($cat in $categoryDirs) {
-    $skillDirs = Get-ChildItem -Path $cat.FullName -Directory -ErrorAction SilentlyContinue
-    foreach ($s in $skillDirs) {
-        $actualSkills += @{
-            Path = "$($cat.Name)/$($s.Name)"
-            Category = $cat.Name
-        }
-    }
-}
+### VALIDATION RULES (Enforced by update-index.ps1)
 
-# Find index entries without folders
-foreach ($entry in $index.skills) {
-    $folderExists = $actualSkills | Where-Object { $_.Path -eq $entry.path }
-    if (-not $folderExists) {
-        Write-Host "ORPHAN: $($entry.path) in index but no folder" -ForegroundColor Red
-    }
-}
+1. **Every skill folder has SKILL.md** — error if missing
+2. **Every SKILL.md has valid frontmatter** — error if missing name, description, category
+3. **Category in frontmatter matches folder location** — error if mismatch
+4. **Skill ID = folder name** — error if mismatch
+5. **Category ID = folder name** — error if mismatch
+6. **No duplicate skill IDs across categories** — error if duplicate
+7. **search_terms ≤ 5 terms, specific coder terms only** — warning if violated
+8. **Descriptions non-empty, task-focused** — warning if generic
 
-# Find folders without index entries
-foreach ($actual in $actualSkills) {
-    $inIndex = $index.skills | Where-Object { $_.path -eq $actual.Path }
-    if (-not $inIndex) {
-        Write-Host "MISSING: $($actual.Path) in folder but not in index" -ForegroundColor Yellow
-    }
-}
+## Anti-Patterns (Hard Stops)
 
-# Find category mismatches
-foreach ($entry in $index.skills) {
-    $actual = $actualSkills | Where-Object { $_.Path -eq $entry.path }
-    if ($actual -and $actual.Category -ne $entry.category) {
-        Write-Host "MISMATCH: $($entry.path) index says '$($entry.category)' but folder is '$($actual.Category)'" -ForegroundColor Magenta
-    }
-}
+| Wrong Action | Why | Correct Action |
+|-------------|-----|---------------|
+| Editing category-index.json manually | Overwritten by update-index.ps1 | Run update-index.ps1 after changes |
+| Editing alphabetical-index.json manually | Overwritten by update-index.ps1 | Run update-index.ps1 after changes |
+| Creating skill in 01-manage/ | Tooling only, not skill destination | Create in boss/<category>/ |
+| Creating skill directly in boss/ (no category) | Skills must be in category folders | Create in boss/<category>/<skill-name>/ |
+| Adding cross-listings in CAT-IDX | Single source of truth: primary category only | Skill appears only in its folder's category |
+| Using vague search_terms ("fix", "manage") | Low precision, wastes tokens | Use specific terms ("debug", "refactor", "deploy") |
+| Forgetting to run update-index.ps1 | Indexes drift from reality | Always run after add/move/remove/category change |
 
-Write-Host "`nTotal in index: $($index.skills.Count)"
-Write-Host "Total in folders: $($actualSkills.Count)"
-```
+## Backward Compatibility
 
-## BOSS_INDEX.json Entry Schema
-
-```json
-{
-  "id": "skill-folder-name",
-  "name": "Human Readable Name",
-  "description": "WHAT it does + WHEN to use it",
-  "category": "boss-category-folder-name",
-  "tags": ["tag1", "tag2", "tag3"],
-  "triggers": ["verb1", "verb2", "verb3"],
-  "risk": "safe",
-  "path": "category/skill-folder-name",
-  "source": "installed"
-}
-```
-
-## Key Rules
-
-- `category` field MUST match the actual folder name under `boss/`
-- `path` field MUST be `"category/skill-name"` matching actual location
-- `id` should match the skill folder name (kebab-case)
-- Always run `update-index.ps1` after structural changes
-- Never leave `risk: "unknown"` — determine the actual risk level
-- Empty `tags` arrays should be populated for discoverability
-- Empty `triggers` arrays should be populated for BOSS matching
-
-## Integration with Other Skills
-
-- **skill-create** — creates the skill content; skill-manage puts it in the right folder
-- **skill-aquire** — downloads and adapts external skills; skill-manage categorizes and indexes
-- Both skill-create and skill-aquire should call skill-manage's move/add/index workflows
+- `BOSS_INDEX.json` still generated (legacy format) for existing consumers
+- New indexes are additive — no breaking changes to three-tier registry
+- Agents can migrate to new indexes progressively
