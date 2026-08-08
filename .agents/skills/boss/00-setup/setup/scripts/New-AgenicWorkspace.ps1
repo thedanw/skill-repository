@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Scaffold a complete agenic workspace from scratch.
 .DESCRIPTION
@@ -6,13 +6,13 @@
     1. Create .agents directory
     2. Link skills via junction
     3. Generate agents.md
-    4. Rebuild BOSS_INDEX.json
+    4. Rebuild the BOSS skill indexes
 .PARAMETER WorkspaceRoot
     The root directory of the project to set up.
 .PARAMETER SkillRepoPath
     The full path to the skill repository's .agents\skills folder.
 .PARAMETER SkipIndexUpdate
-    Skip rebuilding BOSS_INDEX.json (useful if the index is already current).
+    Skip rebuilding the indexes (useful if they are already current).
 .EXAMPLE
     .\New-AgenicWorkspace.ps1 -WorkspaceRoot "C:\Projects\my-app" -SkillRepoPath "C:\skill-repo\.agents\skills"
 #>
@@ -66,9 +66,10 @@ This workspace uses the **BOSS meta-orchestrator** — a low-token skill registr
 
 1. **Guardrail check** — Can you solve the task with basic tools (file editing, terminal, conversation)? If yes, solve directly. No skill needed.
 
-2. **Registry lookup** — If the task is complex, query `BOSS_INDEX.json` at `.agents/skills/boss/BOSS_INDEX.json`:
+2. **Registry lookup** — If the task is complex, query `category-index.json` at `.agents/skills/boss/category-index.json` (CAT-IDX):
    - Extract 2-5 keywords from the task
-   - Match against skill `tags` and `triggers` in the index
+   - Reason over each `category_description` to pick the relevant category, then scan that category's `skills`
+   - If ambiguous, check `alphabetical-index.json` (ALPHA-IDX) and match keywords against `search_terms`
    - If a `PROJECT_INDEX.json` exists at `.agents/skills/PROJECT_INDEX.json`, merge it (project skills override on name conflict)
 
 3. **Load only what you need** — For each matched skill:
@@ -89,13 +90,13 @@ This workspace uses the **BOSS meta-orchestrator** — a low-token skill registr
 Set-Content -Path $agentsMdPath -Value $agentsMdContent -Encoding UTF8
 Write-Host "  ✓ $agentsMdPath"
 
-# Step 4: Rebuild BOSS_INDEX.json
+# Step 4: Rebuild the skill indexes
 if (-not $SkipIndexUpdate) {
-    Write-Host "[4/4] Rebuilding BOSS_INDEX.json..." -ForegroundColor Yellow
+    Write-Host "[4/4] Rebuilding the skill indexes..." -ForegroundColor Yellow
     $updateScript = Join-Path -Path $junctionPath -ChildPath "boss\01-manage\skill-manage\scripts\update-index.ps1"
     if (Test-Path -Path $updateScript) {
         & $updateScript
-        Write-Host "  ✓ BOSS_INDEX.json updated"
+        Write-Host "  ✓ Indexes updated"
     } else {
         Write-Warning "update-index.ps1 not found at $updateScript — skipping index rebuild"
     }
@@ -107,6 +108,6 @@ Write-Host ""
 Write-Host "=== Setup complete! ===" -ForegroundColor Green
 Write-Host ""
 Write-Host "Next steps:"
-Write-Host "  - Agents will discover skills via BOSS_INDEX.json"
+Write-Host "  - Agents will discover skills via category-index.json / alphabetical-index.json"
 Write-Host "  - Edit .agents/agents.md to customize agent behavior"
-Write-Host "  - Run 'pwsh .agents/skills/boss/update-index.ps1' after adding new skills"
+Write-Host "  - Run 'pwsh .agents/skills/boss/01-manage/skill-manage/scripts/update-index.ps1' after adding new skills"

@@ -117,6 +117,8 @@ All skill registration flows through skill-manage:
 - New categories require: folder creation + table entry + index rebuild
 - Category IDs must match folder names exactly (kebab-case, semantic)
 
+**Consolidation rationale (11 categories):** The taxonomy was consolidated from 16 to 11 categories to keep the CAT-IDX compact and category-first reasoning unambiguous. Merged: `ai-skills` → `ai-meta`, `design` → `ui-ux`, `seo` → `marketing`, `content` + `doc-create` → `writing`. Each merged category's description covers the absorbed skills' scope.
+
 ### Skill Descriptions (Generated from SKILL.md frontmatter)
 
 **Source:** SKILL.md frontmatter `description` field

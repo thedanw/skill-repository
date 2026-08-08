@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Create or repair the skills junction from a workspace to the skill repository.
 .DESCRIPTION

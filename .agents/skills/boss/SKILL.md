@@ -78,18 +78,17 @@ If neither local tier has a matching skill, fetch this remote catalog. Install a
 User Task
   ├─ Is it simple? → Solve directly (guardrail)
   └─ Is it complex?
-       ├─ Read category-index.json (CAT-IDX) — ~2KB
-       │    └─ Agent reasons about category_description → selects relevant category
-       ├─ Read single category file from CAT-IDX — ~1-2KB
-       │    └─ Agent scans skill descriptions → selects best skill
-       ├─ (Optional) Read alphabetical-index.json (ALPHA-IDX) for full details
+       ├─ Read category-index.json (CAT-IDX) — ~30KB
+       │    └─ Agent reasons over category_description fields → selects relevant category
+       │    └─ Scans that category's skills array → selects best skill
+       ├─ (Optional) Read alphabetical-index.json (ALPHA-IDX) for search_terms lookup
        ├─ Query PROJECT_INDEX.json if exists (Tier 2)
        └─ Fetch remote catalog if no match (Tier 3)
             → Load matched skills into context
             → Record combination in AIngram
 ```
 
-**Token Efficiency:** Agent loads ~3-5KB total vs 25KB+ for full BOSS_INDEX.json scan.
+**Token Efficiency:** CAT-IDX (~30KB) + ALPHA-IDX (~26KB) replace the legacy single BOSS_INDEX.json (~70KB). Descriptions are stored in compact when/why form, so the agent reads structured lookups instead of full SKILL.md bodies. (Per-category file slicing is a future optimization if single-file load needs to shrink further.)
 
 ---
 
@@ -120,7 +119,7 @@ Place this file at the workspace root as `agents.md`. It defines available agent
 - **Description:** Full UI/UX pipeline from tokens to pages to accessibility audits, including CSS architecture methodologies
 
 ### writer
-- **Skills:** copywriting, unslop, wordpress-blogwriting-skill, social-post-writer-seo
+- **Skills:** copywriting, unslop, wordpress-centric-high-seo-optimized-blogwriting-skill, social-post-writer-seo
 - **Triggers:** "write copy", "blog post", "social media post", "de-AI this text"
 - **Description:** Conversion-focused copy, SEO blog posts, and content refinement
 
@@ -130,7 +129,7 @@ Place this file at the workspace root as `agents.md`. It defines available agent
 - **Description:** Pre-push codebase audit and git workflow automation
 
 ### document-creator
-- **Skills:** python-pptx-generator, writer, youtube-summarizer
+- **Skills:** python-pptx-generator, libreoffice-writer, youtube-summarizer
 - **Triggers:** "create a presentation", "write a document", "summarize a video"
 - **Description:** Document generation, PowerPoint creation, video summarization
 
@@ -167,12 +166,13 @@ Ask: *"Can I solve this with basic file editing, terminal commands, and conversa
 - If **YES** → Solve directly. STOP.
 - If **NO** → Continue to Step 2.
 
-### Step 2: Registry Query
-1. Read `BOSS_INDEX.json` into a compact search structure.
-2. Extract 2-5 keywords from the user's task.
-3. Match keywords against skill `tags` and `triggers` in the index.
-4. If a `PROJECT_INDEX.json` exists in `.agents/skills/`, merge it (project skills override boss skills on name conflict).
-5. If no match found locally, fetch the remote catalog and recommend installation.
+### Step 2: Registry Query (Category-First)
+1. Extract 2-5 keywords from the user's task.
+2. Read `category-index.json` (CAT-IDX) and reason over each `category_description` to pick the relevant category.
+3. Read only that category's `skills` array; scan `description` + `path` to select the best skill.
+4. If ambiguous, read `alphabetical-index.json` (ALPHA-IDX) flat list and match keywords against `search_terms`.
+5. If a `PROJECT_INDEX.json` exists in `.agents/skills/`, merge it (project skills override boss skills on name conflict).
+6. If no match found locally, fetch the remote catalog and recommend installation.
 
 ### Step 3: Skill Loading
 For each matched skill:

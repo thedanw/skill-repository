@@ -178,7 +178,6 @@ function Generate-SearchTerms {
 
 $skills = @()
 $skillCount = 0
-$skipCount = 0
 $errorCount = 0
 $warningCount = 0
 
