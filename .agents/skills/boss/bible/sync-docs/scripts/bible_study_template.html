@@ -17,6 +17,19 @@
             --page-bg: #FFFFFF;
             --screen-bg: #60695C;
             --meta-bg: #F8F9FA;
+            --answer-grey: #999999;
+        }
+
+        /* Leader guide: answers rendered as muted grey blocks under questions */
+        .answer-block {
+            display: block;
+            margin: 0 0 0.75rem calc(70px + 0.5rem);
+            padding: 0.4rem 0.75rem;
+            font-size: 0.88em;
+            color: var(--answer-grey);
+            font-style: italic;
+            border-left: 2px solid var(--answer-grey);
+            background: #FAFAFA;
         }
 
         * {
@@ -186,8 +199,8 @@
             display: grid;
             grid-template-columns: 70px 1fr;
             column-gap: 0.5rem;
-            margin-top: 0.0rem;
-            margin-bottom: 1.2rem;
+            margin-top: 1.2rem;
+            margin-bottom: 0 rem;
             /* Margin spacing after each question content */
             align-items: start;
         }
@@ -205,6 +218,23 @@
             color: var(--text-dark);
             display: flex;
             align-items: start;
+        }
+        .subquestion {
+            margin-top: 0.4rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .subquestion .question-label-sub {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            color: var(--secondary-grey);
+            text-align: center;
+            padding-top: 0.15rem;
+        }
+
+        .subquestion .question-content {
+            color: var(--text-dark);
+            opacity: 0.92;
         }
 
         .question-num {
@@ -224,6 +254,44 @@
             color: var(--primary);
             border-bottom: 3px double var(--text-dark);
             padding-bottom: 0.5rem;
+        }
+
+        /* Symbols reference section (after TOC) */
+        .symbols-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--meta-bg);
+        }
+        .symbols-section h2 {
+            font-family: 'Inter Tight', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .symbols-section p {
+            font-size: 0.85rem;
+            color: var(--secondary-grey);
+            margin-bottom: 1rem;
+        }
+        .symbols-section table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        .symbols-section th {
+            text-align: left;
+            padding: 0.5rem 0.6rem;
+            background: var(--meta-bg);
+            color: var(--primary);
+            font-family: 'Inter Tight', sans-serif;
+            font-weight: 700;
+            border-bottom: 2px solid var(--primary);
+        }
+        .symbols-section td {
+            padding: 0.45rem 0.6rem;
+            border-bottom: 1px solid var(--meta-bg);
+            vertical-align: top;
         }
 
         table.toc {
@@ -453,6 +521,7 @@
                 {{toc_rows}}
             </tbody>
         </table>
+        {{symbols_table}}
     </div>
     <div class='page-break'></div>
 

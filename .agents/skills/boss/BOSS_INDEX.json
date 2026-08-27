@@ -1,6 +1,6 @@
 ﻿{
     "version":  2,
-    "generatedAt":  "2026-08-08T15:09:11Z",
+    "generatedAt":  "2026-08-11T11:35:32Z",
     "registryType":  "boss-local",
     "skills":  [
                    {
@@ -1095,6 +1095,27 @@
                                 ],
                        "triggers": ["design"],
                        "path":  "ui-ux/unsplash-integration",
+                       "source":  "installed"
+                   },
+                   {
+                       "id":  "use-gesture-react",
+                       "name":  "use-gesture-react",
+                       "description":  "Implement use-gesture library within React components for gesture-based interactions. Use when adding drag, scroll, pin, press, and other gesture functionality to React UI elements.",
+                       "category":  "ui-ux",
+                       "tags":  [
+                                    "react",
+                                    "gestures",
+                                    "drag",
+                                    "scroll",
+                                    "pin",
+                                    "press",
+                                    "touch",
+                                    "mouse",
+                                    "wheel",
+                                    "interaction"
+                                ],
+                       "triggers": [],
+                       "path":  "ui-ux/use-gesture-react",
                        "source":  "installed"
                    },
                    {

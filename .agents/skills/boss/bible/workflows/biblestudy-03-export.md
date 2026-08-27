@@ -9,6 +9,10 @@ This workflow uses the central `createDocs` engine to generate professionally de
 ## 1. Goal
 Convert a series of Bible studies into multiple formats (HTML, RTF, GDoc, PDF) with specific branding for group discussion.
 
+**Outputs (2 per run):**
+1. **Leader Guide** — filename includes `leadersguide` (e.g., `Revelation_leadersguide.html`). Includes answers rendered in muted grey under each question.
+2. **Participant Guide** — filename without `leadersguide` (e.g., `Revelation.html`). Answers stripped entirely.
+
 ## 2. Process
 
 ### Step 1: Preparation
@@ -17,9 +21,15 @@ Convert a series of Bible studies into multiple formats (HTML, RTF, GDoc, PDF) w
 
 ### Step 2: Invoke createDocs
 // turbo
-1.  **Generate Base Files**: Run the central conversion: 
-    - `python .agents\skills\sync-docs\scripts\create_docs.py "[Target Path]" --html`
-    - `python .agents\skills\sync-docs\scripts\md_to_gdoc.py "[Target Path]" --export docx,pdf`
+1.  **Generate Base Files**: Run the central conversion for **both outputs**:
+    - **Leader Guide** (with answers):
+      - `python .agents\skills\sync-docs\scripts\create_docs.py "[Target Path]" --html --output "[Target Name]_leadersguide.html" --mode leader`
+      - `python .agents\skills\sync-docs\scripts\md_to_gdoc.py "[Target Path]" --export docx,pdf --output "[Target Name]_leadersguide" --mode leader`
+    - **Participant Guide** (no answers):
+      - `python .agents\skills\sync-docs\scripts\create_docs.py "[Target Path]" --html --output "[Target Name].html" --mode participant`
+      - `python .agents\skills\sync-docs\scripts\md_to_gdoc.py "[Target Path]" --export docx,pdf --output "[Target Name]" --mode participant`
+
+    The `--mode` flag controls answer processing (see Answer Rendering section above).
 
 ### Step 3: Bible Study Specialization
 When using `createDocs` for Bible Studies, ensure the following logic is applied (via prompts or manual script adjust):
@@ -60,6 +70,7 @@ The generated HTML should follow these CSS and Structural rules:
     --text-dark: #313638;
     --secondary-grey: #60695C;
     --meta-bg: #F8F9FA;
+    --answer-grey: #888888;  /* Muted grey for leader guide answers */
 }
 
 .page {
@@ -69,6 +80,44 @@ The generated HTML should follow these CSS and Structural rules:
     padding: 2cm;
     background: #fff;
 }
+```
+
+### Answer Rendering (Leader Guide Only)
+```css
+/* Leader guide: answers appear as muted grey text under each question */
+.answer-block {
+    display: block;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    font-size: 0.9em;
+    color: var(--answer-grey);
+    font-style: italic;
+    border-left: 2px solid var(--answer-grey);
+}
+
+/* Participant guide: answers are completely removed at build time */
+```
+
+### Build-Time Answer Processing
+```python
+# In create_docs.py or a pre-processor step:
+import re
+
+def process_answers(markdown_content, mode='leader'):
+    """
+    mode='leader': unwrap <!-- ANSWER ... --> into <div class="answer-block">Answer</div>
+    mode='participant': strip all <!-- ANSWER ... --> comments entirely
+    """
+    if mode == 'participant':
+        # Remove all answer comments
+        return re.sub(r'<!--\s*ANSWER[\s\S]*?-->', '', markdown_content)
+    else:
+        # Convert to HTML div for leader guide
+        def replacer(match):
+            answer_text = match.group(1).strip()
+            return f'<div class="answer-block">{answer_text}</div>'
+        return re.sub(r'<!--\s*ANSWER\s*([\s\S]*?)\s*-->', replacer, markdown_content)
 ```
 
 ### CSS Counter System (Continuous Numbering)

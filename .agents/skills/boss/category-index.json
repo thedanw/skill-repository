@@ -383,6 +383,11 @@
                            "path":  "ui-ux/unsplash-integration"
                        },
                        {
+                           "id":  "use-gesture-react",
+                           "description":  "Implement use-gesture library within React components for gesture-based interactions: use when adding drag, scroll, pin, press, and other gesture f...",
+                           "path":  "ui-ux/use-gesture-react"
+                       },
+                       {
                            "id":  "ux-audit",
                            "description":  "Audit screens against Nielsen\u0027s heuristics and mobile UX best practices using the StyleSeed Toss design language as the implementation context.: in...",
                            "path":  "ui-ux/ux-audit"

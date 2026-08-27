@@ -65,7 +65,7 @@ Your goal here is **rhetorical clarity**, not speed.
 **Rules:**
 
 - Ask **one question per message**
-- Prefer **multiple-choice questions** when possible
+- Prefer **numbered multiple-choice questions** when possible (use agent tools to ask user questions)
 - Focus on the "Hook" or "Need" of the user's request
 - If a issue is complex, split it into multiple interpretive questions
 
@@ -137,9 +137,8 @@ When presenting options:
 
 Cover for each path:
 - The specific "Hook" phrasing (<90 chars)
-- Suggested illustration or metaphor
-- The Grace Dynamic specific to this angle
-- Proposed literary device (e.g., alliteration, irony)
+- Suggested illustration or metaphor (< 90 chars)
+- The Grace Dynamic specific to this angle (<50 chars)
 
 ---
 

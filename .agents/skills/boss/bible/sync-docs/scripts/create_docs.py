@@ -48,6 +48,16 @@ def generate_html(md_path, output_path):
             series_subtitle = lines[1].strip()
     intro_text = ""
 
+    # 1b. Extract Symbols Table (if present) for display after the TOC
+    symbols_table = ""
+    symbols_match = re.search(r'(##\s*Symbols in Revelation[\s\S]*?)(?=\n---\n|\Z)', full_text)
+    if symbols_match:
+        symbols_md = symbols_match.group(1)
+        # Convert to HTML
+        symbols_html = markdown.markdown(symbols_md, extensions=['extra', 'tables'])
+        # Wrap in a styled container
+        symbols_table = f"<div class='symbols-section'>{symbols_html}</div>"
+
     # 2. Split into Studies
     studies_raw = full_text.split('\n---\n')
 
@@ -144,6 +154,29 @@ def generate_html(md_path, output_path):
         body_html = re.sub(r'<p><strong>(\w+)</strong>:\s*(.*?)</p>', replace_question_row, body_html)
         body_html = re.sub(r'<p>(\w+):\s*(.*?)</p>', replace_question_row, body_html)
 
+        # Convert <ul><li> lists that immediately follow a question-row into
+        # sub-question rows (indented, no bullet) instead of bulleted lists.
+        def replace_subquestion_list(match):
+            list_html = match.group(1)
+            items = re.findall(r'<li>(.*?)</li>', list_html, flags=re.DOTALL)
+            rows = []
+            for item in items:
+                item_clean = item.strip()
+                if not item_clean:
+                    continue
+                rows.append(f"""<div class="question-row subquestion">
+                    <div class="question-label question-label-sub">•</div>
+                    <div class="question-content">{item_clean}</div>
+                </div>""")
+            return "\n".join(rows)
+
+        body_html = re.sub(
+            r'<ul>\s*((?:<li>.*?</li>\s*)+)</ul>',
+            lambda m: replace_subquestion_list(m) if '<li>' in m.group(1) else m.group(0),
+            body_html,
+            flags=re.DOTALL
+        )
+
         # Style Read headers: format "## Read [Passage]" as an H2 with a Material Icon
         # Pattern: <h2>Read (.*?)</h2>
         def replace_read_heading(match):
@@ -182,6 +215,7 @@ def generate_html(md_path, output_path):
     final_html = final_html.replace("{{intro_text}}", intro_text.strip().replace("\n", "<br>"))
     final_html = final_html.replace("{{year}}", year)
     final_html = final_html.replace("{{toc_rows}}", toc_rows)
+    final_html = final_html.replace("{{symbols_table}}", symbols_table)
     final_html = final_html.replace("{{study_pages}}", study_pages)
     final_html = final_html.replace("{{series_subtitle}}", series_subtitle)
 
@@ -291,6 +325,9 @@ if __name__ == "__main__":
     parser.add_argument('--html', action='store_true', help='Generate HTML')
     parser.add_argument('--rtf', action='store_true', help='Generate RTF')
     parser.add_argument('--pdf', action='store_true', help='Generate PDF (from HTML template)')
+    parser.add_argument('--output', default=None, help='Output file path (overrides default naming)')
+    parser.add_argument('--mode', choices=['leader', 'participant'], default=None,
+                        help='leader: render <!-- ANSWER --> as grey answer blocks; participant: strip them')
     args = parser.parse_args()
     
     if not os.path.exists(args.path):
@@ -300,14 +337,42 @@ if __name__ == "__main__":
     base = os.path.splitext(args.path)[0]
     
     # If PDF is requested, we MUST generate HTML first (or at least have it available)
-    html_path = base + ".html"
+    html_path = args.output if args.output else base + ".html"
+    
+    if args.mode:
+        # Pre-process the markdown for answer handling
+        import tempfile
+        with open(args.path, 'r', encoding='utf-8') as f:
+            md_content = f.read()
+        
+        if args.mode == 'participant':
+            # Strip all <!-- ANSWER ... --> comments entirely
+            md_content = re.sub(r'<!--\s*ANSWER[\s\S]*?-->\s*\n?', '', md_content)
+        else:  # leader
+            # Convert <!-- ANSWER: text --> into a visible div for grey rendering
+            def answer_replacer(m):
+                answer_text = m.group(1).strip()
+                return f'<div class="answer-block">{answer_text}</div>'
+            md_content = re.sub(r'<!--\s*ANSWER:?\s*([\s\S]*?)\s*-->', answer_replacer, md_content)
+        
+        tmp = tempfile.NamedTemporaryFile(mode='w', suffix='.md', delete=False, encoding='utf-8')
+        tmp.write(md_content)
+        tmp.close()
+        source_path = tmp.name
+    else:
+        source_path = args.path
     
     if args.html or args.pdf:
-        generate_html(args.path, html_path)
+        generate_html(source_path, html_path)
         
     if args.pdf:
-        generate_pdf(os.path.abspath(html_path), os.path.abspath(base + ".pdf"))
+        # PDF name follows the --output name if given (e.g. ..._leadersguide.pdf)
+        pdf_path = os.path.splitext(html_path)[0] + ".pdf" if args.output else base + ".pdf"
+        generate_pdf(os.path.abspath(html_path), os.path.abspath(pdf_path))
         
     if args.rtf:
-        markdown_to_rtf(args.path, base + ".rtf")
+        markdown_to_rtf(source_path, base + ".rtf")
+    
+    if args.mode:
+        os.unlink(source_path)  # Clean up temp file
 

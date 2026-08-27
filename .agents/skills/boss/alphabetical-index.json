@@ -414,6 +414,12 @@
         "search_terms":  "image, integration, photo, search, unsplash"
     },
     {
+        "id":  "use-gesture-react",
+        "description":  "Implement use-gesture library within React components for gesture-based interactions: use when adding drag, scroll, pin, press, and other gesture f...",
+        "path":  "ui-ux/use-gesture-react",
+        "search_terms":  "react, add, adding, based, components"
+    },
+    {
         "id":  "using-superpowers",
         "description":  "Use at the start of any conversation. Establishes how to find and use skills. If there is even a 1% chance a skill might apply, you must invoke the...",
         "path":  "tools/using-superpowers",

@@ -198,6 +198,22 @@ After research, summarize findings and ask the user to confirm passage, outline,
    ### Apply
    1. Application methods
       - Ground application in what the text reveals about God and his work before asking what it calls people to do.
+
+### Answer Formatting (for Leader/Participant dual export)
+   - **Format**: Place answers in HTML comments immediately after each question using the `<!-- ANSWER ... -->` syntax.
+   - **Placement**: Directly after the question line, before any blank line or next question.
+   - **Content**: Concise, text-grounded answer (2-4 sentences max). Reference verse numbers.
+   - **Example**:
+     ```markdown
+     **Observe**: Who are the three main characters in this chapter, and what does each one do?
+     <!-- ANSWER: Woman (God's people/Israel), Child (Jesus), Dragon (Satan). The woman gives birth; the dragon tries to devour the child; the child is caught up to God. -->
+     
+     **Interpret**: Who do the woman, the child, and the dragon represent?
+     <!-- ANSWER: Woman = God's people (Isaiah 54, 66); Child = Jesus (Psalm 2:9); Dragon = Satan (Rev 12:9). -->
+     ```
+   - **Export logic**: 
+     - Participant guide: strip all `<!-- ANSWER ... -->` comments
+     - Leader guide: unwrap comments and render as muted grey text (CSS `color: var(--answer-grey, #888); font-size: 0.9em;`)
       - Draw out communal and life response questions.
       - Keep the question rooted in the passage, not in moralistic add-ons.
       - Example prompts:

@@ -237,7 +237,6 @@ The wrapper:
 
 ### Database Location
 - **Path:** `.agents/memory/aingram.db` (relative to workspace root)
-- **Full path:** `D:\OneDrive - New Light Anglican Church\Documents\antigravity\skill-repository\.agents\memory\aingram.db`
 
 ### Verifying the Server
 When active, AIngram exposes these MCP tools:
