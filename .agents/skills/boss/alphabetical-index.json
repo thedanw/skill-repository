@@ -210,6 +210,12 @@
         "search_terms":  "behavioral, decisions, feasibility, leverage, marketing"
     },
     {
+        "id":  "mark-it-down",
+        "description":  "Convert various file formats (PDF, Office docs, images, audio, HTML, etc.) to Markdown using Microsoft\u0027s MarkItDown library for LLM-ready text extr...",
+        "path":  "writing/mark-it-down",
+        "search_terms":  "audio, convert, html, llm, markdown"
+    },
+    {
         "id":  "md-token-optimizer",
         "description":  "Analyzes markdown files for token efficiency. TRIGGERS: optimize markdown, reduce tokens, token count, token bloat, too many tokens, make concise, ...",
         "path":  "ai-meta/md-token-optimizer",

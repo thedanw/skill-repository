@@ -429,6 +429,11 @@
                            "path":  "writing/libreoffice-writer"
                        },
                        {
+                           "id":  "mark-it-down",
+                           "description":  "Convert various file formats (PDF, Office docs, images, audio, HTML, etc.) to Markdown using Microsoft\u0027s MarkItDown library for LLM-ready text extr...",
+                           "path":  "writing/mark-it-down"
+                       },
+                       {
                            "id":  "python-pptx-generator",
                            "description":  "Create complete Python scripts that build polished PowerPoint decks with python-pptx and real slide content.: generate from input",
                            "path":  "writing/python-pptx-generator"

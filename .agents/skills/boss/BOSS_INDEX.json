@@ -1215,6 +1215,28 @@
                        "source":  "installed"
                    },
                    {
+                       "id":  "mark-it-down",
+                       "name":  "mark-it-down",
+                       "description":  "Convert various file formats (PDF, Office docs, images, audio, HTML, etc.) to Markdown using Microsoft\u0027s MarkItDown library for LLM-ready text extraction",
+                       "category":  "writing",
+                       "tags":  [
+                                    "markdown",
+                                    "conversion",
+                                    "pdf",
+                                    "docx",
+                                    "pptx",
+                                    "xlsx",
+                                    "images",
+                                    "audio",
+                                    "html",
+                                    "text-extraction",
+                                    "llm-prep"
+                                ],
+                       "triggers": ["convert"],
+                       "path":  "writing/mark-it-down",
+                       "source":  "installed"
+                   },
+                   {
                        "id":  "python-pptx-generator",
                        "name":  "python-pptx-generator",
                        "description":  "Generate complete Python scripts that build polished PowerPoint decks with python-pptx and real slide content.",
